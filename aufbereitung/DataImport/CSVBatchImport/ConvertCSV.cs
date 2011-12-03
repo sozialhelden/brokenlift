@@ -169,7 +169,7 @@ namespace CSVBatchImport
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-                throw new Exception("Error while parsing CSV", ex);
+                throw new Exception("Error while creating sql", ex);
             }
             return retVal;
 
