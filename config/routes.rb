@@ -4,9 +4,10 @@ Brokenlifts::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   namespace :api do
-    resources :lifts,        :only  => [:index, :show]
+    resources :lifts,         :only  => [:index, :show]
     resources :events,        :only  => [:index, :show]
-    resources :stations,     :only  => [:index, :show]
+    resources :stations,      :only  => [:index, :show]
+    resources :manufacturers, :only  => [:index, :show]
   end
 
   # The priority is based upon order of creation:
