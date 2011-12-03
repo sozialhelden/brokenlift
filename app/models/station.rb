@@ -1,5 +1,5 @@
 class Station < ActiveRecord::Base
-  belongs_to :line
   has_many :lift_stations
+  has_many :lifts, :through => :lift_stations
 
 end
