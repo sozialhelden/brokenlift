@@ -45,3 +45,12 @@ test:
   pool: 5
   username: postgres
   password:
+
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: brokenlifts_development
+  pool: 5
+  username: postgres
+  password:
