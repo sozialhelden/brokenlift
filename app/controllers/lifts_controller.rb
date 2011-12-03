@@ -5,7 +5,7 @@ class LiftsController < ApiController
   actions :index, :show
 
   def index
-    @lifts = Lift.paginate(:page => params[:page], :per_page => 50)
+    @lifts = Lift.page(params[:page] || 1).per(50)
     index! do |format|
       format.xml      {render_for_api :lift_template, :xml  => @lifts, :root => :lifts}
       format.json     {render_for_api :lift_template, :json => @lifts, :root => :lifts}
