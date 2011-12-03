@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111203194137) do
+ActiveRecord::Schema.define(:version => 20111203221827) do
 
   create_table "event_types", :force => true do |t|
     t.string  "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20111203194137) do
     t.datetime "updated_at"
     t.datetime "timestamp"
     t.integer  "event_type_id"
+    t.integer  "lift_id"
   end
 
   create_table "lifts", :force => true do |t|
@@ -38,6 +39,11 @@ ActiveRecord::Schema.define(:version => 20111203194137) do
     t.integer  "network_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "lines_stations", :force => true do |t|
+    t.integer "station_id"
+    t.integer "line_id"
   end
 
   create_table "locations", :force => true do |t|
@@ -76,11 +82,6 @@ ActiveRecord::Schema.define(:version => 20111203194137) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
-
-  create_table "station_lines", :force => true do |t|
-    t.integer "station_id"
-    t.integer "line_id"
-  end
 
   create_table "stations", :force => true do |t|
     t.string   "name"

@@ -4,6 +4,8 @@ Brokenlifts::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :lifts,        :only  => [:index, :show]
+  resources :events,        :only  => [:index, :show]
+  resources :stations,     :only  => [:index, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -62,3 +64,4 @@ Brokenlifts::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
+

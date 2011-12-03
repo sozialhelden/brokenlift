@@ -9,7 +9,9 @@ gem 'pg'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'aasm'
 gem 'acts_as_api'
+gem 'kaminari'
 gem 'heroku'
+gem 'responders'
 gem 'inherited_resources'
 
 group :test, :development do
