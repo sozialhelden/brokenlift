@@ -1,5 +1,4 @@
 class Lift < ActiveRecord::Base
-  #belongs_to :station
   belongs_to :manufacturer
   has_many :events
 
@@ -16,3 +15,4 @@ class Lift < ActiveRecord::Base
 
 
 end
+
