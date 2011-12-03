@@ -1,4 +1,4 @@
-class StationsController < ApiController
+class Api::StationsController < Api::ApiController
 
   respond_to :xml, :json
 

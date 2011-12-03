@@ -1,4 +1,4 @@
-class ApiController < ApplicationController
+class Api::ApiController < ApplicationController
   # Include Inherited Resources behaviour
   inherit_resources
 

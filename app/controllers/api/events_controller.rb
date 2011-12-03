@@ -1,4 +1,4 @@
-class EventsController < ApiController
+class Api::EventsController < Api::ApiController
 
   respond_to :xml, :json
 

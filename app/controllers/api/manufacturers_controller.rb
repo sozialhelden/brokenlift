@@ -1,4 +1,4 @@
-class ManufacturersController < ApiController
+class Api::ManufacturersController < Api::ApiController
 
   respond_to :xml, :json
 

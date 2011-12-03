@@ -1,4 +1,4 @@
-class LiftsController < ApiController
+class Api::LiftsController < Api::ApiController
 
   respond_to :xml, :json
 
