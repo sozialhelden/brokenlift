@@ -10,6 +10,7 @@ class Station < ActiveRecord::Base
     template.add :id
     template.add :name
     template.add :osm_id
+    template.add :lines, :template => :simple
   end
 
 end

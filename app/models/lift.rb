@@ -12,8 +12,12 @@ class Lift < ActiveRecord::Base
     template.add :events, :template => :event_template
     template.add :name
     template.add :station, :template => :simple
+    template.add :timestamp
   end
 
+  def timestamp
+    self.created_at.to_i
+  end
 
 end
 

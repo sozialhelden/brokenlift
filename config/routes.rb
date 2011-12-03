@@ -6,8 +6,13 @@ Brokenlifts::Application.routes.draw do
   namespace :api do
     resources :lifts,         :only  => [:index, :show]
     resources :events,        :only  => [:index, :show]
-    resources :stations,      :only  => [:index, :show]
+    resources :stations,      :only  => [:index, :show] do
+      resources :lifts,         :only  => [:index, :show]
+    end
     resources :manufacturers, :only  => [:index, :show]
+    resources :lines,         :only  => [:index, :show] do
+      resources :stations,      :only  => [:index, :show]
+    end
   end
 
   # The priority is based upon order of creation:

@@ -2,6 +2,8 @@ class Api::StationsController < Api::ApiController
 
   respond_to :xml, :json
 
+  belongs_to :line, :optional => true
+
   actions :index, :show
 
   def index

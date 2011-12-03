@@ -2,6 +2,8 @@ class Api::LiftsController < Api::ApiController
 
   respond_to :xml, :json
 
+  belongs_to :station, :optional => true
+
   actions :index, :show
 
   def index
