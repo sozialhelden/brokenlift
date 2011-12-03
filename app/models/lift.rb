@@ -10,6 +10,8 @@ class Lift < ActiveRecord::Base
     template.add :manufacturer, :template => :manufacturer_template
     template.add :description
     template.add :events, :template => :event_template
+    template.add :name
+    template.add :station
   end
 
 

@@ -213,5 +213,6 @@ DEPENDENCIES
   pg
   rails (= 3.1.1)
   rails_admin!
+  responders
   rspec-rails
   turn
