@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20111203143733) do
     t.string   "name"
     t.text     "description"
     t.string   "status"
+    t.integer  "manufacturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
