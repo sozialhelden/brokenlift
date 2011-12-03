@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111203194137) do
+ActiveRecord::Schema.define(:version => 20111203203412) do
 
   create_table "event_types", :force => true do |t|
     t.string  "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20111203194137) do
     t.datetime "updated_at"
     t.datetime "timestamp"
     t.integer  "event_type_id"
+    t.integer  "lift_id"
   end
 
   create_table "lifts", :force => true do |t|
