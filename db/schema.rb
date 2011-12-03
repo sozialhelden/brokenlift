@@ -11,28 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111203143733) do
+ActiveRecord::Schema.define(:version => 20111203194137) do
 
-  create_table "events", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "event_types", :force => true do |t|
+    t.string  "name"
+    t.boolean "is_working"
   end
 
-  create_table "lift_stations", :force => true do |t|
-    t.integer  "lift_id"
-    t.integer  "station_id"
+  create_table "events", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "timestamp"
+    t.integer  "event_type_id"
   end
 
   create_table "lifts", :force => true do |t|
-    t.string   "name"
     t.text     "description"
-    t.string   "status"
     t.integer  "manufacturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "station_id"
   end
 
   create_table "lines", :force => true do |t|
@@ -40,6 +38,11 @@ ActiveRecord::Schema.define(:version => 20111203143733) do
     t.integer  "network_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.float "longitude"
+    t.float "latitude"
   end
 
   create_table "manufacturers", :force => true do |t|
@@ -74,11 +77,17 @@ ActiveRecord::Schema.define(:version => 20111203143733) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
+  create_table "station_lines", :force => true do |t|
+    t.integer "station_id"
+    t.integer "line_id"
+  end
+
   create_table "stations", :force => true do |t|
     t.string   "name"
-    t.integer  "line_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "location_id"
+    t.string   "osm_id"
   end
 
   create_table "users", :force => true do |t|
