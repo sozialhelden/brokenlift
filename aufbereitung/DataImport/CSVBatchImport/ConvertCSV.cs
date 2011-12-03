@@ -72,6 +72,7 @@ namespace CSVBatchImport
 
                     }//end else first row
                 }//end foreach entry
+                Program.Write("Read \"{0}\" sucessfull with {1} entrys", Source, retVal.Count);
 
             }
             catch (Exception ex)
@@ -80,6 +81,39 @@ namespace CSVBatchImport
                 throw new Exception("Error while parsing CSV", ex);
             }
             return retVal;
+        }
+
+        public static string ConvertToDB(List<LiftEvent> events)
+        {
+            string retVal = "";
+            try
+            {
+                Dictionary<string, int> Operators = new Dictionary<string, int>();
+                Dictionary<string, int> Networks = new Dictionary<string, int>();
+                Dictionary<string, int> Lines = new Dictionary<string, int>();
+                Dictionary<string, int> Stations = new Dictionary<string, int>();
+                Dictionary<string, int> Lifts = new Dictionary<string, int>();
+
+
+                //find stations
+                Program.Write("find stations");
+
+                //TODO add operators
+                //TODO add networks
+                //TODO add eventstypes
+                //TODO add lines
+                //TODO add stations
+                //TODO add stations to lines
+                //TODO add lifts
+                //TODO add events
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                throw new Exception("Error while parsing CSV", ex);
+            }
+            return retVal;
+
         }
     }
 }

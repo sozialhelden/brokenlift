@@ -19,6 +19,7 @@ namespace CSVBatchImport
         /// <summary>
         /// application entry point
         /// </summary>
+        [STAThread]
         static void Main(string[] args)
         {
             try
@@ -35,6 +36,7 @@ namespace CSVBatchImport
                 if (System.Environment.CommandLine.Contains(" /bvg:")) throw new NotImplementedException();
                 string filenameSBahn = "sbahn.csv";
                 if (System.Environment.CommandLine.Contains(" /sbahn:")) throw new NotImplementedException();
+                OutputMode mode = OutputMode.SQL;
 
                 if (!silentMode)
                 {
@@ -50,7 +52,19 @@ namespace CSVBatchImport
                     ofd.Title = "Open S-Bahn Data";
                     if (ofd.ShowDialog() != DialogResult.OK) throw new Exception("No BVG-File selected.");
                     filenameSBahn = ofd.FileName;
+
+                    if (MessageBox.Show("Do you like to output the data as json?", "Please define output-format", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        mode = OutputMode.JSON;
+
                 }
+
+                List<LiftEvent> evnts = new List<LiftEvent>();
+
+                List<string> csvData = new List<string>(System.IO.File.ReadAllLines(filenameBVG, System.Text.ASCIIEncoding.Default));
+                evnts.AddRange(ConvertCSV.Read(Source: "BVG", Data: csvData, Mode: mode));
+
+                csvData = new List<string>(System.IO.File.ReadAllLines(filenameSBahn, System.Text.ASCIIEncoding.Default));
+                evnts.AddRange(ConvertCSV.Read(Source: "S-Bahn", Data: csvData, Mode: mode));
             }
             catch (Exception ex)
             {
@@ -65,7 +79,7 @@ namespace CSVBatchImport
         /// Writes the specified exception
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private static void Write(Exception ex)
+        internal static void Write(Exception ex)
         {
             ConsoleColor corg = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -78,7 +92,7 @@ namespace CSVBatchImport
         /// Writes the specified message.
         /// </summary>
         /// <param name="Message">The message.</param>
-        private static void Write(string Message)
+        internal static void Write(string Message)
         {
             Write(Message, "");
         }
@@ -88,7 +102,7 @@ namespace CSVBatchImport
         /// </summary>
         /// <param name="Message">The message.</param>
         /// <param name="args">The args.</param>
-        private static void Write(string Message, params object[] args)
+        internal static void Write(string Message, params object[] args)
         {
             Console.WriteLine(Message, args);
         }
