@@ -1,8 +1,8 @@
 class Station < ActiveRecord::Base
-  has_many :lift_stations
-  has_many :lifts, :through => :lift_stations
+  has_many :lifts
   has_one :location
-  has_many :lines
+  has_many :station_lines
+  has_many :lines, :through => :station_lines
 
   acts_as_api
 
