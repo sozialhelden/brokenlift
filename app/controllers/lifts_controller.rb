@@ -1,4 +1,4 @@
-class LiftsController < Api::ApiController
+class LiftsController < ApiController
 
   actions :index, :show
 
