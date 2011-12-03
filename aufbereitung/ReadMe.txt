@@ -1,0 +1,1 @@
+In diesem Ordner befinden sich Tools für den Datenimport bzw. die Aufbereitung der statischen Daten
