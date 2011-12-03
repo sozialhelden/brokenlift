@@ -12,7 +12,7 @@ namespace CSVBatchImport
     {
         public LiftEvent(Dictionary<string,string> propBag)
         {
-            if (propBag.ContainsKey("source")) Source = propBag["source"];
+            if (propBag.ContainsKey("source")) Network = propBag["source"]; else Network = "";
             if (propBag.ContainsKey("start"))
             {
                 DateTime dt = DateTime.MinValue; ;
@@ -28,12 +28,13 @@ namespace CSVBatchImport
                     EventTimestamp = dt;
                 System.Diagnostics.Debug.Assert(dt != DateTime.MinValue, "Datum konnte nicht geparst werden");
             }
-            if (propBag.ContainsKey("linie")) Line = propBag["linie"];
-            if (propBag.ContainsKey("station")) Station = propBag["station"];
-            if (propBag.ContainsKey("ebene")) Level = propBag["ebene"];
+            if (propBag.ContainsKey("linie")) Line = propBag["linie"]; else Line = "";
+            if (propBag.ContainsKey("station")) Station = propBag["station"]; else Station = "";
+            if (propBag.ContainsKey("ebene")) Level = propBag["ebene"]; else Level = "";
             Memo = "";
             isBroken = true;
         }
+
         /// <summary>
         /// an internal ID, Currently the Station
         /// </summary>
@@ -45,13 +46,7 @@ namespace CSVBatchImport
         /// e.g. BVG, or S-Bahn
         /// </summary>
         /// <value>The source.</value>
-        public string  Source { get; set; }
-
-        /// <summary>
-        /// Detailed Informations
-        /// </summary>
-        /// <value>The event description.</value>
-        public string FullDescription { get { return string.Format("{0} - {1} - {2} {3}", Line, Station, Level, Memo).Trim(); } }
+        public string  Network { get; set; }
 
         /// <summary>
         /// Gets or sets the event timestamp.
@@ -80,6 +75,13 @@ namespace CSVBatchImport
         public string Level { get; set; }
 
         /// <summary>
+        /// Gets or sets the lift.
+        /// Currently Station + Level
+        /// </summary>
+        /// <value>The lift.</value>
+        public string Lift { get { return string.Format("{0} - {1}", Station, Level); } }
+
+        /// <summary>
         /// Gets or sets the memo.
         /// Somtimes a end - value contains not a timestamp, then the memo is used to store these informations
         /// </summary>
@@ -92,9 +94,15 @@ namespace CSVBatchImport
         /// <value><c>true</c> if this instance is broken; otherwise, <c>false</c>.</value>
         public bool isBroken { get; set; }
 
+        /// <summary>
+        /// Detailed Informations
+        /// </summary>
+        /// <value>The event description.</value>
+        public string EventDescription { get { return string.Format("{0} - {1} - {2} {3}", Line, Station, Level, Memo).Trim(); } }
+
         public override string ToString()
         {
-            return FullDescription;
+            return EventDescription;
         }
     }
 }

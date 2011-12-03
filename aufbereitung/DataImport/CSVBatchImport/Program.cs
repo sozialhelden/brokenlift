@@ -16,6 +16,10 @@ namespace CSVBatchImport
 {
     class Program
     {
+
+        public const string OPERATOR_BVG = "BVG";
+        public const string OPERATOR_SBAHN = "S-Bahn";
+
         /// <summary>
         /// application entry point
         /// </summary>
@@ -53,18 +57,25 @@ namespace CSVBatchImport
                     if (ofd.ShowDialog() != DialogResult.OK) throw new Exception("No BVG-File selected.");
                     filenameSBahn = ofd.FileName;
 
-                    if (MessageBox.Show("Do you like to output the data as json?", "Please define output-format", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        mode = OutputMode.JSON;
+                    //if (MessageBox.Show("Do you like to output the data as json?", "Please define output-format", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    //    mode = OutputMode.JSON;
 
                 }
 
-                List<LiftEvent> evnts = new List<LiftEvent>();
+                List<LiftEvent> events = new List<LiftEvent>();
 
                 List<string> csvData = new List<string>(System.IO.File.ReadAllLines(filenameBVG, System.Text.ASCIIEncoding.Default));
-                evnts.AddRange(ConvertCSV.Read(Source: "BVG", Data: csvData, Mode: mode));
+                events.AddRange(ConvertCSV.Read(Source: OPERATOR_BVG, Data: csvData, Mode: mode));
 
                 csvData = new List<string>(System.IO.File.ReadAllLines(filenameSBahn, System.Text.ASCIIEncoding.Default));
-                evnts.AddRange(ConvertCSV.Read(Source: "S-Bahn", Data: csvData, Mode: mode));
+                events.AddRange(ConvertCSV.Read(Source: OPERATOR_SBAHN, Data: csvData, Mode: mode));
+
+                string script = ConvertCSV.ConvertToDB(events);
+
+                //TODO Silent Mode
+                System.Windows.Forms.SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "*.sql|*.sql";
+                if (sfd.ShowDialog() == DialogResult.OK) System.IO.File.WriteAllText(sfd.FileName, script, System.Text.ASCIIEncoding.Default);
             }
             catch (Exception ex)
             {
