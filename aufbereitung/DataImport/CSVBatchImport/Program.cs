@@ -26,16 +26,19 @@ namespace CSVBatchImport
         [STAThread]
         static void Main(string[] args)
         {
+            bool silentMode = System.Environment.CommandLine.Contains(" /s ");
             try
             {
 
                 Write("BrokenLift - DataImport Version: {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+
+                Write("-----------------------------------------------------------------");
                 Write("\nCommands: ");
                 Write("\t/s\tsilent mode");
                 Write("\t/bvg:filename\tthe import file (csv) for the \"bvg\" data");
                 Write("\t/sbahn:filename\tthe import file (csv) for the \"s-bahn\" data");
+                Write("-----------------------------------------------------------------\n\n");
 
-                bool silentMode = System.Environment.CommandLine.Contains(" /s ");
                 string filenameBVG = "bvg.csv";
                 if (System.Environment.CommandLine.Contains(" /bvg:")) throw new NotImplementedException();
                 string filenameSBahn = "sbahn.csv";
@@ -74,13 +77,15 @@ namespace CSVBatchImport
 
                 //TODO Silent Mode
                 System.Windows.Forms.SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "*.sql|*.sql";
+                sfd.Filter = string.Format("*.{0}|*.{0}", mode.ToString());
+                sfd.Title = string.Format("Save {0} - File" , mode.ToString());
                 if (sfd.ShowDialog() == DialogResult.OK) System.IO.File.WriteAllText(sfd.FileName, script, System.Text.ASCIIEncoding.Default);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 Write(ex);
+                if (!silentMode) MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }

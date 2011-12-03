@@ -136,7 +136,7 @@ namespace CSVBatchImport
                 EventTypes.Add(false, 2);
                 foreach (var kvp in EventTypes)
                 {
-                    sw.WriteLine(string.Format("insert into event_types (id, name, is_working) values ({0}, '{1}', {2});", kvp.Value, kvp.Key, kvp.Key ? "1" : "0"));
+                    sw.WriteLine(string.Format("insert into event_types (id, name, is_working) values ({0}, '{1}', {2});", kvp.Value, kvp.Key ? "broken" : "working", kvp.Key ? "FALSE" : "TRUE"));
                 }
 
                 Program.Write("search stations, lines, lifts and events");
@@ -159,7 +159,7 @@ namespace CSVBatchImport
                         sw.WriteLine(string.Format("insert into lifts (id, description, station_id) values ({0}, '{1}', {2});", Lifts[entry.Lift], entry.Lift, Stations[entry.Station]));
                     }
 
-                    sw.WriteLine(string.Format("insert into events (lift_id, event_type_id, timestamp) values ({0}, {1}, '{2}');", Lifts[entry.Lift], EventTypes[entry.isBroken], entry.EventTimestamp.ToString()));
+                    sw.WriteLine(string.Format("insert into events (lift_id, event_type_id, timestamp) values ({0}, {1}, '{2}');", Lifts[entry.Lift], EventTypes[entry.isBroken], entry.EventTimestamp.ToString("yyyy-MM-dd HH:mm:ss")));
                 }
                 Program.Write("found {0} stations, {1} lines, {2} lifts, {3} events", Stations.Count, Lines.Count, Lifts.Count, events.Count);
 
