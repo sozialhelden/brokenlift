@@ -11,7 +11,7 @@ class Lift < ActiveRecord::Base
     template.add :description
     template.add :events, :template => :event_template
     template.add :name
-    template.add :station
+    template.add :station, :template => :simple
   end
 
 
