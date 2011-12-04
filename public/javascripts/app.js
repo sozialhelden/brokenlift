@@ -2,6 +2,8 @@
 var routes = [],
     skipNavigation = false;
 function fetch(apiUrl, callback, options) {
+
+  $('#loading').show();
   options = options || {};
   var prepare = options.prepare;
   delete options.prepare;
@@ -10,12 +12,15 @@ function fetch(apiUrl, callback, options) {
     url : url,
     dataType: 'jsonp',
     success: function (data) {
+      $('#loading').hide();
+
       if (prepare) {
         data = prepare(data);
       }
       callback(data);
     },
     error: function (err) {
+      $('#loading').hide();
       renderMainContent('error', err);
     }
   }, options));
@@ -63,9 +68,9 @@ $(document).ready(function () {
 
   function lift(id) {
     fetch("/lifts/" + id, function (data) {
-      // if (data.station.lat != null) {
-      //   renderSideContent("map", data.station);
-      // }
+      if (data.lift.station.location && data.lift.station.location.latitude != null) {
+        renderSideContent("map", data.lift.station.location);
+      }
       renderMainContent("detailpage", data.lift);
       //renderMainContent("lift", data);
       showPieChart('uptimePercentagePieChart',data.lift.uptimePercentage);
@@ -213,10 +218,12 @@ $(document).ready(function () {
   }
   function station(id) {
     fetch("/stations/" + id+'/lifts', function (data) {
-      console.log(data);
       data.station = data.lifts[0].station;
+      if (data.station.location && data.station.location.latitude != null) {
+        renderSideContent("map", data.station.location);
+      }
       _.each(data.lifts, function(lift) {
-    	  lift.latestEvent = lift.events[0];
+        lift.latestEvent = lift.events[0];
       });
       renderMainContent("station", data);
     });
@@ -271,51 +278,51 @@ $(document).ready(function () {
               color: '#f00'
           }
       ], {
-    	  yaxes:[ {
-	            tickFormatter: function formatter(val, axis){
-	                return val + " min";
-	            }
-	           }],
-     	  xaxes:[ {
-	            tickFormatter: function formatter(val, axis){
-	                return "";
-	            }
-	           }]
+        yaxes:[ {
+              tickFormatter: function formatter(val, axis){
+                  return val + " min";
+              }
+             }],
+        xaxes:[ {
+              tickFormatter: function formatter(val, axis){
+                  return "";
+              }
+             }]
       });
 
       events.reverse();
 
       function paintChart(){
-    	    var chart = $("#"+containerId);
-    	    $.plot(chart, [{
-    	        data: data,
-    	        lines: {
-    	            show: true
-    	        },
-    	        points: {
-    	            show: true
-    	        },
-    	        color: 'rgb(0,255,0)',
-    	        label: 'Time per day calculation (in seconds)'
-    	    }],
-    	    {
-    	        xaxis: {
-    	            ticks: 0
-    	        },
-    	        yaxis: {
-    	            min: 0,
-    	            tickFormatter: function formatter(val, axis){
-    	                return val + " s";
-    	            }
-    	        },
-    	        legend: {
-    	            position: 'se'
-    	        }
-    	    });
-    	    //chart.bind("plothover", onPlotHover);
-    	}
+          var chart = $("#"+containerId);
+          $.plot(chart, [{
+              data: data,
+              lines: {
+                  show: true
+              },
+              points: {
+                  show: true
+              },
+              color: 'rgb(0,255,0)',
+              label: 'Time per day calculation (in seconds)'
+          }],
+          {
+              xaxis: {
+                  ticks: 0
+              },
+              yaxis: {
+                  min: 0,
+                  tickFormatter: function formatter(val, axis){
+                      return val + " s";
+                  }
+              },
+              legend: {
+                  position: 'se'
+              }
+          });
+          //chart.bind("plothover", onPlotHover);
+      }
 
-      	//paintChart();
+        //paintChart();
 
   }
 
@@ -338,9 +345,11 @@ $(document).ready(function () {
   ], [
     /^\/stations\/(\d+)/, station
   ], [
-    /.?/, home
+    /.?/, function () {
+      renderMainContent('error', {status: 404});
+    }
   ]);
-
+  $('#loading').hide();
   $(window).bind('hashchange', onHashChange);
   onHashChange();
 });

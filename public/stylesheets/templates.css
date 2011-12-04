@@ -131,3 +131,16 @@ table #map {
 #logo {
   margin-top: 15px;
 }
+#snowman {
+  font-size: 400pt;
+  text-align: center;
+  line-height: 1.2;
+}
+#findAStation {
+  width: 100%;
+}
+#loading {
+  position: fixed;
+  top: 40%;
+  left: 48%; /*hacky hacky hack hack */
+}
