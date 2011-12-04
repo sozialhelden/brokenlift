@@ -8,16 +8,16 @@ class Api::EventsController < Api::ApiController
   def index
 
     index! do |format|
-      format.xml      {render_for_api :event_template, :xml  => @events, :root => :events}
-      format.json     {render_for_api :event_template, :json => @events, :root => :events}
+      format.xml      {render_for_api :extended, :xml  => @events, :root => :events}
+      format.json     {render_for_api :extended, :json => @events, :root => :events}
     end
   end
 
   def show
 
     show! do |format|
-      format.xml      {render_for_api :event_template, :xml  => @event, :root => :event}
-      format.json     {render_for_api :event_template, :json => @event, :root => :event}
+      format.xml      {render_for_api :extended, :xml  => @event, :root => :event}
+      format.json     {render_for_api :extended, :json => @event, :root => :event}
     end
   end
 

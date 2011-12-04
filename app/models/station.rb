@@ -8,7 +8,6 @@ class Station < ActiveRecord::Base
   api_accessible :simple do |template|
     template.add :id
     template.add :name
-    template.add :lines
     template.add :location
     template.add :osm_id
     template.add :lines, :template => :simple
