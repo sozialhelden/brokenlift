@@ -97,8 +97,10 @@ namespace CSVBatchImport
         /// Converts to SQL - Statements
         /// </summary>
         /// <param name="events">The events.</param>
+        /// <param name="?">The ?.</param>
+        /// <param name="StationLocationsLongAlt">The station locations long alt. or an empty collection. not null!</param>
         /// <returns></returns>
-        public static string ConvertToDB(List<LiftEvent> events)
+        public static string ConvertToDB(List<LiftEvent> events, Dictionary<string, KeyValuePair<string, string>> StationLocationsLongAlt)
         {
             string retVal = "";
             try
@@ -111,6 +113,7 @@ namespace CSVBatchImport
                 Dictionary<string, int> Lines = new Dictionary<string, int>();
                 Dictionary<string, int> Stations = new Dictionary<string, int>();
                 Dictionary<string, int> Lifts = new Dictionary<string, int>();
+                Dictionary<string, int> Locations = new Dictionary<string, int>();
                 List<string> LinesToStations = new List<string>();
 
                 // add operators
@@ -152,10 +155,24 @@ namespace CSVBatchImport
                     {
                         Stations.Add(entry.Station, Stations.Count + 1);
                         sw.WriteLine(string.Format("insert into stations (id, name) values ({0}, '{1}');", Stations[entry.Station], entry.Station));
-                        //TODO LOcation hinzufügen
+
+
+                        ///mapping stations to gps
+                        string stationkey = entry.Station.ToLower();
+                        if (StationLocationsLongAlt.ContainsKey(stationkey))
+                        {
+                            if (!Locations.ContainsKey(stationkey))
+                            {
+                                Locations.Add(stationkey, Locations.Count + 1);
+                                sw.WriteLine(string.Format("insert into locations (id, longitude, latitude) values ({0}, {1}, {2});", Locations[stationkey], StationLocationsLongAlt[stationkey].Key, StationLocationsLongAlt[stationkey].Value));
+                            }//end insert location 
+                            //now update the station
+                            sw.WriteLine(string.Format("update stations set location_id={0} where station_id={1}", Locations[stationkey], Stations[entry.Station]));
+                        }
                     }
 
-                    if(!LinesToStations.Contains(string.Format("{0};#{1}", Lines.ContainsKey(entry.Line), Stations.ContainsKey(entry.Station))))
+                    //mapping lines to stations
+                    if (!LinesToStations.Contains(string.Format("{0};#{1}", Lines.ContainsKey(entry.Line), Stations.ContainsKey(entry.Station))))
                     {
                         LinesToStations.Add(string.Format("{0};#{1}", Lines.ContainsKey(entry.Line), Stations.ContainsKey(entry.Station)));
                         sw.WriteLine(string.Format("insert into lines_stations (line_id, station_id) values ({0}, {1});", Lines[entry.Line], Stations[entry.Station]));
@@ -171,6 +188,12 @@ namespace CSVBatchImport
                 }
                 Program.Write("found {0} stations, {1} lines, {2} lifts, {3} events", Stations.Count, Lines.Count, Lifts.Count, events.Count);
 
+#warning Just for RHoK Import !!
+                //TODO replace with correct operator data (currently not available)
+                sw.WriteLine("insert into manufacturers (id, name) values (1,'RHoK Fahrstuhlservice');");
+                sw.WriteLine("update lifts set manufacturer_id=1;");
+                //end RHoK special
+
                 retVal = sw.ToString();
                 System.Diagnostics.Trace.Write(retVal);
             }
@@ -182,5 +205,6 @@ namespace CSVBatchImport
             return retVal;
 
         }
+
     }
 }
