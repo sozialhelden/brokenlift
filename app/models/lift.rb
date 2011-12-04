@@ -10,13 +10,13 @@ class Lift < ActiveRecord::Base
 
   acts_as_api
 
-  api_accessible :lift_template do |template|
+  api_accessible :default do |template|
     template.add :id
-    template.add :operator, :template => :simple
-    template.add :station, :template => :simple
-    template.add :manufacturer, :template => :manufacturer_template
+    template.add :operator
+    template.add :station
+    template.add :manufacturer
     template.add :description
-    template.add :events, :template => :event_template
+    template.add :events
     template.add :timestamp
   end
 

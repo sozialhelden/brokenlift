@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
 
   acts_as_api
 
-  api_accessible :event_template do |template|
+  api_accessible :default do |template|
     template.add :id
     template.add :timestamp
     template.add :is_working
