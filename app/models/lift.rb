@@ -23,7 +23,7 @@ class Lift < ActiveRecord::Base
   api_accessible :simple do |template|
     template.add :id
     template.add :description
-    template.add :station
+    template.add :station, :template => :default
   end
 
   def broken?
