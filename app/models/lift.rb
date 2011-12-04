@@ -30,7 +30,7 @@ class Lift < ActiveRecord::Base
   api_accessible :broken do |template|
     template.add :id
     template.add :description
-    template.add :station_id
+    template.add :station, :template => :default
     template.add :operator, :template => :default
     template.add :lines, :template => :default
     template.add :last_event, :template => :default do
