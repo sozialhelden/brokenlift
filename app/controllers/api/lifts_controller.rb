@@ -24,7 +24,7 @@ class Api::LiftsController < Api::ApiController
 
   def broken
     @lifts = Lift.broken
-    respond_to do |format|
+    respond_to  do |format|
       format.xml      {render_for_api :broken, :xml  => @lifts, :root => :lifts}
       format.json     {render_for_api :broken, :json => @lifts, :root => :lifts}
     end
