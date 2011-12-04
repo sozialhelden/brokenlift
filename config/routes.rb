@@ -21,7 +21,9 @@ Brokenlifts::Application.routes.draw do
     resources :lines,         :only  => [:index, :show] do
       resources :stations,      :only  => [:index, :show]
     end
-    resources :operators, :only  => [:index, :show]
+    resources :operators, :only  => [:index, :show] do
+        resources :lifts,         :only  => [:index, :show]
+    end
   end
 
   # The priority is based upon order of creation:

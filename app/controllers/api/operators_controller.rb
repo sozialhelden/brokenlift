@@ -1,6 +1,8 @@
 class Api::OperatorsController < Api::ApiController
 
   respond_to :xml, :json
+  
+  belongs_to :lift, :optional => true
 
   actions :index, :show
 
@@ -18,12 +20,8 @@ class Api::OperatorsController < Api::ApiController
     end
   end
 
-  def resource
-    @operator ||= Operator.find(params[:id])
-  end
-
   def collection
-    @operators ||= Operator.page(params[:page] || 1).per(50)
+    @operators ||= end_of_association_chain.page(params[:page] || 1).per(50)
   end
 
 
