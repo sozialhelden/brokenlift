@@ -31,7 +31,7 @@ class Api::LiftsController < Api::ApiController
   end
 
   def collection
-    @lifts ||= end_of_association_chain.page(params[:page] || 1).per(50)
+    @lifts ||= end_of_association_chain.page(params[:page] || 1).per(500)
   end
 
   def resource_class

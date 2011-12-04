@@ -28,7 +28,7 @@ class Api::EventsController < Api::ApiController
   end
 
   def collection
-    @events ||= end_of_association_chain.page(params[:page] || 1).per(50)
+    @events ||= end_of_association_chain.page(params[:page] || 1).per(5000)
   end
 
   def resource_class
