@@ -2,7 +2,11 @@ class Lift < ActiveRecord::Base
   belongs_to :station
   belongs_to :manufacturer
   belongs_to :operator
-  has_many :events  
+  has_many :events 
+  
+  acts_as_api do |config|
+    config.allow_jsonp_callback = true
+  end
 
   acts_as_api
 
