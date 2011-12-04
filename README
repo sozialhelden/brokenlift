@@ -9,6 +9,8 @@ This is a project of Sozialhelden come to live at the RHOK Berlin hacker event. 
 
 Check it out, spawn a server and got to localhost:3000/api/lifts or localhost:3000/admin to put some data in.
 
+If you find bugs please let me know.
+
 
 == Debugging Rails
 
