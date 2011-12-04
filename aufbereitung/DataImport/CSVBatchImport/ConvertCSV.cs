@@ -97,8 +97,10 @@ namespace CSVBatchImport
         /// Converts to SQL - Statements
         /// </summary>
         /// <param name="events">The events.</param>
+        /// <param name="?">The ?.</param>
+        /// <param name="StationLocationsLongAlt">The station locations long alt. or an empty collection. not null!</param>
         /// <returns></returns>
-        public static string ConvertToDB(List<LiftEvent> events)
+        public static string ConvertToDB(List<LiftEvent> events, , Dictionary<string, KeyValuePair<string, string>> StationLocationsLongAlt)
         {
             string retVal = "";
             try
@@ -153,6 +155,10 @@ namespace CSVBatchImport
                         Stations.Add(entry.Station, Stations.Count + 1);
                         sw.WriteLine(string.Format("insert into stations (id, name) values ({0}, '{1}');", Stations[entry.Station], entry.Station));
                         //TODO LOcation hinzufügen
+                        if(StationLocationsLongAlt.ContainsKey(entry.Station.ToLower()))
+                        {
+
+                        }
                     }
 
                     if(!LinesToStations.Contains(string.Format("{0};#{1}", Lines.ContainsKey(entry.Line), Stations.ContainsKey(entry.Station))))
@@ -182,5 +188,6 @@ namespace CSVBatchImport
             return retVal;
 
         }
+
     }
 }
