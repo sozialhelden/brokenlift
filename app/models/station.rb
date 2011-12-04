@@ -1,14 +1,15 @@
 class Station < ActiveRecord::Base
   has_many :lifts
-  has_one :location
-  has_many :lines_stations
-  has_many :lines, :through => :lines_stations
+  belongs_to :location
+  has_and_belongs_to_many :lines
 
   acts_as_api
 
   api_accessible :simple do |template|
     template.add :id
     template.add :name
+    template.add :lines
+    template.add :location
     template.add :osm_id
     template.add :lines, :template => :simple
   end
