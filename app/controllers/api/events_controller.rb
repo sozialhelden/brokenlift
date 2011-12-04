@@ -2,14 +2,20 @@ class Api::EventsController < Api::ApiController
 
   respond_to :xml, :json
 
-  #todo create inverse logic
+  belongs_to :lift, :optional => true
+
   actions :index, :show
 
   def index
 
     index! do |format|
-      format.xml      {render_for_api :extended, :xml  => @events, :root => :events}
-      format.json     {render_for_api :extended, :json => @events, :root => :events}
+      if parent?
+        format.xml      {render_for_api :default, :xml  => @events, :root => :events}
+        format.json     {render_for_api :default, :json => @events, :root => :events}
+      else
+        format.xml      {render_for_api :extended, :xml  => @events, :root => :events}
+        format.json     {render_for_api :extended, :json => @events, :root => :events}
+      end
     end
   end
 
@@ -21,12 +27,11 @@ class Api::EventsController < Api::ApiController
     end
   end
 
-  def resource
-    @event ||= Event.find(params[:id])
-  end
-
   def collection
-    @events ||= Event.page(params[:page] || 1).per(50)
+    @events ||= end_of_association_chain.page(params[:page] || 1).per(50)
   end
 
+  def resource_class
+    Event
+  end
 end

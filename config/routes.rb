@@ -4,12 +4,20 @@ Brokenlifts::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   namespace :api do
-    resources :lifts,         :only  => [:index, :show]
+    resources :lifts,         :only  => [:index, :show] do
+      resources :events,        :only  => [:index, :show]
+      collection do
+        get 'broken'
+      end
+    end
+
     resources :events,        :only  => [:index, :show]
+
     resources :stations,      :only  => [:index, :show] do
       resources :lifts,         :only  => [:index, :show]
     end
     resources :manufacturers, :only  => [:index, :show]
+
     resources :lines,         :only  => [:index, :show] do
       resources :stations,      :only  => [:index, :show]
     end

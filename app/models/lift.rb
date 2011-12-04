@@ -26,6 +26,15 @@ class Lift < ActiveRecord::Base
     template.add :station, :template => :default
   end
 
+  api_accessible :broken do |template|
+    template.add :id
+    template.add :description
+    template.add :station_id
+    template.add :last_event, :template => :default do
+      template.add :timestamp
+    end
+  end
+
   def broken?
     !last_event.try(:broken?).nil?
   end

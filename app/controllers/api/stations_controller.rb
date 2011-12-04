@@ -20,16 +20,12 @@ class Api::StationsController < Api::ApiController
     end
   end
 
-  def resource
-    @station ||= Station.find(params[:id])
-  end
-
   def collection
-    @stations ||= Station.page(params[:page] || 1).per(50)
+    @stations ||= end_of_association_chain.page(params[:page] || 1).per(50)
   end
 
-
-
-
+  def resource_class
+    Station
+  end
 end
 

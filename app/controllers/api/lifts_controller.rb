@@ -6,6 +6,8 @@ class Api::LiftsController < Api::ApiController
 
   actions :index, :show
 
+  custom_actions :resource => :get, :collection => :broken
+
   def index
     index! do |format|
       format.xml      {render_for_api :default, :xml  => @lifts, :root => :lifts}
@@ -20,13 +22,21 @@ class Api::LiftsController < Api::ApiController
     end
   end
 
-  def resource
-    @lift ||= Lift.find(params[:id])
+  def broken
+    broken_type = EventType.first(:conditions => 'is_working = FALSE')
+    @events = Event.last_event_per_lift
+    @lifts = Event.all(:conditions => ["events.id in (?) and event_type_id = ?", @events.map(&:id), broken_type.id], :joins => :lift).map(&:lift)
+    respond_to do |format|
+      format.xml      {render_for_api :broken, :xml  => @lifts, :root => :lifts}
+      format.json     {render_for_api :broken, :json => @lifts, :root => :lifts}
+    end
   end
 
   def collection
-    @lifts ||= Lift.page(params[:page] || 1).per(50)
+    @lifts ||= end_of_association_chain.page(params[:page] || 1).per(50)
   end
 
-
+  def resource_class
+    Lift
+  end
 end
