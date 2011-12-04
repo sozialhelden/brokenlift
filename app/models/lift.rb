@@ -15,6 +15,14 @@ class Lift < ActiveRecord::Base
     template.add :timestamp
   end
 
+  def broken?
+    !last_event.try(:broken?).nil?
+  end
+
+  def last_event
+    events.last_events.first
+  end
+
   def timestamp
     self.created_at.to_i
   end
