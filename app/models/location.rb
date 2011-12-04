@@ -1,5 +1,4 @@
 class Location < ActiveRecord::Base
-  belongs_to :station
 
   acts_as_api
 
