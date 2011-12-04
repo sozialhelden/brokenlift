@@ -4,12 +4,49 @@ This is a project of Sozialhelden come to live at the RHOK Berlin hacker event. 
 
 
 
-
 == Getting Started
 
 Check it out, spawn a server and got to localhost:3000/api/lifts or localhost:3000/admin to put some data in.
 
 If you find bugs please let me know. sdasd
+
+
+
+== API documentation (append .xml / .json to specify response format, default is .json)
+
+/api/stations/
+> provides all station objects
+
+/api/stations/:station_id/lifts
+> provides all lifts connected to the selected station
+
+/api/stations/status
+> provides the an object for each station with the total number of lifts and the number of the currently working lifts
+
+/api/lifts/broken
+> provides all lifts which are currently broken
+
+/api/lifts/:id/events/
+> provides the event history for the selected lift, ordered chronologically
+
+/api/lines/
+> provides all lines
+
+/api/lines/:line_id/stations
+> provides all stations for a line
+
+/api/manufacturer/
+> provides all lift manufacturers
+
+/api/operators/
+> provides all rail network operators
+
+/api/operators/:id/lifts
+> provides all lifts which are operated by the selected rail network operator
+
+/api/events/
+> provides all (lift) events in historical order
+
 
 
 == Debugging Rails
