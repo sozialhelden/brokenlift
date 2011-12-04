@@ -167,7 +167,7 @@ namespace CSVBatchImport
                                 sw.WriteLine(string.Format("insert into locations (id, longitude, latitude) values ({0}, {1}, {2});", Locations[stationkey], StationLocationsLongAlt[stationkey].Key, StationLocationsLongAlt[stationkey].Value));
                             }//end insert location 
                             //now update the station
-                            sw.WriteLine(string.Format("update stations set location_id={0} where station_id={1}", Locations[stationkey], Stations[entry.Station]));
+                            sw.WriteLine(string.Format("update stations set location_id={0} where id={1};", Locations[stationkey], Stations[entry.Station]));
                         }
                     }
 
