@@ -13,5 +13,20 @@ class Station < ActiveRecord::Base
     template.add :lines
   end
 
+  api_accessible :status do |template|
+    template.add :id
+    template.add :name
+    template.add :lifts_total
+    template.add :lifts_working
+  end
+
+  def lifts_total
+    lifts.count
+  end
+
+  def lifts_working
+    lifts.reject{|l| l.broken?}.size
+  end
+
 end
 

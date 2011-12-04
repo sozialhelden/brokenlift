@@ -22,7 +22,7 @@ class Api::LinesController < Api::ApiController
   end
 
   def collection
-    @lines ||= Line.page(params[:page] || 1).per(50)
+    @lines ||= Line.page(params[:page] || 1).per(500)
   end
 
 

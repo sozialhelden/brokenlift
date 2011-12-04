@@ -15,6 +15,9 @@ Brokenlifts::Application.routes.draw do
 
     resources :stations,      :only  => [:index, :show] do
       resources :lifts,         :only  => [:index, :show]
+      collection do
+        get 'status'
+      end
     end
     resources :manufacturers, :only  => [:index, :show]
 
