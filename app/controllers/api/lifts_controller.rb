@@ -23,9 +23,7 @@ class Api::LiftsController < Api::ApiController
   end
 
   def broken
-    broken_type = EventType.first(:conditions => 'is_working = FALSE')
-    @events = Event.last_event_per_lift
-    @lifts = Event.all(:conditions => ["events.id in (?) and event_type_id = ?", @events.map(&:id), broken_type.id], :joins => :lift).map(&:lift)
+    @lifts = Lift.broken
     respond_to do |format|
       format.xml      {render_for_api :broken, :xml  => @lifts, :root => :lifts}
       format.json     {render_for_api :broken, :json => @lifts, :root => :lifts}

@@ -21,7 +21,9 @@ class Event < ActiveRecord::Base
   end
 
   scope :last_events, :joins => :event_type, :limit => 1, :order => 'events.timestamp DESC'
-  scope :last_event_per_lift, :select => 'distinct events.id, events.lift_id, max(timestamp)', :group => 'lift_id, events.id'
+  scope :last_event_per_lift, :select => 'distinct events.id, events.lift_id, events.timestamp',
+                              :group => 'lift_id, events.id, events.timestamp',
+                              :having => 'max(timestamp) = events.timestamp'
 
   def broken?
     event_type.is_working == false
