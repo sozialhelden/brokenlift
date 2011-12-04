@@ -64,7 +64,7 @@ namespace CSVBatchImport
 
                     ofd.Title = "GPS Locations";
                     if (ofd.ShowDialog() == DialogResult.OK) filenameLocations = ofd.FileName;
-                    
+
                     //if (MessageBox.Show("Do you like to output the data as json?", "Please define output-format", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     //    mode = OutputMode.JSON;
 
@@ -86,7 +86,7 @@ namespace CSVBatchImport
                         string[] arrGPS = line.ToLower().Split(new char[] { ';' });
                         if (!StationLocationsLongAlt.ContainsKey(arrGPS[0]))
                         {
-                            StationLocationsLongAlt.Add(arrGPS[0], new KeyValuePair<string, string>(arrGPS[1], arrGPS[2]));
+                            StationLocationsLongAlt.Add(arrGPS[0].Replace("(berlin)", "").Trim(), new KeyValuePair<string, string>(arrGPS[1], arrGPS[2]));
                         }
                     }
                 }
@@ -96,7 +96,7 @@ namespace CSVBatchImport
                 //TODO Silent Mode
                 System.Windows.Forms.SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = string.Format("*.{0}|*.{0}", mode.ToString());
-                sfd.Title = string.Format("Save {0} - File" , mode.ToString());
+                sfd.Title = string.Format("Save {0} - File", mode.ToString());
                 if (sfd.ShowDialog() == DialogResult.OK) System.IO.File.WriteAllText(sfd.FileName, script, System.Text.ASCIIEncoding.UTF8);
             }
             catch (Exception ex)

@@ -24,6 +24,6 @@ Data:
 	Location.csv with ";" as splitter and teh following data
 		1. row = StationName
 		2. row = Longitude
-		3. row = Altitude
+		3. row = Latitude
 
 		you can change this in Program.cs
