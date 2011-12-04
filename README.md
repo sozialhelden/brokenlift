@@ -21,6 +21,12 @@ About
 * The project idea was brought to RHoK by Raul Krauthausen from
 * [Sozialhelden e.V.](http://sozialhelden.de).
 
+Screen shot
+-----------
+The screen shot shows the current version of the website.
+
+![BrokenLifts Website](https://github.com/sozialhelden/brokenlift/raw/master/screenshot.png "BrokenLifts Website")
+
 
 Description
 -----------
