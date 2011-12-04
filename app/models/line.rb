@@ -7,7 +7,7 @@ class Line < ActiveRecord::Base
   api_accessible :default do |template|
     template.add :id
     template.add :name
-    template.add :network_id
+    template.add "network.operator", :as => :operator
   end
 end
 
