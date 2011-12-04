@@ -2,7 +2,7 @@ class Lift < ActiveRecord::Base
   belongs_to :station
   belongs_to :manufacturer
   belongs_to :operator
-  has_many :events
+  has_many :events, :order => 'timestamp DESC'
 
   acts_as_api do |config|
     config.allow_jsonp_callback = true
@@ -36,15 +36,23 @@ class Lift < ActiveRecord::Base
   end
 
   def broken?
-    !last_event.try(:broken?).nil?
+    last_event.broken? rescue false
   end
 
   def last_event
-    events.last_events.first
+    events.first
   end
 
   def timestamp
     self.created_at.to_i
+  end
+
+  def self.broken
+    coll = []
+    Lift.find_each do |lift|
+      coll << lift if lift.broken?
+    end
+    coll
   end
 
 end
