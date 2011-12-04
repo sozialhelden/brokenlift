@@ -3,6 +3,7 @@ class Lift < ActiveRecord::Base
   belongs_to :manufacturer
   belongs_to :operator
   has_many :events, :order => 'timestamp DESC'
+  has_many :lines, :through => :station
 
   acts_as_api do |config|
     config.allow_jsonp_callback = true
@@ -30,6 +31,8 @@ class Lift < ActiveRecord::Base
     template.add :id
     template.add :description
     template.add :station_id
+    template.add :operator, :template => :default
+    template.add :lines, :template => :default
     template.add :last_event, :template => :default do
       template.add :timestamp
     end
