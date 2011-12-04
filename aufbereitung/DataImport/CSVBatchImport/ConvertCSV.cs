@@ -116,6 +116,10 @@ namespace CSVBatchImport
                 Dictionary<string, int> Locations = new Dictionary<string, int>();
                 List<string> LinesToStations = new List<string>();
 
+                //needed because in the source data whe have entrys for each line
+                List<string> EventDuplicateCheck = new List<string>();
+
+
                 // add operators
                 Program.Write("add operators and operators");
                 Operators.Add(Program.OPERATOR_BVG, 1);
@@ -172,10 +176,15 @@ namespace CSVBatchImport
                     }
 
                     //mapping lines to stations
-                    if (!LinesToStations.Contains(string.Format("{0};#{1}", Lines.ContainsKey(entry.Line), Stations.ContainsKey(entry.Station))))
+                    string linetostationkey = string.Format("{0};#{1}", Lines[entry.Line], Stations[entry.Station]);
+                    if (!LinesToStations.Contains(linetostationkey))
                     {
-                        LinesToStations.Add(string.Format("{0};#{1}", Lines.ContainsKey(entry.Line), Stations.ContainsKey(entry.Station)));
+                        LinesToStations.Add(linetostationkey);
                         sw.WriteLine(string.Format("insert into lines_stations (line_id, station_id) values ({0}, {1});", Lines[entry.Line], Stations[entry.Station]));
+                    }
+                    else
+                    {
+                        sw.WriteLine("");
                     }
 
                     if (!Lifts.ContainsKey(entry.Lift))
@@ -184,7 +193,12 @@ namespace CSVBatchImport
                         sw.WriteLine(string.Format("insert into lifts (id, description, station_id, operator_id) values ({0}, '{1}', {2}, {3});", Lifts[entry.Lift], entry.Lift, Stations[entry.Station], Operators[entry.Operator]));
                     }
 
-                    sw.WriteLine(string.Format("insert into events (lift_id, event_type_id, timestamp) values ({0}, {1}, '{2}');", Lifts[entry.Lift], EventTypes[entry.isBroken], entry.EventTimestamp.ToString("yyyy-MM-dd HH:mm:ss")));
+                    string eventkey = string.Format("{0}-{1}-{2}", entry.Lift, entry.EventTimestamp, entry.isBroken);
+                    if (!EventDuplicateCheck.Contains(eventkey))
+                    {
+                        EventDuplicateCheck.Add(eventkey);
+                        sw.WriteLine(string.Format("insert into events (lift_id, event_type_id, timestamp) values ({0}, {1}, '{2}');", Lifts[entry.Lift], EventTypes[entry.isBroken], entry.EventTimestamp.ToString("yyyy-MM-dd HH:mm:ss")));
+                    }
                 }
                 Program.Write("found {0} stations, {1} lines, {2} lifts, {3} events", Stations.Count, Lines.Count, Lifts.Count, events.Count);
 
