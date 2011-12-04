@@ -111,6 +111,7 @@ namespace CSVBatchImport
                 Dictionary<string, int> Lines = new Dictionary<string, int>();
                 Dictionary<string, int> Stations = new Dictionary<string, int>();
                 Dictionary<string, int> Lifts = new Dictionary<string, int>();
+                List<string> LinesToStations = new List<string>();
 
                 // add operators
                 Program.Write("add operators and operators");
@@ -121,7 +122,7 @@ namespace CSVBatchImport
                     sw.WriteLine(string.Format("insert into operators (id, name) values ({0}, '{1}');", op.Value, op.Key));
                 }
 
-                //add networks
+                //add networks, currently trhe same as operators
                 Program.Write("add networks");
                 Networks.Add(Program.OPERATOR_BVG, 1);
                 Networks.Add(Program.OPERATOR_SBAHN, 2);
@@ -145,7 +146,7 @@ namespace CSVBatchImport
                     if (!Lines.ContainsKey(entry.Line))
                     {
                         Lines.Add(entry.Line, Lines.Count + 1);
-                        sw.WriteLine(string.Format("insert into lines (id, name, network_id) values ({0}, '{1}', {2});", Lines[entry.Line], entry.Line, Networks[entry.Network]));
+                        sw.WriteLine(string.Format("insert into lines (id, name, network_id) values ({0}, '{1}', {2});", Lines[entry.Line], entry.Line, Networks[entry.Operator]));
                     }
                     if (!Stations.ContainsKey(entry.Station))
                     {
@@ -153,10 +154,17 @@ namespace CSVBatchImport
                         sw.WriteLine(string.Format("insert into stations (id, name) values ({0}, '{1}');", Stations[entry.Station], entry.Station));
                         //TODO LOcation hinzufügen
                     }
+
+                    if(!LinesToStations.Contains(string.Format("{0};#{1}", Lines.ContainsKey(entry.Line), Stations.ContainsKey(entry.Station))))
+                    {
+                        LinesToStations.Add(string.Format("{0};#{1}", Lines.ContainsKey(entry.Line), Stations.ContainsKey(entry.Station)));
+                        sw.WriteLine(string.Format("insert into lines_stations (line_id, station_id) values ({0}, {1});", Lines[entry.Line], Stations[entry.Station]));
+                    }
+
                     if (!Lifts.ContainsKey(entry.Lift))
                     {
                         Lifts.Add(entry.Lift, Lifts.Count + 1);
-                        sw.WriteLine(string.Format("insert into lifts (id, description, station_id) values ({0}, '{1}', {2});", Lifts[entry.Lift], entry.Lift, Stations[entry.Station]));
+                        sw.WriteLine(string.Format("insert into lifts (id, description, station_id, operator_id) values ({0}, '{1}', {2}, {3});", Lifts[entry.Lift], entry.Lift, Stations[entry.Station], Operators[entry.Operator]));
                     }
 
                     sw.WriteLine(string.Format("insert into events (lift_id, event_type_id, timestamp) values ({0}, {1}, '{2}');", Lifts[entry.Lift], EventTypes[entry.isBroken], entry.EventTimestamp.ToString("yyyy-MM-dd HH:mm:ss")));
@@ -169,7 +177,7 @@ namespace CSVBatchImport
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-                throw new Exception("Error while parsing CSV", ex);
+                throw new Exception("Error while creating sql", ex);
             }
             return retVal;
 

@@ -12,7 +12,7 @@ namespace CSVBatchImport
     {
         public LiftEvent(Dictionary<string,string> propBag)
         {
-            if (propBag.ContainsKey("source")) Network = propBag["source"]; else Network = "";
+            if (propBag.ContainsKey("source")) Operator = propBag["source"]; else Operator = "";
             if (propBag.ContainsKey("start"))
             {
                 DateTime dt = DateTime.MinValue; ;
@@ -46,7 +46,7 @@ namespace CSVBatchImport
         /// e.g. BVG, or S-Bahn
         /// </summary>
         /// <value>The source.</value>
-        public string  Network { get; set; }
+        public string  Operator { get; set; }
 
         /// <summary>
         /// Gets or sets the event timestamp.

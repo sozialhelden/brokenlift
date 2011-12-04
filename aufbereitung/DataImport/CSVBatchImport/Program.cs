@@ -33,11 +33,11 @@ namespace CSVBatchImport
                 Write("BrokenLift - DataImport Version: {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
                 Write("-----------------------------------------------------------------");
-                Write("\nCommands: ");
-                Write("\t/s\tsilent mode");
+                Write("\nCommands:\n");
+                Write("\t/s\t\tsilent mode");
                 Write("\t/bvg:filename\tthe import file (csv) for the \"bvg\" data");
                 Write("\t/sbahn:filename\tthe import file (csv) for the \"s-bahn\" data");
-                Write("-----------------------------------------------------------------\n\n");
+                Write("\n-----------------------------------------------------------------\n\n");
 
                 string filenameBVG = "bvg.csv";
                 if (System.Environment.CommandLine.Contains(" /bvg:")) throw new NotImplementedException();
