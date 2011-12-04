@@ -1,0 +1,33 @@
+<h2>${station.name}</h2>
+<table>
+<thead>
+  <tr>
+    <th>Description</th>
+    <th>Working?</th>
+    <th>Comments</th>
+  </tr>
+</thead>
+<tbody>
+{{each(index, lift) lifts}}
+  <tr>
+    <td>
+      <a href="#!/lift/${lift.id}">${lift.description}</a>
+    </td>
+    <td>
+      {{if lift.latestEvent.is_working}}
+        working
+      {{else}}
+        not working
+      {{/if}}
+    </td>
+    <td>
+      {{if lift.latestEvent.description}}
+        ${lift.latestEvent.description}
+      {{else}}
+        &nbsp;
+      {{/if}}
+    </td>
+  </tr>
+{{/each}}
+</tbody>
+</table>

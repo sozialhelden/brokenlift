@@ -1,0 +1,24 @@
+<span id="titleSpan">
+  <h1 id="title">All Broken Lifts</h1>
+</span>
+<table class="listed-data">
+  <thead>
+    <tr>
+      <th>Lift</th>
+      <th>Operator</th>
+      <th>Last update</th>
+      <th>Reason</th>
+    </tr>
+  </thead>
+  <tbody id="lift-hist">
+  {{each(index, lift) lifts}}
+    <tr>
+      <td><a href="#!/lift/${lift.id}">${lift.station.name}</a></td>
+      <td>${lift.operator.name}</td>
+      <td>{{longdate lift.last_event.dateObj}}</td>
+      <td>${lift.last_event.description}</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+

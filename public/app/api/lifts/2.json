@@ -1,0 +1,40 @@
+{
+  "id": 2,
+  "description": "Mecklenburgische Straße (südöstliches Zugangsbauwerk).",
+  "station": {
+    "id": 2,
+    "name": "U Moritzplatz",
+    "lat": 52.5167,
+    "long": 13.4,
+    "lines": [
+      {
+        "id": 3,
+        "name": "U8",
+        "operator": {
+          "id": 2,
+          "name": "BVG"
+        }
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": 2,
+      "isworking": false,
+      "date": 1322940987444,
+      "description": "Aufbau"
+    },
+    {
+      "id": 3,
+      "isworking": true,
+      "date": 1322942379074,
+      "description": ""
+    },
+    {
+      "id": 4,
+      "isworking": false,
+      "date": 1322946161985,
+      "description": "Vandalismus"
+    }
+  ]
+}

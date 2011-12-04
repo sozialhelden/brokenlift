@@ -1,0 +1,42 @@
+{
+  "id": 28,
+  "name": "Hallesches Tor",
+  "lines": [
+    {
+      "id": 4,
+      "name": "U1",
+      "operator": {
+        "id": 1,
+        "name": "BVG"
+      }
+    },
+    {
+      "id": 5,
+      "name": "U6",
+      "operator": {
+        "id": 1,
+        "name": "BVG"
+      }
+    }
+  ],
+  "lifts": [
+    {
+      "id": 42,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+      "latestEvent": {
+        "id": 831,
+        "isworking": true,
+        "description": ""
+      }
+    },
+    {
+      "id": 43,
+      "description": "agda kjdgakj hgdkahg ksaj gkh",
+      "latestEvent": {
+        "id": 839,
+        "isworking": false,
+        "description": "Vandalismus!!!"
+      }
+    }
+  ]
+}

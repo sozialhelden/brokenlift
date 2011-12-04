@@ -1,0 +1,166 @@
+[
+  {
+    "id": 1,
+    "name": "S/U Friedrichstr.",
+    "numLifts": 10,
+    "numWorking": 8
+  },
+  {
+    "id": 2,
+    "name": "Adenauerplatz",
+    "numLifts": 3,
+    "numWorking": 3
+  },
+  {
+    "id": 3,
+    "name": "Afrikanische Straße"
+  },
+  {
+    "id": 4,
+    "name": "Alexanderplatz"
+  },
+  {
+    "id": 5,
+    "name": "Alt-Mariendorf"
+  },
+  {
+    "id": 6,
+    "name": "Alt-Tegel"
+  },
+  {
+    "id": 7,
+    "name": "Alt-Tempelhof"
+  },
+  {
+    "id": 8,
+    "name": "Altstadt Spandau"
+  },
+  {
+    "id": 9,
+    "name": "Amrumer Straße"
+  },
+  {
+    "id": 10,
+    "name": "Augsburger Straße"
+  },
+  {
+    "id": 11,
+    "name": "Bayerischer Platz"
+  },
+  {
+    "id": 12,
+    "name": "Berliner Straße"
+  },
+  {
+    "id": 13,
+    "name": "Bernauer Straße"
+  },
+  {
+    "id": 14,
+    "name": "Biesdorf-Süd"
+  },
+  {
+    "id": 15,
+    "name": "Birkenstraße"
+  },
+  {
+    "id": 16,
+    "name": "Bismarckstraße"
+  },
+  {
+    "id": 17,
+    "name": "Blaschkoallee"
+  },
+  {
+    "id": 18,
+    "name": "Blissestraße"
+  },
+  {
+    "id": 19,
+    "name": "Boddinstraße"
+  },
+  {
+    "id": 20,
+    "name": "Borsigwerke"
+  },
+  {
+    "id": 21,
+    "name": "Breitenbachplatz"
+  },
+  {
+    "id": 22,
+    "name": "Brandenburger Tor"
+  },
+  {
+    "id": 23,
+    "name": "Britz-Süd"
+  },
+  {
+    "id": 24,
+    "name": "Bülowstraße"
+  },
+  {
+    "id": 25,
+    "name": "Bundestag"
+  },
+  {
+    "id": 26,
+    "name": "Bundesplatz"
+  },
+  {
+    "id": 27,
+    "name": "Halemweg"
+  },
+  {
+    "id": 28,
+    "name": "Hallesches Tor"
+  },
+  {
+    "id": 29,
+    "name": "Hansaplatz"
+  },
+  {
+    "id": 30,
+    "name": "Haselhorst"
+  },
+  {
+    "id": 31,
+    "name": "Hauptbahnhof"
+  },
+  {
+    "id": 32,
+    "name": "Hausvogteiplatz"
+  },
+  {
+    "id": 33,
+    "name": "Heidelberger Platz"
+  },
+  {
+    "id": 34,
+    "name": "Heinrich-Heine-Straße"
+  },
+  {
+    "id": 35,
+    "name": "Hellersdorf"
+  },
+  {
+    "id": 36,
+    "name": "Hermannplatz"
+  },
+  {
+    "id": 37,
+    "name": "Hermannstraße"
+  },
+  {
+    "id": 38,
+    "name": "Hönow"
+  },
+  {
+    "id": 39,
+    "name": "Hohenzollernplatz"
+  },
+  {
+    "id": 40,
+    "name": "Holzhauser Straße"
+  }
+]
