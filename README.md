@@ -20,7 +20,9 @@ About
 * The project idea was brought to RHoK by Raul Krauthausen from
   [Sozialhelden e.V.](http://sozialhelden.de) The [initial project
   definition](http://www.rhok.org/problems/brokenelevatorsinfo-%E2%80%93-push-faulty-elevators-next-level-public-awareness-deen)
-  can still be found online.
+  can still be found online. The 
+  [slides we used for the final presentation](https://docs.google.com/present/view?id=dds3dksj_407fgx7mchk) 
+  can be seen on online.
 * The current version of the website is online at: [http://brokenlifts.heroku.com](http://brokenlifts.heroku.com).
 
 Screen shot
