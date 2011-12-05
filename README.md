@@ -14,12 +14,13 @@ About
   the freedom of those people. Being stuck at a train platform not only
   makes a journey much longer, it is also disrespectful to the individual.
 * BrokenLifts was born at December 3/4, 2011 at
-  [Random Hacks of Kindness, Berlin](http://www.rhok.org/event/berlin-germany). There are pictures taken at [RHoK Berlin on Flickr](http://www.flickr.com/photos/tags/rhokbln/).
-* The [initial project
-  description](http://www.rhok.org/problems/brokenelevatorsinfo-%E2%80%93-push-faulty-elevators-next-level-public-awareness-deen)
-  can still be found online.
+  [Random Hacks of Kindness, Berlin](http://www.rhok.org/event/berlin-germany). There are pictures taken at 
+  [RHoK Berlin on Flickr](http://www.flickr.com/photos/tags/rhokbln/). Of course 
+  [BrokenLifts is on Twitter](https://twitter.com/#!/brokenlifts).
 * The project idea was brought to RHoK by Raul Krauthausen from
-  [Sozialhelden e.V.](http://sozialhelden.de)
+  [Sozialhelden e.V.](http://sozialhelden.de) The [initial project
+  definition](http://www.rhok.org/problems/brokenelevatorsinfo-%E2%80%93-push-faulty-elevators-next-level-public-awareness-deen)
+  can still be found online.
 * The current version of the website is online at: [http://brokenlifts.heroku.com](http://brokenlifts.heroku.com).
 
 Screen shot
