@@ -113,6 +113,7 @@ $(document).ready(function () {
 
   function home() {
     fetch("/lifts/broken", function (data) {
+      //data = {lifts: data};
       renderMainContent("home", data);
       renderSideContent("find-a-station");
       $('#findAStation').attr('disabled', true).val("Loading...");
@@ -350,6 +351,7 @@ $(document).ready(function () {
     }
   ]);
   $('#loading').hide();
+  $('#last_update').html("2011-11-29 18:30");
   $(window).bind('hashchange', onHashChange);
   onHashChange();
 });
