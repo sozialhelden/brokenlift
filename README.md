@@ -39,6 +39,59 @@ Description
   visualizing the content via JavaScript.
 
 
+API documentation
+-----------
+
+### Supported formats
+The default response format is JSON. You might append .xml / .json to specify the response format.
+
+### Supported API calls
+
+    /api/stations/
+    
+Provides all station objects
+
+    /api/stations/:station_id/lifts
+    
+Provides all lifts connected to the selected station
+
+    /api/stations/status
+    
+Provides an object for each station with the total number of lifts and the number of the currently working lifts
+
+    /api/lifts/broken
+
+Provides all lifts which are currently broken
+
+    /api/lifts/:id/events/
+
+Provides the event history for the selected lift, ordered chronologically
+
+    /api/lines/
+
+Provides all lines
+
+    /api/lines/:line_id/stations
+
+Provides all stations for a line
+
+    /api/manufacturer/
+
+Provides all lift manufacturers
+
+    /api/operators/
+
+Provides all rail network operators
+
+    /api/operators/:id/lifts
+
+Provides all lifts which are operated by the selected rail network operator
+
+    /api/events/
+
+Provides all (lift) events in historical order
+
+
 Configuration
 -------------
 * [RubyOnRails 1.9.2-p290](http://rubyonrails.org/)
