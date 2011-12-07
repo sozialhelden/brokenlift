@@ -14,27 +14,12 @@
   <title>Broken Lifts</title>
 
   <!-- Included CSS Files -->
-  <!-- Combine and Compress These CSS Files -->
-  <link rel="stylesheet" href="stylesheets/globals.css">
-
-  <link rel="stylesheet" href="stylesheets/typography.css">
-
-  <link rel="stylesheet" href="stylesheets/grid.css">
-  <link rel="stylesheet" href="stylesheets/ui.css">
-  <link rel="stylesheet" href="stylesheets/forms.css">
-  <link rel="stylesheet" href="stylesheets/orbit.css">
-  <link rel="stylesheet" href="stylesheets/reveal.css">
-  <link rel="stylesheet" href="stylesheets/mobile.css">
-  <link rel="stylesheet" href="stylesheets/jquery-ui-1.8.16.custom.css">
-  <!-- End Combine and Compress These CSS Files -->
-  <link rel="stylesheet" href="stylesheets/templates.css">
-
-
+  <link rel="stylesheet" href="stylesheets/bootstrap/bootstrap.css" >
+  <link rel="stylesheet" href="stylesheets/application.css" >
 
   <!--[if lt IE 9]>
     <link rel="stylesheet" href="stylesheets/ie.css">
   <![endif]-->
-
 
   <!-- IE Fix for HTML5 Tags -->
   <!--[if lt IE 9]>
@@ -44,34 +29,32 @@
 </head>
 <body>
 
+  <div class="topbar">
+    <div class="fill">
+      <div class="container">
+        <a class="brand" href="#">Broken Lifts</a>
+        <ul class="nav">
+          <li class="active"><a href="#!">Home</a></li>              
+          <li><a href="#!/lifts">Lifts</a></li>
+          <li><a href="#!/about">About</a></li>
+          <li><a href="#!/report">Report</a></li>
+          <li><a href="#!/follow">Follow a station</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
   <!-- container -->
   <div class="container">
 
     <div class="row">
-      <div class="twelve columns">
-        <h2><a href="#!">
-          <img src="images/brokenlifts.png" alt="Broken Lifts" id="logo" />
-        </a></h2>
-        <hr />
-        <nav>
-          <a class="medium button" href="#!">Home</a>
-          <a class="medium button" href="#!/lifts">Lifts</a>
-          <a class="medium button" href="#!/about">About</a>
-          <a class="medium button" href="#!/report">Report</a>
-          <a class="medium button" href="#!/follow">Follow a station</a>
-        </nav>
-      </div>
+        <div class="span-two-thirds" id="main_content">Loading</div>
+        <div class="span-one-third" id="side_content"></div>
     </div>
-
-    <div class="row">
-      <div class="eight columns" id="main_content">
-        Loading...
-      </div>
-
-      <div class="four columns" id="side_content">
-      </div>
-    </div>
-
+    <footer>
+        <p>Last update: <span id="last_update">...</span></p>
+    </footer>
+    
   </div>
   <!-- container -->
   <div id="loading"><img src="images/loading.gif" alt="Please wait. Loading..." /></div>
