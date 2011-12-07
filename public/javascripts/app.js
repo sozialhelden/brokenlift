@@ -1,9 +1,10 @@
 /*globals renderTemplate, renderMainContent, renderSideContent, CONFIG */
 var routes = [],
-    skipNavigation = false;
+    skipNavigation = false;    
+    
 function fetch(apiUrl, callback, options) {
 
-  $('#loading').show();
+  BROKENLIFT.loadingModal.show();
   options = options || {};
   var prepare = options.prepare;
   delete options.prepare;
@@ -12,7 +13,7 @@ function fetch(apiUrl, callback, options) {
     url : url,
     dataType: 'jsonp',
     success: function (data) {
-      $('#loading').hide();
+      BROKENLIFT.loadingModal.hide();
 
       if (prepare) {
         data = prepare(data);
@@ -20,7 +21,7 @@ function fetch(apiUrl, callback, options) {
       callback(data);
     },
     error: function (err) {
-      $('#loading').hide();
+      BROKENLIFT.loadingModal.hide();
       renderMainContent('error', err);
     }
   }, options));
@@ -62,8 +63,25 @@ function onHashChange() {
   }
 }
 
-$(document).ready(function () {
+var BROKENLIFT = {} || BROKENLIFT;
 
+$(document).ready(function () {  
+  
+  BROKENLIFT.loadingModal = (function(){
+    var elem = $("#loading");
+    elem.modal({
+      backdrop: true, //Show a grey back drop
+      modal: true //display it as a modal
+    });
+    return {
+      hide: function(){      
+        elem.modal('hide');
+      },
+      show: function(){
+        elem.modal('show');
+      }
+    }
+  })();
   /* ROUTE HANDLERS --------- */
 
   function lift(id) {
@@ -350,7 +368,7 @@ $(document).ready(function () {
       renderMainContent('error', {status: 404});
     }
   ]);
-  $('#loading').hide();
+  BROKENLIFT.loadingModal.hide();
   $('#last_update').html("2011-11-29 18:30");
   $(window).bind('hashchange', onHashChange);
   onHashChange();

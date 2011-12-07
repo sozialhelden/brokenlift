@@ -57,7 +57,18 @@
     
   </div>
   <!-- container -->
-  <div id="loading"><img src="images/loading.gif" alt="Please wait. Loading..." /></div>
+  
+  <div id="loading" class="modal hide">
+    <div class="modal-header">
+      <h3>Loading data</h3>
+    </div>
+    <div class="modal-body">
+      <p align="center"><img src="images/loading.gif"/></p>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+
   <!-- Included JS Files -->
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBU3UwKwVYrF4Q9lk6Eqcu3qGpXPZaCClU&amp;sensor=false"></script>
   <!-- Combine and Compress These JS Files -->
@@ -70,6 +81,7 @@
   <script src="javascripts/templates.js"></script>
   <script src="javascripts/date-format.js"></script>
   <script src="javascripts/underscore.js"></script>
+  <script src="javascripts/bootstrap/bootstrap-modal.js"></script>
 
   <script language="javascript" type="text/javascript" src="javascripts/flot/jquery.flot.js"></script>
   <script language="javascript" type="text/javascript" src="javascripts/flot/jquery.flot.pie.js"></script>
