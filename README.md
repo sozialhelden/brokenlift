@@ -22,7 +22,9 @@ About
   definition](http://www.rhok.org/problems/brokenelevatorsinfo-%E2%80%93-push-faulty-elevators-next-level-public-awareness-deen)
   can still be found online. The 
   [slides we used for the final presentation](https://docs.google.com/present/view?id=dds3dksj_407fgx7mchk) 
-  can be seen on online.
+  can be seen on online. Moreover, the project was advertised at the [28th Chaos Communication 
+  Congress (28C3)](http://events.ccc.de/congress/2011/wiki/Welcome) in Berlin at December 29, 2011. The slides of the 
+  [28C3 Lightning Talk](http://www.scribd.com/doc/76810936/BrokenLifts) are available online.
 * The current version of the website is online at: [http://brokenlifts.heroku.com](http://brokenlifts.heroku.com).
 
 Screen shot
