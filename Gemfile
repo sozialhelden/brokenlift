@@ -15,6 +15,7 @@ group :default do
   gem 'responders'
   gem 'inherited_resources'
   gem 'fastercsv'
+  gem 'whenever'
 end
 
 group :test, :development do
