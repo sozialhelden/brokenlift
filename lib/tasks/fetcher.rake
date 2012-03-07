@@ -2,7 +2,7 @@ namespace :fetcher do
 
   desc 'Fetch lift info from s-bahn and bvg'
   task :berlin do
-    NOW   = Time.now.strftime('%Y%m%d_%H%M')
+    NOW   = Time.now.to_i
     FILE  = "#{NOW}.html"
     FileUtils.mkdir_p( Rails.root.join('public', 'system', 'SBAHN'))
     FileUtils.mkdir_p( Rails.root.join('public', 'system', 'BVG'  ))
