@@ -1,9 +1,13 @@
 class AlterLifts < ActiveRecord::Migration
-  def change
-    change_table :lifts do |t|
-        t.remove :name
-        t.remove :status
-        t.integer :station_id
-    end
+  def up
+    remove_column :lifts, :name
+    remove_column :lifts, :status
+    add_column :lifts, :station_id, :integer
+  end
+  def down
+    remove_column :lifts, :station_id
+    add_column :lifts, :status, :string
+    add_column :lifts, :name, :string
   end
 end
+

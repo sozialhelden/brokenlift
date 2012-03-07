@@ -22,7 +22,10 @@ About
   definition](http://www.rhok.org/problems/brokenelevatorsinfo-%E2%80%93-push-faulty-elevators-next-level-public-awareness-deen)
   can still be found online. The 
   [slides we used for the final presentation](https://docs.google.com/present/view?id=dds3dksj_407fgx7mchk) 
-  can be seen on online.
+  can be seen on online. Moreover, the project was advertised at the [28th Chaos Communication 
+  Congress (28C3)](http://events.ccc.de/congress/2011/wiki/Welcome) in Berlin at December 29, 2011. The slides of the 
+  [28C3 Lightning Talk](http://www.scribd.com/doc/76810936/BrokenLifts) and the 
+  [video recording](http://youtu.be/JUPMVI5rnOI) are available online.
 * The current version of the website is online at: [http://brokenlifts.heroku.com](http://brokenlifts.heroku.com).
 
 Screen shot
@@ -42,54 +45,7 @@ Description
 API documentation
 -----------
 
-### Supported formats
-The default response format is JSON. You might append .xml / .json to specify the response format.
-
-### Supported API calls
-
-    /api/stations/
-    
-Provides all station objects
-
-    /api/stations/:station_id/lifts
-    
-Provides all lifts connected to the selected station
-
-    /api/stations/status
-    
-Provides an object for each station with the total number of lifts and the number of the currently working lifts
-
-    /api/lifts/broken
-
-Provides all lifts which are currently broken
-
-    /api/lifts/:id/events/
-
-Provides the event history for the selected lift, ordered chronologically
-
-    /api/lines/
-
-Provides all lines
-
-    /api/lines/:line_id/stations
-
-Provides all stations for a line
-
-    /api/manufacturer/
-
-Provides all lift manufacturers
-
-    /api/operators/
-
-Provides all rail network operators
-
-    /api/operators/:id/lifts
-
-Provides all lifts which are operated by the selected rail network operator
-
-    /api/events/
-
-Provides all (lift) events in historical order
+* Please read the detailed [API article in the wiki](https://github.com/sozialhelden/brokenlift/wiki/API).
 
 
 Configuration
