@@ -5,14 +5,17 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
-gem 'aasm'
-gem 'acts_as_api'
-gem 'kaminari'
-gem 'heroku'
-gem 'responders'
-gem 'inherited_resources'
+group :default do
+  gem 'mysql2', '0.3.11'
+  gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+  gem 'aasm'
+  gem 'acts_as_api'
+  gem 'kaminari'
+  gem 'heroku'
+  gem 'responders'
+  gem 'inherited_resources'
+  gem 'fastercsv'
+end
 
 group :test, :development do
   gem 'rspec-rails'
@@ -33,8 +36,10 @@ end
 # Use unicorn as the web server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+group :deployment do
+  # Deploy with Capistrano
+  gem 'capistrano'
+end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
