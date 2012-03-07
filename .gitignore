@@ -5,3 +5,4 @@ log/*.log
 tmp/
 .sass-cache/
 /vendor/bundle
+public/system
