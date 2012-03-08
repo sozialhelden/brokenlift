@@ -16,6 +16,8 @@ group :default do
   gem 'inherited_resources'
   gem 'fastercsv'
   gem 'whenever'
+  gem 'taps'
+  gem 'unicorn'
 end
 
 group :test, :development do
