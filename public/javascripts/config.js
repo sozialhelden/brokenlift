@@ -1,4 +1,4 @@
 var CONFIG = {
-  baseUrl: "http://brokenlifts.heroku.com/api",
+  baseUrl: "http://brokenlifts.org/api",
   googleMapsAPIKey: "AIzaSyBU3UwKwVYrF4Q9lk6Eqcu3qGpXPZaCClU"
 };
