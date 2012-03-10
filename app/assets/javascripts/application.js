@@ -6,4 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require raphael
+//= require g.raphael
+//= require core
 //= require_tree .

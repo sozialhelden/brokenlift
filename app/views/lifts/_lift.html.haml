@@ -1,4 +1,15 @@
-%li
+%li{:data => {:lift_id => "#{lift.id}" }}
   %span= lift.description
   %div
-    CONTENT
+    .row-fluid
+      .span6
+        %div.graph{:id=>"graph1_#{lift.id}" }
+          asd
+      .span6
+        %div.graph{:id=>"graph2_#{lift.id}"  }
+          asd
+          
+    .row-fluid
+      .span12
+        %div.graph{:id=>"graph3_#{lift.id}" }
+          asd

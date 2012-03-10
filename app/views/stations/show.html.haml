@@ -6,10 +6,14 @@
     .span12
       %div
         %h2= @station.name
-        %ul
+        %ul{:id=>'liftsList'}
           = render :partial => 'lifts/lift', :collection => @station.lifts
-
       
   .row-fluid
     .span12
       FOOTER
+      
+      
+      
+- content_for :javascripts do
+  = javascript_include_tag "stations"
