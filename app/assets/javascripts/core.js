@@ -2,7 +2,7 @@ var BROKENLIFT = (function(NS){
 
   var config = {
      baseUrl: "/api/",
-     googleMapsAPIKey: "AIzaSyBU3UwKwVYrF4Q9lk6Eqcu3qGpXPZaCClU"
+     googleMapsAPIKey: "AIzaSyBU3UwKwVYrF4Q9lk6Eqcu3qGpXPZaCClU"      
   };
   
   NS.api = (function() {

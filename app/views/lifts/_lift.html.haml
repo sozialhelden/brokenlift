@@ -3,13 +3,26 @@
   %div
     .row-fluid
       .span6
-        %div.graph{:id=>"graph1_#{lift.id}" }
-          asd
+        .row-fluid
+          .span6
+            %div.graph{:id=>"downTimePercentage_#{lift.id}" }
+          .span6
+            %h3= "Ausfallquote"
+            %div{:id=>"downTimePercentageDescription_#{lift.id}" }
+              
       .span6
-        %div.graph{:id=>"graph2_#{lift.id}"  }
-          asd
+        .row-fluid
+          .span6
+            %div.graph{:id=>"downTimeAbsolute_#{lift.id}" }
+          .span6
+            %h3= "Ausfallzeit"
+            %div{:id=>"downTimeAbsoluteDescription_#{lift.id}" }
           
     .row-fluid
       .span12
-        %div.graph{:id=>"graph3_#{lift.id}" }
-          asd
+        .row-fluid
+          .span9
+            %div.graph{:id=>"downTimeHistory_#{lift.id}" }
+          .span3
+            %h3= "Ausfallhistorie"
+            %div{:id=>"downTimeHistoryDescription_#{lift.id}" }
