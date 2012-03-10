@@ -1,6 +1,7 @@
 class Line < ActiveRecord::Base
   belongs_to :network # foreign key - network_id
-  has_and_belongs_to_many :stations
+  has_many :lines_stations
+  has_many :stations, :through => :lines_stations
 
   acts_as_api
 

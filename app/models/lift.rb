@@ -38,6 +38,10 @@ class Lift < ActiveRecord::Base
     end
   end
 
+  scope :inverse, lambda {|list_of_lift_ids| { :conditions => ["#{self.table_name}.id NOT IN (?)", list_of_lift_ids]}}
+
+  # Acts as state machine? gem 'aasm'
+
   def broken?
     last_event.broken? rescue false
   end

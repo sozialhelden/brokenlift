@@ -16,8 +16,9 @@ group :default do
   gem 'inherited_resources'
   gem 'fastercsv'
   gem 'whenever'
-  gem 'taps'
   gem 'unicorn'
+  gem 'nokogiri'
+  gem 'delayed_job_active_record'
 end
 
 group :test, :development do
