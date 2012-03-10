@@ -1,0 +1,15 @@
+.container
+  .row-fluid
+    .span12
+      HEADER
+  .row-fluid
+    .span12
+      %div
+        %h2= @station.name
+        %ul
+          = render :partial => 'lifts/lift', :collection => @station.lifts
+
+      
+  .row-fluid
+    .span12
+      FOOTER
