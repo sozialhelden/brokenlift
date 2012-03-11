@@ -1,5 +1,8 @@
 class SbahnParserJob < Struct.new(:timestamp)
 
+  def network
+    @network ||= Network.where("name = 'S-Bahn'").first
+  end
 
   # Ist der Job unabhängig von der Reihenfolge der Abarbeitung?
   def perform
@@ -18,18 +21,23 @@ class SbahnParserJob < Struct.new(:timestamp)
       Event.create(:event_type => event_type, :lift => broken_lift, :timestamp => time) unless broken_lift.broken?
     end
 
+    raise "FOO"
   end
 
-  def network
-    @network ||= Network.where("name = 'S-Bahn'").first
+  # Do something before the actual job is performed
+  def before
   end
 
+  # Do something when the job was successfully done
+  def success
+  end
+
+  # Do something when the job failed
+  def error
+  end
+
+  # Do something when the job failed 25 times
   def on_permanent_failure
-    #TODO
-  end
-
-  def on_success
-    # Strip file to relevant content
   end
 
 end
