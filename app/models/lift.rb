@@ -80,11 +80,14 @@ class Lift < ActiveRecord::Base
     events = lift.events.reverse
     sumDownTime = 0
     lift.downTimeEvents = Array.new
-    dailyStatusHistory = Hash.new
+    dailyStatusHistory = Array.new
     
     for i in (1 .. days.to_i)
       date = Date.today.advance(:days => -i)
-      dailyStatusHistory[date.to_s] = true
+      dailyStatus = Hash.new
+      dailyStatus["date"] = date
+      dailyStatus["is_working"] = true
+      dailyStatusHistory.push(dailyStatus);
     end
 
     for i in (0 .. events.length - 1)
@@ -110,7 +113,8 @@ class Lift < ActiveRecord::Base
         
         for i in (0 .. durationInDays)
           date = event.timestamp.advance(:days => i).to_date
-          dailyStatusHistory[date.to_s] = false
+          dailyStatus = dailyStatusHistory.find{|dailyStatus| dailyStatus["date"] == date }
+          dailyStatus["is_working"] = false          
         end
         
         sumDownTime += event.duration

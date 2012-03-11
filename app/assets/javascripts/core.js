@@ -7,12 +7,20 @@ var BROKENLIFT = (function(NS){
   
   NS.api = (function() {
   
+    var buildUrl = function(apiUrl) {
+      var url = config.baseUrl + apiUrl;
+      if(url.indexOf('.json') < 0) {
+        url + '.json';
+      }
+      return url;
+    };
+  
     return {
       fetchResource: function(apiUrl, callback, options) {
         options = options || {};
         var prepare = options.prepare;
         delete options.prepare;
-        var url = config.baseUrl + apiUrl + '.json';
+        var url = buildUrl(apiUrl);
         $.ajax($.extend({}, {
           url : url,
           dataType: 'jsonp',
@@ -23,7 +31,7 @@ var BROKENLIFT = (function(NS){
             callback(data);
           },
           error: function (err) {
-            renderMainContent('error', err);
+            console.log(err);
           }
         }, options));
       }      
