@@ -1,28 +1,37 @@
 %li{:data => {:lift_id => "#{lift.id}" }}
-  %span= lift.description
+  %span
+    = lift.description
+    - if lift.broken?
+      != image_tag( 'brokenlift_small.png')
+    - else
+      != image_tag( 'workinglift_small.png')
   %div
-    .row-fluid
-      .span6
-        .row-fluid
-          .span6
-            %div.graph{:id=>"downTimePercentage_#{lift.id}" }
-          .span6
-            %h3= "Ausfallquote"
-            %div{:id=>"downTimePercentageDescription_#{lift.id}" }
-              
-      .span6
-        .row-fluid
-          .span6
-            %div.graph{:id=>"downTimeAbsolute_#{lift.id}" }
-          .span6
-            %h3= "Ausfallzeit"
-            %div{:id=>"downTimeAbsoluteDescription_#{lift.id}" }
-          
-    .row-fluid
-      .span12
-        .row-fluid
-          .span9
-            %div.graph{:id=>"downTimeHistory_#{lift.id}" }
-          .span3
-            %h3= "Ausfallhistorie"
-            %div{:id=>"downTimeHistoryDescription_#{lift.id}" }
+  .row-fluid
+    .span1
+    
+    .span11
+      .row-fluid.chartRow
+        .span6
+          .row-fluid
+            .span6
+              %div.chart{:id=>"downTimePercentage_#{lift.id}" }
+            .span6
+              %h3= "Ausfallquote"
+              %div{:id=>"downTimePercentageDescription_#{lift.id}" }
+                
+        .span6
+          .row-fluid
+            .span6
+              %div.chart{:id=>"downTimeAbsolute_#{lift.id}" }
+            .span6
+              %h3= "Ausfallzeit"
+              %div{:id=>"downTimeAbsoluteDescription_#{lift.id}" }
+            
+      .row-fluid.chartRow
+        .span12
+          .row-fluid
+            .span9
+              %div.chart{:id=>"downTimeHistory_#{lift.id}" }
+            .span3
+              %h3= "Ausfallhistorie"
+              %div{:id=>"downTimeHistoryDescription_#{lift.id}" }
