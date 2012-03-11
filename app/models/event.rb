@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   belongs_to :event_type
   belongs_to :lift
 
+  attr :duration, true
+  
   acts_as_api
 
   api_accessible :default do |template|
@@ -18,6 +20,13 @@ class Event < ActiveRecord::Base
     template.add :is_working
     template.add :description
     template.add :lift, :template => :simple
+  end
+  
+  api_accessible :statistics do |template|
+    template.add :id
+    template.add :timestamp
+    template.add :is_working    
+    template.add :duration
   end
 
   scope :last_events, :joins => :event_type, :limit => 1, :order => 'events.timestamp DESC'

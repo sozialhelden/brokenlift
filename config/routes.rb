@@ -9,6 +9,9 @@ Brokenlifts::Application.routes.draw do
       collection do
         get 'broken'
       end
+      member do
+        get 'statistics'
+      end
     end
 
     resources :events,        :only  => [:index, :show]
