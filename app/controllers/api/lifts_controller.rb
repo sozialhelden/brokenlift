@@ -29,6 +29,14 @@ class Api::LiftsController < Api::ApiController
       format.json     {render_for_api :broken, :json => @lifts, :root => :lifts}
     end
   end
+  
+  def statistics
+    @lift = Lift.get_statistics(params[:id], params[:days] || 100)
+    show! do |format|
+      format.xml      {render_for_api :statistics, :xml  => @lift, :root => :lift}
+      format.json     {render_for_api :statistics, :json => @lift, :root => :lift}
+    end
+  end
 
   def collection
     @lifts ||= end_of_association_chain.page(params[:page] || 1).per(500)
