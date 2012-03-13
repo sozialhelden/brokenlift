@@ -56,8 +56,26 @@ namespace :deploy do
       run "ln -nfs #{shared_path}/config/#{file} #{release_path}/config/#{file}"
     end
   end
-
 end
+
+namespace :unicorn do
+  desc "Zero-downtime restart of Unicorn"
+  task :restart, :except => { :no_release => true } do
+    sudo "/etc/init.d/unicorn_brokenlifts_#{rails_env} restart"
+  end
+
+  desc "Start unicorn"
+  task :start, :except => { :no_release => true } do
+    sudo "/etc/init.d/unicorn_brokenlifts_#{rails_env} start"
+  end
+
+  desc "Stop unicorn"
+  task :stop, :except => { :no_release => true } do
+    sudo "/etc/init.d/unicorn_brokenlifts_#{rails_env} stop"
+  end
+  after "deploy:restart", "unicorn:restart"
+end
+
 
 # have builder check and install gems after each update_code
 require 'bundler/capistrano'
