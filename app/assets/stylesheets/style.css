@@ -1,3 +1,39 @@
-.graph {
+body {
+  background: url('background.png');
+}
+
+.container, h1, h2, h3 {
+  color: #505050;
+}
+
+h2 {
+  font-size: 22pt;
+}
+
+.content {
+  background-color: #FEFEFE;
+}
+
+#liftsList li {
+  background-color: #F4F4F4;
+}
+
+#liftsList li span {
+  font-size: 14pt;
+  font-weight:bold;
+}
+
+.footer {
+  margin: 10px 0;
+  float: right;
+  font-size: 9pt;
+  font-weight: bold;
+}
+
+.chart {
   height: 200px;
+}
+
+.chartRow {
+  background-color: #fff;
 }
