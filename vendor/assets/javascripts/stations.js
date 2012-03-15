@@ -4,25 +4,37 @@
   
   var renderDownTimePercentage = function(liftId, downTime) {
   
-    var $graphCanvas = $("#downTimePercentage_" + liftId),
-          $graphDescription = $("#downTimePercentageDescription_" + liftId);
-
-    var r = Raphael($graphCanvas.attr('id'));
+    var $graphDescription = $("#downTimePercentageDescription_" + liftId);
+          
+    data = [ 
+      { label: 'uptime', data: maxDaysToRenderIntoChart * 86400, color: '#5AC364' }, 
+      { label: 'downtime', data: downTime <= 0 ? 1 : downTime, color: '#CF335A' }
+    ];
     
-    var pieChart = r.piechart(
-      $graphCanvas.width() / 2, 
-      $graphCanvas.height() / 2, 
-      $graphCanvas.width() * 0.4, 
-      [maxDaysToRenderIntoChart * 86400, downTime <= 0 ? 1 : downTime]
-     );
-
-    var seriesUpTime = pieChart.series[0],
-          seriesDownTime = pieChart.series[1];
-
-    seriesUpTime.attr('fill','#5AC364');
-    seriesUpTime.attr('stroke','transparent');
-    seriesDownTime.attr('fill','#CF335A');     
-    seriesDownTime.attr('stroke','transparent');     
+    $.plot($("#downTimePercentage_" + liftId), data,
+    {
+      series: {
+        pie: {
+          show: true,
+          radius: 1,
+          stroke: {
+            color: 'transparent',
+            width: 0
+          },
+          label: {
+              show: true,
+              radius: 3/5,
+              formatter: function(label, series){
+                  return '<div style="font-size:12pt;color:#505050;font-weight:bold;color:white;padding: 1px 5px;">'+Math.round(series.percent)+'%</div>';
+              },
+              background: { opacity: 0.5, color: '#999' }
+          }
+        }
+      },
+      legend: {
+          show: false
+      }
+    });
      
     hoursDownTime = Math.round((downTime / 3600), 2);
     $graphDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen war dieser Lift " + hoursDownTime + " Stunden defekt.");
