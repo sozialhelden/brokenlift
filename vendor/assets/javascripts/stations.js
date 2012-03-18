@@ -4,15 +4,14 @@
   
   var renderDownTimePercentage = function(liftId, downTime) {
   
-    var $graphDescription = $("#downTimePercentageDescription_" + liftId);
+    var $chartDescription = $("#downTimePercentageDescription_" + liftId);
           
     data = [ 
       { label: 'uptime', data: maxDaysToRenderIntoChart * 86400, color: '#5AC364' }, 
       { label: 'downtime', data: downTime <= 0 ? 1 : downTime, color: '#CF335A' }
     ];
     
-    $.plot($("#downTimePercentage_" + liftId), data,
-    {
+    $.plot($("#downTimePercentage_" + liftId), data, {
       series: {
         pie: {
           show: true,
@@ -37,31 +36,90 @@
     });
      
     hoursDownTime = Math.round((downTime / 3600), 2);
-    $graphDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen war dieser Lift " + hoursDownTime + " Stunden defekt.");
+    $chartDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen war dieser Lift " + hoursDownTime + " Stunden defekt.");
   };
   
   var renderDownTimeAbsolute = function(liftId, downTimeEvents) {
   
-    var $graphCanvas = $("#downTimeAbsolute_" + liftId),
-          $graphDescription = $("#downTimeAbsoluteDescription_" + liftId),
-          downTimeCount = downTimeEvents.length;
-    
-    var chartData = [];
-    $.each(downTimeEvents, function(index, event) {
-      chartData.push(event.duration);      
-    });
-    var r = Raphael($graphCanvas.attr('id'));    
-    var barChart = r.barchart(
-      0, 
-      0, 
-      $graphCanvas.width(), 
-      $graphCanvas.width(),    
-      [chartData]
-    );
+    var $chartCanvas = $("#downTimeAbsolute_" + liftId),
+          $chartDescription = $("#downTimeAbsoluteDescription_" + liftId),
+          downTimeCount = downTimeEvents.length,
+          tooltipId = 'downTimeAbsolute_tooltip' + liftId;
 
-    barChart.bars[0].attr('fill','#CF335A');
     
-    $graphDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen hatte dieser Lift " + downTimeCount + " Defekte.");  
+    var data = [],
+          timeRanges = [];
+    
+    $.each(downTimeEvents, function(index, event) {
+      data.push( [index, event.duration] );
+      var timeStampWithoutTimeZone = event.timestamp.substring(0, event.timestamp.length-1);
+      var startDate = Date.parse(timeStampWithoutTimeZone);
+            endDate = Date.parse(timeStampWithoutTimeZone).add(event.duration).seconds();      
+      timeRanges[index] = startDate.toString('dd.MM.yyyy HH:mm') + ' - ' + endDate.toString('dd.MM.yyyy HH:mm')
+    });
+    
+    var showChartTooltip = function(x, y, contents) {
+        $tooltip = $('#' + tooltipId);
+        if($tooltip.length > 0){
+          $tooltip.offset({top: y + 5, left: x + 5 });
+          $tooltip.html(contents);
+        } else {
+          $('<div id="' + tooltipId + '">' + contents + '</div>').css( {
+              position: 'absolute',
+              top: y + 5,
+              left: x + 5,
+              border: '1px solid #fdd',
+              padding: '2px',
+              'background-color': '#fee',
+              opacity: 0.80
+          }).appendTo("body");
+        }
+    }    
+    
+    $.plot($chartCanvas, [ data ], {
+      series: {
+        color: '#CF335A',
+        bars: { show: true },
+        stroke: {
+          width: 1
+        },
+      },
+      grid: {
+        hoverable: true
+      },
+      yaxis: {
+        tickFormatter: function(val, axis) {
+          var hours = Math.floor(val / 3600);
+          var minutes = Math.floor( (val % 3600) / 60 );
+          if(hours < 10) {
+            hours = '0' + hours;
+          }
+          if(minutes < 10) {
+            minutes = '0' + minutes;
+          }
+          
+          return hours+":"+minutes+" h";
+        }
+      },
+      xaxis: {
+        show: false
+      }
+    });
+    
+    var storedIndex;
+    $($chartCanvas).bind("plothover", function (event, pos, item) {
+      if(item) {
+        if(item.dataIndex != storedIndex) {
+          storedIndex = item.dataIndex;
+          showChartTooltip(item.pageX, item.pageY, timeRanges[storedIndex]);
+        }
+      } else {
+        $('#' + tooltipId).remove();
+        storedIndex = null;
+      }
+    });
+    
+    $chartDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen hatte dieser Lift " + downTimeCount + " Defekte.");  
   };
   
   var renderDownTimeHistory = function(liftId, dailyStatusHistory) {

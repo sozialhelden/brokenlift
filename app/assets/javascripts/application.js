@@ -8,5 +8,6 @@
 //= require jquery_ujs
 //= require raphael
 //= require g.raphael
+//= require date-de-DE.js
 //= require core
 //= require_tree .
