@@ -85,7 +85,17 @@
         },
       },
       grid: {
-        hoverable: true
+        hoverable: true,
+        markings: function (axes) {
+          var markings = [];
+          
+          var step = axes.yaxis.max / (axes.yaxis.max / 7200);
+          for (var y = Math.floor(axes.yaxis.min); y < axes.yaxis.max; y += step)
+            markings.push({ yaxis: { from: y, to: y + (step / 2) } });
+          return markings;
+        },
+        borderWidth: 1,
+        borderColor: '#A0A0A0'
       },
       yaxis: {
         tickFormatter: function(val, axis) {
@@ -99,10 +109,11 @@
           }
           
           return hours+":"+minutes+" h";
-        }
+        },
+        tickLength: 0
       },
       xaxis: {
-        show: false
+        show: false        
       }
     });
     
