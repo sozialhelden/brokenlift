@@ -14,20 +14,39 @@ h2 {
   background-color: #FEFEFE;
 }
 
+#liftsList {
+  padding: 0 30px 20px 30px;
+  margin: 0;
+  list-style-image:url(list_closed.gif);
+}
+
 #liftsList li {
+  padding-top: 8px;
+  margin-bottom: 5px;
   background-color: #F4F4F4;
+  list-style-position: inside;
 }
 
 #liftsList li span {
   font-size: 14pt;
   font-weight:bold;
+  padding-right: 25px;
+}
+
+#liftsList li span.working {
+  background: url(workinglift_small.png) no-repeat right 85%;
+}
+
+#liftsList li span.broken {
+  background: url(brokenlift_small.png) no-repeat right 85%;
 }
 
 .footer {
-  margin: 10px 0;
+  margin: 10px 20px;
   float: right;
-  font-size: 9pt;
+  font-size: 8pt;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 .chart {

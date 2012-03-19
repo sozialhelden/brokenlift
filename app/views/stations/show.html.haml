@@ -4,14 +4,12 @@
     .span12
       = render :partial => "shared/header"
       
-  .row-fluid.content
-    .span1
-    
-    .span11
+  .row-fluid.content    
+    .span12
       .row-fluid
         .span12
           %div
-            %h2
+            %h2{:style=>"padding: 10px 0 10px 30px;" }
               = @station.name 
               - if @station.lifts_working == @station.lifts_total
                 != image_tag( 'workinglift_big.png')
