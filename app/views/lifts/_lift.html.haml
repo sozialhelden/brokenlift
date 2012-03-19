@@ -30,8 +30,8 @@
       .row-fluid.chartRow
         .span12
           .row-fluid
-            .span9
+            .span9{:style=>"margin-left: 5px;" }
               %div.chart{:id=>"downTimeHistory_#{lift.id}" }
-            .span3
+            .span3{:style=>"margin-right: -5px;margin-left: 10px;" }
               %h3= "Ausfallhistorie"
               %div{:id=>"downTimeHistoryDescription_#{lift.id}" }

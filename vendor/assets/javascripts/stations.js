@@ -43,12 +43,18 @@
   
     var $chartCanvas = $("#downTimeAbsolute_" + liftId),
           $chartDescription = $("#downTimeAbsoluteDescription_" + liftId),
-          downTimeCount = downTimeEvents.length,
           tooltipId = 'downTimeAbsolute_tooltip' + liftId;
 
     
     var data = [],
           timeRanges = [];
+          
+          
+    downTimeEvents = $.map(downTimeEvents, function (event) { 
+      if(event.duration > 0){
+        return event;
+      }
+    });
     
     $.each(downTimeEvents, function(index, event) {
       data.push( [index, event.duration] );
@@ -79,7 +85,7 @@
     $.plot($chartCanvas, [ data ], {
       series: {
         color: '#CF335A',
-        bars: { show: true },
+        bars: { show: true, barWidth: 0.75 },
         stroke: {
           width: 1
         },
@@ -89,8 +95,17 @@
         markings: function (axes) {
           var markings = [];
           
-          var step = axes.yaxis.max / (axes.yaxis.max / 7200);
-          for (var y = Math.floor(axes.yaxis.min); y < axes.yaxis.max; y += step)
+          ymax = axes.yaxis.max;
+          var step = 0;
+          if(ymax > 10800) {
+            var step = ymax / (ymax / 7200);
+          } else if (ymax > 7200)  {
+            var step = ymax / (ymax / 3600);
+          } else {
+            var step = ymax / (ymax / 1800);
+          }
+          
+          for (var y = Math.floor(axes.yaxis.min); y < ymax; y += step)
             markings.push({ yaxis: { from: y, to: y + (step / 2) } });
           return markings;
         },
@@ -130,35 +145,60 @@
       }
     });
     
-    $chartDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen hatte dieser Lift " + downTimeCount + " Defekte.");  
+    $chartDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen hatte dieser Lift " + downTimeEvents.length + " Defekte.");  
   };
   
   var renderDownTimeHistory = function(liftId, dailyStatusHistory) {
   
-    var $graphCanvas = $("#downTimeHistory_" + liftId),
-          $graphDescription = $("#downTimeHistoryDescription_" + liftId);
+    var $chartCanvas = $("#downTimeHistory_" + liftId),
+          $chartDescription = $("#downTimeHistoryDescription_" + liftId);
 
-    var chartData = [],
-          daysNotWorking = 0;
-    $.each(dailyStatusHistory, function(index, event) {
-      chartData.push(event.is_working ? 0 : 1);
+    var data = [],
+          daysNotWorking = 0,
+          historySize = dailyStatusHistory.length;
+         
+    $.each(dailyStatusHistory, function(index, event) {      
+      data.push([historySize - index, event.is_working ? 0 : 1]);
       if(!event.is_working) {
         daysNotWorking++;
       }
     });
-
-    var r = Raphael($graphCanvas.attr('id'));    
-    var barChart = r.barchart(
-      0, 
-      0, 
-      $graphCanvas.width(), 
-      $graphCanvas.height(),    
-      [chartData]
-    );
-
-    barChart.bars[0].attr('fill','#CF335A');
+    
+    $.plot($chartCanvas, [ data ], {
+      series: {
+        color: '#CF335A',
+        lines: { show: true, fill: true, fillColor: '#ECADBD'  },
+        points: { show: true },
+        stroke: {
+          width: 1
+        },
+      },
+      grid: {
+        hoverable: true,
+        show: true,
+        borderWidth: 1,
+        borderColor: '#A0A0A0',
+        markings: function (axes) {
+          return [
+            { yaxis: { from: 0, to: 0.15 } },
+            { yaxis: { from: 0.4, to: 0.65 } },
+            { yaxis: { from: 0.9, to: 1.5 } }
+          ];          
+        },
+      },
+      yaxis: {
+        min: 0.05,
+        show: false
+      },
+      xaxis: {
+        show: true,
+        tickFormatter: function(val, axis) {    
+          return (maxDaysToRenderIntoChart - val).days().ago().toString('dd.MM.yyyy');
+        },        
+      }
+    });
      
-    $graphDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen war dieser Lift an " + daysNotWorking + " Tagen defekt.");  
+    $chartDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen war dieser Lift an " + daysNotWorking + " Tagen defekt.");  
   };
   
   $('#liftsList li').each(function(index, value) {
