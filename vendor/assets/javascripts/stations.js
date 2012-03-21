@@ -171,12 +171,8 @@ $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysT
   };
   
   $('#liftsList li').each(function(index, value) {
-    if(index != 0) {
-      $(this).children('div').hide();
-    } else {
-      $(this).addClass('selected');
-    }
-    var liftId = $(this).data('lift_id');
+    var liftId = $(this).data('lift_id'),
+          $that = $(this);
 
     BROKENLIFT.api.fetchResource('lifts/' + liftId + '/statistics.json/?days=200', function(data){
       var lift = data.lift;
@@ -184,7 +180,13 @@ $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysT
       renderDownTimePercentage(liftId, lift.downTime);
       renderDownTimeAbsolute(liftId, lift.downTimeEvents);
       renderDownTimeHistory(liftId, lift.dailyStatusHistory);
-    });    
+      
+      if(index != 0) {
+        $that.children('div').hide();
+      } else {
+        $that.addClass('selected');
+      }
+    });       
   });
   
 });
