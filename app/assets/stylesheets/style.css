@@ -10,6 +10,22 @@ h2 {
   font-size: 22pt;
 }
 
+h2.station {
+  padding: 10px 0 10px 30px;
+}
+
+h2.station span {
+  padding-right: 33px;
+}
+
+h2.station.working span {
+  background: url(workinglift_big.png) no-repeat right 85%;
+}
+
+h2.station.broken span {
+  background: url(brokenlift_big.png) no-repeat right 85%;
+}
+
 .content {
   background-color: #FEFEFE;
 }
@@ -23,8 +39,12 @@ h2 {
 #liftsList li {
   padding-top: 8px;
   margin-bottom: 5px;
-  background-color: #F4F4F4;
+  background-color: transparent;
   list-style-position: inside;
+}
+
+#liftsList li.selected {
+  background-color: #F4F4F4;
 }
 
 #liftsList li span {

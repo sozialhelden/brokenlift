@@ -7,7 +7,7 @@
     var $chartDescription = $("#downTimePercentageDescription_" + liftId);
           
     data = [ 
-      { label: 'uptime', data: maxDaysToRenderIntoChart * 86400, color: '#5AC364' }, 
+      { label: 'uptime', data: maxDaysToRenderIntoChart * 86400, color: '#8EBC7A' }, 
       { label: 'downtime', data: downTime <= 0 ? 1 : downTime, color: '#CF335A' }
     ];
     
@@ -15,7 +15,7 @@
       series: {
         pie: {
           show: true,
-          radius: 1,
+          radius: 0.9,
           stroke: {
             color: 'transparent',
             width: 0
@@ -24,9 +24,8 @@
               show: true,
               radius: 3/5,
               formatter: function(label, series){
-                  return '<div style="font-size:12pt;color:#505050;font-weight:bold;color:white;padding: 1px 5px;">'+Math.round(series.percent)+'%</div>';
-              },
-              background: { opacity: 0.5, color: '#999' }
+                  return '<div style="font-size:12pt;color:#505050;font-weight:bold;color:white;text-shadow: #000 1px 1px 3px;padding: 1px 5px;">'+Math.round(series.percent)+'%</div>';
+              }
           }
         }
       },
@@ -76,41 +75,22 @@
               left: x + 5,
               border: '1px solid #fdd',
               padding: '2px',
+              'font-weight': 'bold',
               'background-color': '#fee',
-              opacity: 0.80
+              opacity: 0.90
           }).appendTo("body");
         }
     }    
     
     $.plot($chartCanvas, [ data ], {
       series: {
-        color: '#CF335A',
-        bars: { show: true, barWidth: 0.75 },
-        stroke: {
-          width: 1
-        },
+        color: 'transparent',
+        bars: { show: true, barWidth: 0.75,  fillColor: { colors: [ '#CE1E4A', '#EF8FA7' ] } }
       },
       grid: {
         hoverable: true,
-        markings: function (axes) {
-          var markings = [];
-          
-          ymax = axes.yaxis.max;
-          var step = 0;
-          if(ymax > 10800) {
-            var step = ymax / (ymax / 7200);
-          } else if (ymax > 7200)  {
-            var step = ymax / (ymax / 3600);
-          } else {
-            var step = ymax / (ymax / 1800);
-          }
-          
-          for (var y = Math.floor(axes.yaxis.min); y < ymax; y += step)
-            markings.push({ yaxis: { from: y, to: y + (step / 2) } });
-          return markings;
-        },
-        borderWidth: 1,
-        borderColor: '#A0A0A0'
+        borderWidth: 0,
+        backgroundColor: { colors: [ '#FFF', '#EEE' ] }      
       },
       yaxis: {
         tickFormatter: function(val, axis) {
@@ -124,8 +104,7 @@
           }
           
           return hours+":"+minutes+" h";
-        },
-        tickLength: 0
+        }
       },
       xaxis: {
         show: false        
@@ -168,7 +147,6 @@
       series: {
         color: '#CF335A',
         lines: { show: true, fill: true, fillColor: '#ECADBD'  },
-        points: { show: true },
         stroke: {
           width: 1
         },
@@ -176,18 +154,10 @@
       grid: {
         hoverable: true,
         show: true,
-        borderWidth: 1,
-        borderColor: '#A0A0A0',
-        markings: function (axes) {
-          return [
-            { yaxis: { from: 0, to: 0.15 } },
-            { yaxis: { from: 0.4, to: 0.65 } },
-            { yaxis: { from: 0.9, to: 1.5 } }
-          ];          
-        },
+        borderWidth: 0,
+        backgroundColor: { colors: [ '#FFF', '#EEE' ] }
       },
       yaxis: {
-        min: 0.05,
         show: false
       },
       xaxis: {
@@ -202,6 +172,11 @@
   };
   
   $('#liftsList li').each(function(index, value) {
+    if(index != 0) {
+      $(this).children('div').hide();
+    } else {
+      $(this).addClass('selected');
+    }
     var liftId = $(this).data('lift_id');
 
     BROKENLIFT.api.fetchResource('lifts/' + liftId + '/statistics.json/?days=200', function(data){

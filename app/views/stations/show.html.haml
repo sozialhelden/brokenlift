@@ -9,12 +9,8 @@
       .row-fluid
         .span12
           %div
-            %h2{:style=>"padding: 10px 0 10px 30px;" }
-              = @station.name 
-              - if @station.lifts_working == @station.lifts_total
-                != image_tag( 'workinglift_big.png')
-              - else
-                != image_tag( 'brokenlift_big.png')
+            %h2.station{:class => @station.lifts_working == @station.lifts_total ? "working" : "broken" }
+              %span= @station.name 
             %ul{:id=>'liftsList'}
               = render :partial => 'lifts/lift', :collection => @station.lifts
     
