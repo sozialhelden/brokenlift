@@ -10,7 +10,7 @@
             %div.chart{:id=>"downTimePercentage_#{lift.id}" }
           .span6
             %h3= "Ausfallquote"
-            %div{:id=>"downTimePercentageDescription_#{lift.id}" }
+            %div.chartDescription{:id=>"downTimePercentageDescription_#{lift.id}" }
               
       .span6
         .row-fluid{:style=>"padding: 0 5px;" }
@@ -18,7 +18,7 @@
             %div.chart{:id=>"downTimeAbsolute_#{lift.id}" }
           .span6
             %h3= "Ausfallzeit"
-            %div{:id=>"downTimeAbsoluteDescription_#{lift.id}" }
+            %div.chartDescription{:id=>"downTimeAbsoluteDescription_#{lift.id}" }
               
     .row-fluid.chartRow{:style=>"margin-bottom: 10px; padding: 10px 0;" }
       .span12
@@ -27,4 +27,4 @@
             %div.chart{:id=>"downTimeHistory_#{lift.id}" }
           .span3{:style=>"padding-left: 6px;margin-left: 1px;" }
             %h3= "Ausfallhistorie"
-            %div{:id=>"downTimeHistoryDescription_#{lift.id}" }
+            %div.chartDescription{:id=>"downTimeHistoryDescription_#{lift.id}" }

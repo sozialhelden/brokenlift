@@ -35,7 +35,7 @@
     });
      
     hoursDownTime = Math.round((downTime / 3600), 2);
-    $chartDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen war dieser Lift " + hoursDownTime + " Stunden defekt.");
+    $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> war dieser Lift<br/> " + hoursDownTime + " Stunden<br/><span class=\"bolder\">defekt</span></p>");
   };
   
   var renderDownTimeAbsolute = function(liftId, downTimeEvents) {
@@ -123,8 +123,7 @@
         storedIndex = null;
       }
     });
-    
-    $chartDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen hatte dieser Lift " + downTimeEvents.length + " Defekte.");  
+    $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> hatte dieser Lift<br/><span class=\"bolder\">" + downTimeEvents.length + " Defekte</span></p>");    
   };
   
   var renderDownTimeHistory = function(liftId, dailyStatusHistory) {
@@ -167,8 +166,8 @@
         },        
       }
     });
-     
-    $chartDescription.html("In den letzten " + maxDaysToRenderIntoChart + " Tagen war dieser Lift an " + daysNotWorking + " Tagen defekt.");  
+
+$chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> war dieser Lift an<br/> " + daysNotWorking + " Tagen<br/><span class=\"bolder\">defekt</span></p>");        
   };
   
   $('#liftsList li').each(function(index, value) {
