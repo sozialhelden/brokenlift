@@ -10,24 +10,63 @@ h2 {
   font-size: 22pt;
 }
 
+h2.station {
+  padding: 10px 0 10px 30px;
+}
+
+h2.station span {
+  padding-right: 33px;
+}
+
+h2.station.working span {
+  background: url(workinglift_big.png) no-repeat right 85%;
+}
+
+h2.station.broken span {
+  background: url(brokenlift_big.png) no-repeat right 85%;
+}
+
 .content {
   background-color: #FEFEFE;
 }
 
+#liftsList {
+  padding: 0 30px 20px 30px;
+  margin: 0;
+  list-style-image:url(list_closed.gif);
+}
+
 #liftsList li {
+  padding-top: 8px;
+  margin-bottom: 5px;
+  background-color: transparent;
+  list-style-position: inside;
+}
+
+#liftsList li.selected {
   background-color: #F4F4F4;
 }
 
-#liftsList li span {
+#liftsList li span.status {
   font-size: 14pt;
   font-weight:bold;
+  padding-right: 25px;
+}
+
+#liftsList li span.status.working {
+  background: url(workinglift_small.png) no-repeat right 85%;
+}
+
+#liftsList li span.status.broken {
+  background: url(brokenlift_small.png) no-repeat right 85%;
 }
 
 .footer {
-  margin: 10px 0;
+  margin: 10px 20px;
   float: right;
-  font-size: 9pt;
+  font-size: 8pt;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 .chart {
@@ -36,4 +75,25 @@ h2 {
 
 .chartRow {
   background-color: #fff;
+}
+.chartDescription p {
+  color: #787878;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+  line-height: 26px;
+}
+
+.chartDescription span.bold {
+  font-weight: normal;
+  color: #787878;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.chartDescription span.bolder {
+  color: #787878;
+  font-size: 35px;
+  line-height: 35px;
 }

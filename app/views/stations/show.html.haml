@@ -4,19 +4,13 @@
     .span12
       = render :partial => "shared/header"
       
-  .row-fluid.content
-    .span1
-    
-    .span11
+  .row-fluid.content    
+    .span12
       .row-fluid
         .span12
           %div
-            %h2
-              = @station.name 
-              - if @station.lifts_working == @station.lifts_total
-                != image_tag( 'workinglift_big.png')
-              - else
-                != image_tag( 'brokenlift_big.png')
+            %h2.station{:class => @station.lifts_working == @station.lifts_total ? "working" : "broken" }
+              %span= @station.name 
             %ul{:id=>'liftsList'}
               = render :partial => 'lifts/lift', :collection => @station.lifts
     
@@ -25,4 +19,6 @@
       = render :partial => "shared/footer"
 
 - content_for :javascripts do
+  = javascript_include_tag "jquery.flot.min"
+  = javascript_include_tag "jquery.flot.pie.min"
   = javascript_include_tag "stations"
