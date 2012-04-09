@@ -62,7 +62,7 @@ The screenshot shows the current version of the website.
 - [Oliver Schmidt](http://www.thecodejet.de/blog/ "Oliver Schmidt") ([@codejet](https://twitter.com/#!/codejet "@codejet"))
 - [Matthias Guenther](http://wikimatze.de "Matthias Guenther") ([@wikimatze](https://twitter.com/#!/wikimatze "@wikimatze"))
 - [Esther Masermann](http://www.esther-masemann.com/ "Esther Masermann")
-- [Andi Weiland](http://www.ohrenflimmern.de/ "Andi Weiland")
+- [Andi Weiland](http://www.ohrenflimmern.de/ "Andi Weiland") ([@ohrenflimmern](https://twitter.com/#!/ohrenflimmern "@ohrenflimmern"))
 - [Raul Krauthausen](http://raul.de/ "Raul Krauthausen") ([@RAULDe](https://twitter.com/#!/RAULde "@RAULDe"))
 
 
