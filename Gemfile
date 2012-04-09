@@ -6,6 +6,7 @@ gem 'rails', '3.1.1'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 group :default do
+  gem 'pry-rails'
   gem 'mysql2', '0.3.11'
   gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
   gem 'aasm'
@@ -22,6 +23,7 @@ group :default do
 end
 
 group :test, :development do
+  gem 'sqlite3'
   gem 'rspec-rails'
 end
 
