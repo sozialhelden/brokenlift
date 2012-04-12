@@ -33,6 +33,17 @@ the database and the HTML/CSS frontend loading and visualizing the content via J
 - The current version of the website is online at: [http://brokenlifts.org](http://brokenlifts.org).
 
 
+## Installation
+The command line is your friend:
+
+    $ git clone git@github.com:sozialhelden/brokenlift.git
+    $ cd brokenlift
+    $ bundler install
+    $ bundle exec rake db:create
+    $ bundle exec rake db:migrate
+    $ bundle exec rails s
+
+
 ## Screenshot
 
 The screenshot shows the current version of the website.
