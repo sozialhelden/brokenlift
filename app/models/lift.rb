@@ -5,15 +5,15 @@ class Lift < ActiveRecord::Base
   has_many :events, :order => 'timestamp DESC'
   has_many :lines, :through => :station
 
-  acts_as_api do |config|
-    config.allow_jsonp_callback = true
-  end
-  
   attr :downTime, true
   attr :downTimeEvents, true
   attr :dailyStatusHistory, true
 
   acts_as_api
+
+  acts_as_api do |config|
+    config.allow_jsonp_callback = true
+  end
 
   api_accessible :default do |template|
     template.add :id
@@ -41,13 +41,13 @@ class Lift < ActiveRecord::Base
       template.add :timestamp
     end
   end
-  
+
   api_accessible :statistics do |template|
     template.add :id
     template.add :downTime
     template.add :downTimeEvents
     template.add :dailyStatusHistory
-  end  
+  end
 
   scope :inverse, lambda {|list_of_lift_ids| { :conditions => ["#{self.table_name}.id NOT IN (?)", list_of_lift_ids]}}
 
@@ -72,16 +72,16 @@ class Lift < ActiveRecord::Base
     end
     coll
   end
-  
+
   # @todo please refactor me
   def self.get_statistics(id, days)
-    lift = self.find(id)    
+    lift = self.find(id)
     limit = Time.zone.now.advance(:days => -(days.to_i))
     events = lift.events.reverse
     sumDownTime = 0
     lift.downTimeEvents = Array.new
     dailyStatusHistory = Array.new
-    
+
     for i in (1 .. days.to_i)
       date = Date.today.advance(:days => -i)
       dailyStatus = Hash.new
@@ -106,26 +106,27 @@ class Lift < ActiveRecord::Base
         event.duration = event_next.timestamp - event.timestamp
       else
         event.duration = Time.zone.now - event.timestamp.to_time
-      end      
+      end
 
       unless event.is_working
         durationInDays = (event.duration / 86400).round
-        
+
         for i in (0 .. durationInDays)
           date = event.timestamp.advance(:days => i).to_date
           dailyStatus = dailyStatusHistory.find{|dailyStatus| dailyStatus["date"] == date }
-          dailyStatus["is_working"] = false          
+          dailyStatus["is_working"] = false
         end
-        
+
         sumDownTime += event.duration
         lift.downTimeEvents.push(event)
       end
 
     end
-    
+
     lift.downTime = sumDownTime
     lift.dailyStatusHistory = dailyStatusHistory
     lift
   end
 
 end
+

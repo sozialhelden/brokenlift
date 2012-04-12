@@ -8,6 +8,5 @@ class Location < ActiveRecord::Base
     template.add :latitude
   end
 
-
 end
 

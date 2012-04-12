@@ -1,5 +1,5 @@
 class Line < ActiveRecord::Base
-  belongs_to :network # foreign key - network_id
+  belongs_to :network
   has_many :lines_stations
   has_many :stations, :through => :lines_stations
 
@@ -10,5 +10,7 @@ class Line < ActiveRecord::Base
     template.add :name
     template.add "network.operator", :as => :operator
   end
+
 end
+
 
