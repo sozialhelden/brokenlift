@@ -1,16 +1,16 @@
 ﻿$(document).ready(function() {
-  
+
   var maxDaysToRenderIntoChart = 200;
-  
+
   var renderDownTimePercentage = function(liftId, downTime) {
-  
+
     var $chartDescription = $("#downTimePercentageDescription_" + liftId);
-          
-    data = [ 
-      { label: 'uptime', data: maxDaysToRenderIntoChart * 86400, color: '#8EBC7A' }, 
+
+    data = [
+      { label: 'uptime', data: maxDaysToRenderIntoChart * 86400, color: '#8EBC7A' },
       { label: 'downtime', data: downTime <= 0 ? 1 : downTime, color: '#CF335A' }
     ];
-    
+
     $.plot($("#downTimePercentage_" + liftId), data, {
       series: {
         pie: {
@@ -33,36 +33,36 @@
           show: false
       }
     });
-     
+
     hoursDownTime = Math.round((downTime / 3600), 2);
     $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> war dieser Lift<br/> " + hoursDownTime + " Stunden<br/><span class=\"bolder\">defekt</span></p>");
   };
-  
+
   var renderDownTimeAbsolute = function(liftId, downTimeEvents) {
-  
+
     var $chartCanvas = $("#downTimeAbsolute_" + liftId),
           $chartDescription = $("#downTimeAbsoluteDescription_" + liftId),
           tooltipId = 'downTimeAbsolute_tooltip' + liftId;
 
-    
+
     var data = [],
           timeRanges = [];
-          
-          
-    downTimeEvents = $.map(downTimeEvents, function (event) { 
+
+
+    downTimeEvents = $.map(downTimeEvents, function (event) {
       if(event.duration > 0){
         return event;
       }
     });
-    
+
     $.each(downTimeEvents, function(index, event) {
       data.push( [index, event.duration] );
       var timeStampWithoutTimeZone = event.timestamp.substring(0, event.timestamp.length-1);
       var startDate = Date.parse(timeStampWithoutTimeZone);
-            endDate = Date.parse(timeStampWithoutTimeZone).add(event.duration).seconds();      
+            endDate = Date.parse(timeStampWithoutTimeZone).add(event.duration).seconds();
       timeRanges[index] = startDate.toString('dd.MM.yyyy HH:mm') + ' - ' + endDate.toString('dd.MM.yyyy HH:mm')
     });
-    
+
     var showChartTooltip = function(x, y, contents) {
         $tooltip = $('#' + tooltipId);
         if($tooltip.length > 0){
@@ -80,8 +80,8 @@
               opacity: 0.90
           }).appendTo("body");
         }
-    }    
-    
+    }
+
     $.plot($chartCanvas, [ data ], {
       series: {
         color: 'transparent',
@@ -90,7 +90,7 @@
       grid: {
         hoverable: true,
         borderWidth: 0,
-        backgroundColor: { colors: [ '#FFF', '#EEE' ] }      
+        backgroundColor: { colors: [ '#FFF', '#EEE' ] }
       },
       yaxis: {
         tickFormatter: function(val, axis) {
@@ -102,15 +102,15 @@
           if(minutes < 10) {
             minutes = '0' + minutes;
           }
-          
+
           return hours+":"+minutes+" h";
         }
       },
       xaxis: {
-        show: false        
+        show: false
       }
     });
-    
+
     var storedIndex;
     $($chartCanvas).bind("plothover", function (event, pos, item) {
       if(item) {
@@ -123,25 +123,25 @@
         storedIndex = null;
       }
     });
-    $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> hatte dieser Lift<br/><span class=\"bolder\">" + downTimeEvents.length + " Defekte</span></p>");    
+    $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> hatte dieser Lift<br/><span class=\"bolder\">" + downTimeEvents.length + " Defekte</span></p>");
   };
-  
+
   var renderDownTimeHistory = function(liftId, dailyStatusHistory) {
-  
+
     var $chartCanvas = $("#downTimeHistory_" + liftId),
           $chartDescription = $("#downTimeHistoryDescription_" + liftId);
 
     var data = [],
           daysNotWorking = 0,
           historySize = dailyStatusHistory.length;
-         
-    $.each(dailyStatusHistory, function(index, event) {      
+
+    $.each(dailyStatusHistory, function(index, event) {
       data.push([historySize - index, event.is_working ? 0 : 1]);
       if(!event.is_working) {
         daysNotWorking++;
       }
     });
-    
+
     $.plot($chartCanvas, [ data ], {
       series: {
         color: '#CF335A',
@@ -161,15 +161,15 @@
       },
       xaxis: {
         show: true,
-        tickFormatter: function(val, axis) {    
+        tickFormatter: function(val, axis) {
           return (maxDaysToRenderIntoChart - val).days().ago().toString('dd.MM.yyyy');
-        },        
+        },
       }
     });
 
-$chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> war dieser Lift an<br/> " + daysNotWorking + " Tagen<br/><span class=\"bolder\">defekt</span></p>");        
+$chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> war dieser Lift an<br/> " + daysNotWorking + " Tagen<br/><span class=\"bolder\">defekt</span></p>");
   };
-  
+
   $('#liftsList li').each(function(index, value) {
     var liftId = $(this).data('lift_id'),
           $that = $(this);
@@ -180,13 +180,13 @@ $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysT
       renderDownTimePercentage(liftId, lift.downTime);
       renderDownTimeAbsolute(liftId, lift.downTimeEvents);
       renderDownTimeHistory(liftId, lift.dailyStatusHistory);
-      
+
       if(index != 0) {
         $that.children('div').hide();
       } else {
         $that.addClass('selected');
       }
-    });       
+    });
   });
-  
+
 });
