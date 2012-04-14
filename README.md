@@ -36,12 +36,23 @@ the database and the HTML/CSS frontend loading and visualizing the content via J
 ## Installation
 The command line is your friend:
 
+
     $ git clone git@github.com:sozialhelden/brokenlift.git
     $ cd brokenlift
-    $ bundler install
+    $ bundle install
     $ bundle exec rake db:create
     $ bundle exec rake db:migrate
     $ bundle exec rails s
+
+
+If you have problems with installing the mysql2 gem, comment it in the Gemfile:
+
+
+    ...
+    group :default do
+      gem 'pry-rails'
+      # gem 'mysql2', '0.3.11'
+    ...
 
 
 ## Screenshot
