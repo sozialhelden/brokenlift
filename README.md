@@ -66,21 +66,6 @@ The screenshot shows the current version of the website.
 ![BrokenLifts Website](https://github.com/sozialhelden/brokenlift/raw/master/screenshot.png "BrokenLifts Website")
 
 
-## ToDos
-- update contributor list (old + current)
-- refactor the README
-- add twitter accounts to contributors
-- add sqlite3 for developping mode
-- create Rake-Tasks to fill the test-database
-- create model-tests
-- get an overview of the class-structure
-- RSS-Feed fo stations
-- list with all broken lifts
-- ranking-page (how often and how long)
-- every lift should have a nickname like (so that we can twitter about them like "#Friedrichstr1 is
-  broken")
-
-
 ## Current Contributers
 
 - [Christoph Bunte](http://www.christophbuente.de/ "Christoph Bunte") ([@chris\_can\_do](https://twitter.com/#!/chris_can_do/ "@chris_can_do"))
