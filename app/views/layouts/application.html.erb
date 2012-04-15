@@ -1,8 +1,21 @@
 <!DOCTYPE html>
-<html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
 <head>
   <title>Brokenlifts</title>
   <%= stylesheet_link_tag "application" %>
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+  <![endif]-->
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -10,7 +23,21 @@
 <%= yield %>
 
 <%= javascript_include_tag "application" %>
-<%= yield :javascripts %>
+<%= javascript_include_tag "jquery-1.7.1" %>
+<%= javascript_include_tag "jquery-ui-1.8.16.custom.min" %>
+<%= javascript_include_tag "forms.jquery" %>
+<%= javascript_include_tag "jquery.tmpl" %>
+<%= javascript_include_tag "jquery.hashchange" %>
+<%= javascript_include_tag "templates" %>
+<%= javascript_include_tag "date-format.js" %>
+<%= javascript_include_tag "undrescore" %>
+<%= javascript_include_tag "bootstrap/bootstrap-modal" %>
+
+<%= javascript_include_tag "flot/jquery.flot" %>
+<%= javascript_include_tag "flot/jquery.flot.pie" %>
+<%= javascript_include_tag "config" %>
+<%= javascript_include_tag "app" %>
+
 </body>
 </html>
 
