@@ -82,7 +82,7 @@ class Lift < ActiveRecord::Base
     lift.downTimeEvents = Array.new
     dailyStatusHistory = Array.new
 
-    for i in (1 .. days.to_i)
+    for i in (0 .. days.to_i)
       date = Date.today.advance(:days => -i)
       dailyStatus = Hash.new
       dailyStatus["date"] = date
@@ -111,8 +111,12 @@ class Lift < ActiveRecord::Base
       unless event.is_working
         durationInDays = (event.duration / 86400).round
 
+        tomorrow = Time.zone.today.advance(:days => 1)
         for i in (0 .. durationInDays)
           date = event.timestamp.advance(:days => i).to_date
+          if date >= tomorrow
+            next
+          end
           dailyStatus = dailyStatusHistory.find{|dailyStatus| dailyStatus["date"] == date }
           dailyStatus["is_working"] = false
         end
