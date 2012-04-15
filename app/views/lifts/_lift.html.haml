@@ -1,4 +1,4 @@
-%li{:data => {:lift_id => "#{lift.id}" }}
+%li{:data => {:lift_id => "#{lift.id}"}, :class=>"framed"}
   %span.status{:class => lift.broken? ? "broken" : "working"}
     = lift.description
       

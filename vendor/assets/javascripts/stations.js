@@ -180,12 +180,6 @@ $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysT
       renderDownTimePercentage(liftId, lift.downTime);
       renderDownTimeAbsolute(liftId, lift.downTimeEvents);
       renderDownTimeHistory(liftId, lift.dailyStatusHistory);
-
-      if(index != 0) {
-        $that.children('div').hide();
-      } else {
-        $that.addClass('selected');
-      }
     });
   });
 

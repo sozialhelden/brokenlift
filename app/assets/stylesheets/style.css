@@ -43,7 +43,7 @@ h2.station.broken span {
   list-style-position: inside;
 }
 
-#liftsList li.selected {
+#liftsList li.framed {
   background-color: #F4F4F4;
 }
 
