@@ -69,6 +69,10 @@ h2.station.broken span {
   text-transform: uppercase;
 }
 
+.footer a {
+  color: #2684FF;
+}
+
 .chart {
   height: 200px;
 }
