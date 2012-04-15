@@ -30,6 +30,28 @@ h2.station.broken span {
   background-color: #FEFEFE;
 }
 
+#navigation {
+  float: right;
+  margin-top:130px;
+}
+
+#navigation ul li {
+  display: inline;
+  padding: 0 0 0 10px;
+}
+
+#navigation a {
+  font-weight: bold;
+  text-transform: uppercase;  
+  color: #589EFF;
+  text-decoration: none;
+  font-size: 15pt;
+}
+
+#navigation a:hover {
+  color: #2687FF;
+}
+
 #liftsList {
   padding: 0 30px 20px 30px;
   margin: 0;
