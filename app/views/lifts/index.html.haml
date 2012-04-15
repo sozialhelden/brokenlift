@@ -1,0 +1,19 @@
+.container
+  .row-fluid
+    .span12
+      = render :partial => "shared/header"
+      
+  .row-fluid.content    
+    .span12
+      .row-fluid
+        .span12
+          %div
+            stations
+  .row-fluid
+    .span12
+      = render :partial => "shared/footer"
+
+- content_for :javascripts do
+  = javascript_include_tag "jquery.flot.min"
+  = javascript_include_tag "jquery.flot.pie.min"
+  = javascript_include_tag "stations"
