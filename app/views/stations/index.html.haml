@@ -8,7 +8,23 @@
       .row-fluid
         .span12
           %div
-            %h2.header Ist-Zusand der Berliner ÖPNV Aufzüge
+            %h2.header Ist-Zustand der Berliner ÖPNV Aufzüge
+            - if @lifts_broken > 0
+              %div
+                %div.alert.alert-error
+                  Im Moment sind 
+                  = @lifts_broken
+                  Aufzüge defekt.
+                %div.alert.alert-error
+                  - ratio_sbahn = (@lifts_sbahn * 100 ) / @lifts_broken
+                  = ratio_sbahn
+                  \% davon betreibt die S-Bahn und die anderen
+                  = 100 - ratio_sbahn
+                  \% die BVG.                  
+            - else
+              %div
+                %div.alert.alert-success
+                  Im Moment sind keine defekten Aufzüge gemeldet.
             %ul.status-list
               = render :partial => 'stations/list/station', :collection => @stations
               
