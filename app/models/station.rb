@@ -34,7 +34,7 @@ class Station < ActiveRecord::Base
   end
   
   def broken?
-    station.lifts_working != station.lifts_total rescue false
+    lifts_working != lifts_total rescue false
   end
 
 end
