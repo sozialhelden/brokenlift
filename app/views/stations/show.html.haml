@@ -9,7 +9,7 @@
       .row-fluid
         .span12
           %div
-            %h2.station.header{:class => @station.lifts_working == @station.lifts_total ? "working" : "broken" }
+            %h2.station.header{:class => @station.broken? ? "broken" : "working"  }
               %span= @station.name 
             %ul.status-list{:id=>'lifts-list'}
               = render :partial => 'lifts/lift', :collection => @station.lifts
