@@ -29,6 +29,10 @@ class Station < ActiveRecord::Base
     lifts.reject{|l| l.broken?}.size
   end
   
+  def lifts_broken
+    lifts.reject{|l| !l.broken?}.size
+  end
+  
   def broken?
     station.lifts_working != station.lifts_total rescue false
   end
