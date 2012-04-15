@@ -30,6 +30,7 @@ end
 group :production do
   gem 'therubyracer'
   gem 'uglifier'
+  gem 'execjs'
 end
 
 group :test do
