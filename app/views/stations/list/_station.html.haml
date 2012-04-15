@@ -1,0 +1,3 @@
+%li
+  %span.status{:class => station.lifts_working == station.lifts_total ? "working" : "broken" }
+    = link_to station.name,  :controller => "stations", :action => "show", :id => station.id

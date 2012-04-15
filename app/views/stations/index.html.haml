@@ -1,4 +1,4 @@
-.container
+﻿.container
   .row-fluid
     .span12
       = render :partial => "shared/header"
@@ -8,7 +8,10 @@
       .row-fluid
         .span12
           %div
-            stations
+            %h2 Ist Zusand der Berliner ÖPNV Aufzüge
+            %ul{:id=>'liftsList'}
+              = render :partial => 'stations/list/station', :collection => @stations
+              
   .row-fluid
     .span12
       = render :partial => "shared/footer"

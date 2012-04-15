@@ -1,6 +1,7 @@
 class StationsController < ApplicationController
   def index
-    redirect_to root_path
+    @stations = Station.find(:all)
+    puts @stations
   end
   
   def show
