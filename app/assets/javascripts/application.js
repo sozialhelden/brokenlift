@@ -4,10 +4,16 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery
-//= require jquery_ujs
-//= require raphael
-//= require g.raphael
-//= require date-de-DE.js
-//= require core
-//= require_tree .
+// = require jquery-1.7.1
+// = require jquery-ui-1.8.16.custom.min
+// = require forms.jquery
+// = require jquery.tmpl
+// = require jquery.hashchange
+// = require templates
+// = require date-format
+// = require underscore
+// = require bootstrap/bootstrap-modal
+// = require flot/jquery.flot
+// = require flot/jquery.flot.pie
+// = require config
+// = require app

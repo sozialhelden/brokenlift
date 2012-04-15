@@ -7,7 +7,9 @@
 <!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
 <head>
   <title>Brokenlifts</title>
+
   <%= stylesheet_link_tag "application" %>
+
   <!--[if lt IE 9]>
     <link rel="stylesheet" href="stylesheets/ie.css">
   <![endif]-->
@@ -23,20 +25,6 @@
 <%= yield %>
 
 <%= javascript_include_tag "application" %>
-<%= javascript_include_tag "jquery-1.7.1" %>
-<%= javascript_include_tag "jquery-ui-1.8.16.custom.min" %>
-<%= javascript_include_tag "forms.jquery" %>
-<%= javascript_include_tag "jquery.tmpl" %>
-<%= javascript_include_tag "jquery.hashchange" %>
-<%= javascript_include_tag "templates" %>
-<%= javascript_include_tag "date-format.js" %>
-<%= javascript_include_tag "undrescore" %>
-<%= javascript_include_tag "bootstrap/bootstrap-modal" %>
-
-<%= javascript_include_tag "flot/jquery.flot" %>
-<%= javascript_include_tag "flot/jquery.flot.pie" %>
-<%= javascript_include_tag "config" %>
-<%= javascript_include_tag "app" %>
 
 </body>
 </html>
