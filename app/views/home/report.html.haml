@@ -1,0 +1,20 @@
+%h2 Report a broken lift
+%p
+  Please report a broken lift to the BVG here:
+  %strong
+    = @bvg_phonenumber
+    +49-30-25622096
+  %a{ :title => 'BVG Berlin report page', :href => @bvg_address }
+    = @bvg_address
+
+%p
+  Please report a broken lift to the S-Bahn here:
+  %strong
+    = @tram_phonenumber
+  %a{ :title => 'S-Bahn Berlin report page', :href => @tram_address }
+    = @tram_address
+
+%p
+  Or tweet to:
+  %a{ :title => 'Brokenlifts on Twitter', :href => @twitter_account } @brokenlifts
+
