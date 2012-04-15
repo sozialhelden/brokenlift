@@ -10,11 +10,11 @@ h2 {
   font-size: 22pt;
 }
 
-h2.station {
+h2.header {
   padding: 10px 0 10px 30px;
 }
 
-h2.station span {
+h2.header span {
   padding-right: 33px;
 }
 
@@ -52,34 +52,44 @@ h2.station.broken span {
   color: #2687FF;
 }
 
-#liftsList {
+.status-list {
   padding: 0 30px 20px 30px;
   margin: 0;
   list-style-image:url(list_closed.gif);
 }
 
-#liftsList li {
+.status-list li {
   padding-top: 8px;
   margin-bottom: 5px;
   background-color: transparent;
   list-style-position: inside;
 }
 
-#liftsList li.framed {
+.status-list li.framed {
   background-color: #F4F4F4;
 }
 
-#liftsList li span.status {
+.status-list li.station a {
+  color: #606060;
+  text-decoration: none;
+}
+
+.status-list li.station a:hover {
+  color: #589EFF;
+}
+
+
+.status-list li span.status {
   font-size: 14pt;
   font-weight:bold;
   padding-right: 25px;
 }
 
-#liftsList li span.status.working {
+.status-list li span.status.working {
   background: url(workinglift_small.png) no-repeat right 85%;
 }
 
-#liftsList li span.status.broken {
+.status-list li span.status.broken {
   background: url(brokenlift_small.png) no-repeat right 85%;
 }
 
@@ -99,10 +109,10 @@ h2.station.broken span {
   height: 200px;
 }
 
-.chartRow {
+.chart-row {
   background-color: #fff;
 }
-.chartDescription p {
+.chart-description p {
   color: #787878;
   font-weight: bold;
   font-size: 15px;
@@ -111,14 +121,14 @@ h2.station.broken span {
   line-height: 26px;
 }
 
-.chartDescription span.bold {
+.chart-description span.bold {
   font-weight: normal;
   color: #787878;
   font-size: 30px;
   line-height: 30px;
 }
 
-.chartDescription span.bolder {
+.chart-description span.bolder {
   color: #787878;
   font-size: 35px;
   line-height: 35px;

@@ -4,14 +4,14 @@
 
   var renderDownTimePercentage = function(liftId, downTime) {
 
-    var $chartDescription = $("#downTimePercentageDescription_" + liftId);
+    var $chartDescription = $("#downtime-percentage-description-" + liftId);
 
     data = [
       { label: 'uptime', data: maxDaysToRenderIntoChart * 86400, color: '#8EBC7A' },
       { label: 'downtime', data: downTime <= 0 ? 1 : downTime, color: '#CF335A' }
     ];
 
-    $.plot($("#downTimePercentage_" + liftId), data, {
+    $.plot($("#downtime-percentage-" + liftId), data, {
       series: {
         pie: {
           show: true,
@@ -40,9 +40,9 @@
 
   var renderDownTimeAbsolute = function(liftId, downTimeEvents) {
 
-    var $chartCanvas = $("#downTimeAbsolute_" + liftId),
-          $chartDescription = $("#downTimeAbsoluteDescription_" + liftId),
-          tooltipId = 'downTimeAbsolute_tooltip' + liftId;
+    var $chartCanvas = $("#downtime-absolute-" + liftId),
+          $chartDescription = $("#downtime-absolute-description-" + liftId),
+          tooltipId = 'downtime-absolute-tooltip-' + liftId;
 
 
     var data = [],
@@ -128,8 +128,8 @@
 
   var renderDownTimeHistory = function(liftId, dailyStatusHistory) {
 
-    var $chartCanvas = $("#downTimeHistory_" + liftId),
-          $chartDescription = $("#downTimeHistoryDescription_" + liftId);
+    var $chartCanvas = $("#downtime-history-" + liftId),
+          $chartDescription = $("#downtime-history-description-" + liftId);
 
     var data = [],
           daysNotWorking = 0,
@@ -170,7 +170,7 @@
 $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> war dieser Lift an<br/> " + daysNotWorking + " Tagen<br/><span class=\"bolder\">defekt</span></p>");
   };
 
-  $('#liftsList li').each(function(index, value) {
+  $('#lifts-list li').each(function(index, value) {
     var liftId = $(this).data('lift_id'),
           $that = $(this);
 

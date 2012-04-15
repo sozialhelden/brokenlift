@@ -3,28 +3,28 @@
     = lift.description
       
   %div{:style=>"padding: 10px 30px;" }
-    .row-fluid.chartRow{:style=>"margin-bottom: 5px; padding: 10px 0;" }
+    .row-fluid.chart-row{:style=>"margin-bottom: 5px; padding: 10px 0;" }
       .span6
         .row-fluid{:style=>"padding: 0 5px;" }
           .span6
-            %div.chart{:id=>"downTimePercentage_#{lift.id}" }
+            %div.chart{:id=>"downtime-percentage-#{lift.id}" }
           .span6
             %h3= "Ausfallquote"
-            %div.chartDescription{:id=>"downTimePercentageDescription_#{lift.id}" }
+            %div.chart-description{:id=>"downtime-percentage-description-#{lift.id}" }
               
       .span6
         .row-fluid{:style=>"padding: 0 5px;" }
           .span6
-            %div.chart{:id=>"downTimeAbsolute_#{lift.id}" }
+            %div.chart{:id=>"downtime-absolute-#{lift.id}" }
           .span6
             %h3= "Ausfallzeit"
-            %div.chartDescription{:id=>"downTimeAbsoluteDescription_#{lift.id}" }
+            %div.chart-description{:id=>"downtime-absolute-description-#{lift.id}" }
               
-    .row-fluid.chartRow{:style=>"margin-bottom: 10px; padding: 10px 0;" }
+    .row-fluid.chart-row{:style=>"margin-bottom: 10px; padding: 10px 0;" }
       .span12
         .row-fluid{:style=>"padding: 0 5px;" }
           .span9{:style=>"margin-left: 5px;" }
-            %div.chart{:id=>"downTimeHistory_#{lift.id}" }
+            %div.chart{:id=>"downtime-history-#{lift.id}" }
           .span3{:style=>"padding-left: 6px;margin-left: 1px;" }
             %h3= "Ausfallhistorie"
-            %div.chartDescription{:id=>"downTimeHistoryDescription_#{lift.id}" }
+            %div.chart-description{:id=>"downtime-history-description-#{lift.id}" }
