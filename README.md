@@ -56,10 +56,15 @@ If you have problems with installing the mysql2 gem, comment it in the Gemfile:
 
 
 If you want to use SQLite instead of MySQL please replace the content `config/database.yml` with the
-content of `config/database_sqlite.yml`
+content of `config/database_sqlite.yml`.
+
+
+After you have installed everything it's time to fill the database with some random data. Please
+perfom the rake task `bundle exec rake db:populate`.
+
 
 ## API
-The project features a RESTful API which can be used to extract the scraped data. 
+The project features a RESTful API which can be used to extract the scraped data.
 The default response format is JSON but other formats are also supported.
 
 You will find a minimalistic but at least up-to-date [API documentation](https://github.com/sozialhelden/brokenlift/wiki/API) in the wiki.
