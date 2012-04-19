@@ -6,9 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require date-de-DE.js
+//= require date-de-DE
 //= require core
-//= require jquery.flot.min.js
-//= require jquery.flot.pie.min.js
-//= require stations.js
-//= require_tree .
+//= require jquery.flot.min
+//= require jquery.flot.pie.min
+//= require stations
