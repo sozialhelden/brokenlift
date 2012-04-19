@@ -8,6 +8,3 @@
 //= require jquery_ujs
 //= require date-de-DE
 //= require core
-//= require jquery.flot.min
-//= require jquery.flot.pie.min
-//= require stations
