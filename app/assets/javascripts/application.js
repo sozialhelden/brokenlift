@@ -8,4 +8,7 @@
 //= require jquery_ujs
 //= require date-de-DE.js
 //= require core
+//= require jquery.flot.min.js
+//= require jquery.flot.pie.min.js
+//= require stations.js
 //= require_tree .
