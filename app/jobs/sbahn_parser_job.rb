@@ -30,6 +30,7 @@ class SbahnParserJob < Struct.new(:timestamp)
 
   # Do something when the job was successfully done
   def success
+    # Delete the file which has been parsed?
   end
 
   # Do something when the job failed
