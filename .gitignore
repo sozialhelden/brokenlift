@@ -6,5 +6,6 @@ tmp/
 .sass-cache/
 /vendor/bundle
 public/system
+public/assets
 *.tmproj
 

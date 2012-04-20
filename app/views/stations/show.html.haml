@@ -19,6 +19,6 @@
       = render :partial => "shared/footer"
 
 - content_for :javascripts do
-  = javascript_include_tag "jquery.flot.min"
-  = javascript_include_tag "jquery.flot.pie.min"
-  = javascript_include_tag "stations"
+  = javascript_include_tag params[:controller] + "/jquery.flot.min"
+  = javascript_include_tag params[:controller] + "/jquery.flot.pie.min"
+  = javascript_include_tag params[:controller] + "/stations.js"
