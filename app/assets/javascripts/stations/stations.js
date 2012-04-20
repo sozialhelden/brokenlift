@@ -1,5 +1,13 @@
 ﻿$(document).ready(function() {
-  var maxDaysToRenderIntoChart = 200;
+  var maxDaysToRenderIntoChart = 200,
+        pluralize = function(value, singularString, pluralString) {
+          return value == 1 ? singularString : pluralString;
+        },
+        partialDescriptionString = (function(maxDays) {
+            return maxDays == 1 ?
+              "<p>Am<br/> <span class=\"bold\">gestrigen Tag</span>" :
+              "<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span>";
+        })(maxDaysToRenderIntoChart);
 
   var renderDownTimePercentage = function(liftId, downTime) {
 
@@ -33,8 +41,10 @@
       }
     });
 
-    hoursDownTime = Math.round((downTime / 3600), 2);
-    $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> war dieser Lift<br/> " + hoursDownTime + " Stunden<br/><span class=\"bolder\">defekt</span></p>");
+    var hoursDownTime = Math.round((downTime / 3600), 2),
+          hours = pluralize(hoursDownTime, "Stunde", "Stunden");
+    
+    $chartDescription.html(partialDescriptionString + "<br/> war dieser Lift<br/> " + hoursDownTime + " " + hours + "<br/><span class=\"bolder\">defekt</span></p>");
   };
 
   var renderDownTimeAbsolute = function(liftId, downTimeEvents) {
@@ -110,8 +120,13 @@
       }
     });
 
-    var storedIndex;
-    $($chartCanvas).bind("plothover", function (event, pos, item) {
+    var storedIndex,
+          defectsCount = downTimeEvents.length,
+          defects = pluralize(defectsCount, "Defekt", "Defekte");
+          
+    console.log()
+          
+    $chartCanvas.bind("plothover", function (event, pos, item) {
       if(item) {
         if(item.dataIndex != storedIndex) {
           storedIndex = item.dataIndex;
@@ -122,7 +137,8 @@
         storedIndex = null;
       }
     });
-    $chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> hatte dieser Lift<br/><span class=\"bolder\">" + downTimeEvents.length + " Defekte</span></p>");
+    
+    $chartDescription.html(partialDescriptionString + "<br/> hatte dieser Lift<br/><span class=\"bolder\">" + defectsCount + " " + defects + "</span></p>");
   };
 
   var renderDownTimeHistory = function(liftId, dailyStatusHistory) {
@@ -165,15 +181,17 @@
         },
       }
     });
+    
+    var days = pluralize(daysNotWorking, "Tag", "Tagen");
 
-$chartDescription.html("<p>In den letzten<br/> <span class=\"bold\">" + maxDaysToRenderIntoChart + " Tagen</span><br/> war dieser Lift an<br/> " + daysNotWorking + " Tagen<br/><span class=\"bolder\">defekt</span></p>");
+    $chartDescription.html(partialDescriptionString + "<br/> war dieser Lift an<br/> " + daysNotWorking + " " + days + "<br/><span class=\"bolder\">defekt</span></p>");
   };
 
   $('#lifts-list li').each(function(index, value) {
     var liftId = $(this).data('lift_id'),
           $that = $(this);
 
-    BROKENLIFT.api.fetchResource('lifts/' + liftId + '/statistics.json/?days=200', function(data){
+    BROKENLIFT.api.fetchResource('lifts/' + liftId + '/statistics.json/?days=' + maxDaysToRenderIntoChart, function(data){
       var lift = data.lift;
 
       renderDownTimePercentage(liftId, lift.downTime);
