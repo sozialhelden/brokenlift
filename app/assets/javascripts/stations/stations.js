@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-
+// test
   var maxDaysToRenderIntoChart = 200;
 
   var renderDownTimePercentage = function(liftId, downTime) {
