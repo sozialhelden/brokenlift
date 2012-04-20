@@ -3,22 +3,22 @@
   .row-fluid
     .span12
       = render :partial => "shared/header"
-      
-  .row-fluid.content    
+
+  .row-fluid.content
     .span12
       .row-fluid
         .span12
           %div
             %h2.station.header{:class => @station.broken? ? "broken" : "working"  }
-              %span= @station.name 
+              %span= @station.name
             %ul.status-list{:id=>'lifts-list'}
               = render :partial => 'lifts/lift', :collection => @station.lifts
-    
+
   .row-fluid
     .span12
       = render :partial => "shared/footer"
 
 - content_for :javascripts do
-  = javascript_include_tag params[:controller] + "/jquery.flot.min"
-  = javascript_include_tag params[:controller] + "/jquery.flot.pie.min"
+  = javascript_include_tag params[:controller] + "/jquery.flot.min.js"
+  = javascript_include_tag params[:controller] + "/jquery.flot.pie.min.js"
   = javascript_include_tag params[:controller] + "/stations.js"
