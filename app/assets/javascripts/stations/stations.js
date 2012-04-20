@@ -10,12 +10,13 @@
         })(maxDaysToRenderIntoChart);
 
   var renderDownTimePercentage = function(liftId, downTime) {
-
     var $chartDescription = $("#downtime-percentage-description-" + liftId);
+    
+    downTime = downTime <= 0 ? 1 : downTime;
 
     data = [
-      { label: 'uptime', data: maxDaysToRenderIntoChart * 86400, color: '#8EBC7A' },
-      { label: 'downtime', data: downTime <= 0 ? 1 : downTime, color: '#CF335A' }
+      { label: 'uptime', data: maxDaysToRenderIntoChart * 86400 - downTime, color: '#8EBC7A' },
+      { label: 'downtime', data: downTime, color: '#CF335A' }
     ];
 
     $.plot($("#downtime-percentage-" + liftId), data, {
