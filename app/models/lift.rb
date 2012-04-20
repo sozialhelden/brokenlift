@@ -76,13 +76,14 @@ class Lift < ActiveRecord::Base
   # @todo please refactor me
   def self.get_statistics(id, days)
     lift = self.find(id)
-    limit = Time.zone.now.advance(:days => -(days.to_i))
+    days = days.to_i
+    limit = Time.zone.now.advance(:days => -(days))
     events = lift.events.reverse
     sumDownTime = 0
     lift.downTimeEvents = Array.new
     dailyStatusHistory = Array.new
 
-    for i in (0 .. days.to_i)
+    for i in (0 .. days)
       date = Date.today.advance(:days => -i)
       dailyStatus = Hash.new
       dailyStatus["date"] = date
@@ -110,6 +111,9 @@ class Lift < ActiveRecord::Base
 
       unless event.is_working
         durationInDays = (event.duration / 86400).round
+        if durationInDays > days
+          durationInDays = days
+        end
 
         tomorrow = Time.zone.today.advance(:days => 1)
         for i in (0 .. durationInDays)

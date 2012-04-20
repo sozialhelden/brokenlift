@@ -26,6 +26,7 @@
                 %div.alert.alert-success
                   Im Moment sind keine defekten Aufzüge gemeldet.
             %ul.status-list
+              = render :partial => 'stations/list/station', :collection => @stations_broken
               = render :partial => 'stations/list/station', :collection => @stations
               
   .row-fluid
