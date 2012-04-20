@@ -118,6 +118,9 @@ class Lift < ActiveRecord::Base
             next
           end
           dailyStatus = dailyStatusHistory.find{|dailyStatus| dailyStatus["date"] == date }
+          if dailyStatus == nil
+            next
+          end
           dailyStatus["is_working"] = false
         end
 
