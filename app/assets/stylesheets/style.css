@@ -54,58 +54,65 @@ h2 {
 
 .content h2 {
   padding: 10px 0 10px 30px;
+  text-shadow: 0px 1px 1px #666;
 }
 
-.content h2 span {
+span.status {
   padding-right: 33px;
 }
 
-.content h2.station.working span {
+span.status.working {
   background: url(workinglift_big.png) no-repeat right 85%;
 }
 
-.content h2.station.broken span {
-  background: url(brokenlift_big.png) no-repeat right 85%;
+span.status.broken {
+  background: url(brokenlift_big.png) no-repeat right 90%;
 }
 
-.status-list {
-  padding: 0 30px 20px 30px;
-  margin: 0;
-  list-style-image:url(list_closed.gif);
+span.status-small {
+  padding-right: 25px;
 }
 
-.status-list li {
+span.status-small.working {
+  background: url(workinglift_small.png) no-repeat right 85%;
+}
+
+span.status-small.broken {
+  background: url(brokenlift_small.png) no-repeat right 85%;
+}
+
+.station-list {}
+
+.station-list li {
+  font-size: 11pt;
+  font-weight:bold;
   padding-top: 8px;
   margin-bottom: 5px;
-  background-color: transparent;
-  list-style-position: inside;
+  list-style-position: inside; 
 }
 
-.status-list li.framed {
-  background-color: #F4F4F4;
-}
-
-.status-list li.station a {
+.station-list li a {
   color: #606060;
   text-decoration: none;
 }
 
-.status-list li.station a:hover {
+.station-list li a:hover {
   color: #589EFF;
 }
 
-.status-list li span.status {
+.lift-list {
+  list-style:none;
+  margin: 0 20px;
+}
+
+.lift-list li {
   font-size: 11pt;
   font-weight:bold;
-  padding-right: 25px;
-}
-
-.status-list li span.status.working {
-  background: url(workinglift_small.png) no-repeat right 85%;
-}
-
-.status-list li span.status.broken {
-  background: url(brokenlift_small.png) no-repeat right 85%;
+  padding-left: 20px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  background-color: #F4F4F4;
+  border-radius: 5px;
 }
 
 
@@ -134,9 +141,15 @@ h2 {
   height: 200px;
 }
 
+.chart-container {
+  padding: 10px 0;
+  padding-right: 20px;
+}
+
 .chart-row {
   background-color: #fff;
 }
+
 .chart-description p {
   color: #787878;
   font-weight: bold;

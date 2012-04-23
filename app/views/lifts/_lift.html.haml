@@ -1,8 +1,8 @@
-%li{:data => {:lift_id => "#{lift.id}"}, :class=>"framed"}
-  %span.status{:class => lift.broken? ? "broken" : "working"}
+%li{:data => {:lift_id => "#{lift.id}"}}
+  %span.status-small{:class => lift.broken? ? "broken" : "working"}
     = lift.description
       
-  %div{:style=>"padding: 10px 30px;" }
+  %div{:class => "chart-container" }
     .row-fluid.chart-row{:style=>"margin-bottom: 5px; padding: 10px 0;" }
       .span6
         .row-fluid{:style=>"padding: 0 5px;" }

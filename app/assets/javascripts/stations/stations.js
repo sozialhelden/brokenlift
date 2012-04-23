@@ -15,8 +15,8 @@
     downTime = downTime <= 0 ? 1 : downTime;
 
     data = [
-      { label: 'uptime', data: maxDaysToRenderIntoChart * 86400 - downTime, color: '#8EBC7A' },
-      { label: 'downtime', data: downTime, color: '#CF335A' }
+      { label: 'uptime', data: maxDaysToRenderIntoChart * 86400 - downTime, color: '#6D6E70' },
+      { label: 'downtime', data: downTime, color: '#BF2850' }
     ];
 
     $.plot($("#downtime-percentage-" + liftId), data, {
@@ -25,8 +25,8 @@
           show: true,
           radius: 0.9,
           stroke: {
-            color: 'transparent',
-            width: 0
+            color: '#fff',
+            width: 1
           },
           label: {
               show: true,
@@ -188,7 +188,7 @@
     $chartDescription.html(partialDescriptionString + "<br/> war dieser Lift an<br/> " + daysNotWorking + " " + days + "<br/><span class=\"bolder\">defekt</span></p>");
   };
 
-  $('#lifts-list li').each(function(index, value) {
+  $('#lift-list li').each(function(index, value) {
     var liftId = $(this).data('lift_id'),
           $that = $(this);
 

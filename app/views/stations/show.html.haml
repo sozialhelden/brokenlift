@@ -6,9 +6,10 @@
       .row-fluid
         .span12
           %div
-            %h2.station.header{:class => @station.broken? ? "broken" : "working"  }
-              %span= @station.name
-            %ul.status-list{:id=>'lifts-list'}
+            %h2.station.header
+              %span.status{:class => @station.broken? ? "broken" : "working"  }
+                = @station.name
+            %ul.lift-list{:id=>'lift-list'}
               = render :partial => 'lifts/lift', :collection => @station.lifts
 
   = render :partial => "shared/footer"

@@ -1,3 +1,3 @@
 %li.station
-  %span.status{:class => station.broken? ? "broken" : "working" }
+  %span.status-small{:class => station.broken? ? "broken" : "working" }
     = link_to station.name,  :controller => "stations", :action => "show", :id => station.id
