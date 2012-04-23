@@ -1,8 +1,5 @@
-
 .container
-  .row-fluid
-    .span12
-      = render :partial => "shared/header"
+  = render :partial => "shared/header"
 
   .row-fluid.content
     .span12
@@ -14,9 +11,7 @@
             %ul.status-list{:id=>'lifts-list'}
               = render :partial => 'lifts/lift', :collection => @station.lifts
 
-  .row-fluid
-    .span12
-      = render :partial => "shared/footer"
+  = render :partial => "shared/footer"
 
 - content_for :javascripts do
   = javascript_include_tag params[:controller] + "/jquery-flot.js"

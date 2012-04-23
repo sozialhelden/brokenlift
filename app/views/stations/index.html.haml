@@ -1,7 +1,5 @@
 ﻿.container
-  .row-fluid
-    .span12
-      = render :partial => "shared/header"
+  = render :partial => "shared/header"
       
   .row-fluid.content    
     .span12
@@ -29,6 +27,5 @@
               = render :partial => 'stations/list/station', :collection => @stations_broken
               = render :partial => 'stations/list/station', :collection => @stations
               
-  .row-fluid
-    .span12
-      = render :partial => "shared/footer"
+
+  = render :partial => "shared/footer"

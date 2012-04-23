@@ -1,7 +1,10 @@
-= link_to image_tag( 'brokenlifts_logo.png'), 'http://brokenlifts.org'
-#navigation
-  %ul
-    %li
-      = link_to 'Lifts', stations_url
-    %li
-      %a{:href => 'https://brokenlifts.posterous.com/pages/uber-brokenliftsorg'} Über das Projekt
+#header.row-fluid
+  .span12
+    .logo
+      = link_to image_tag( 'brokenlifts_logo.png'), 'http://brokenlifts.org'
+    .navigation
+      %ul
+        %li
+          = link_to 'Stationen', stations_url
+        %li
+          %a{:href => 'https://brokenlifts.posterous.com/pages/uber-brokenliftsorg', :target => '_blank'} Über das Projekt

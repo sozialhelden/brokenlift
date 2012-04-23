@@ -1,55 +1,71 @@
-body {
-  background: url('background.jpg');
-}
+/** BASE **/
 
-.container, h1, h2, h3 {
-  color: #505050;
+body {
+  background: #333;
 }
 
 h2 {
   font-size: 22pt;
 }
 
-h2.header {
-  padding: 10px 0 10px 30px;
+.container, h1, h2, h3 {
+  color: #505050;
 }
 
-h2.header span {
-  padding-right: 33px;
+
+/** HEADER **/
+
+#header {}
+
+#header .logo {
+  padding-top: 30px;
 }
 
-h2.station.working span {
-  background: url(workinglift_big.png) no-repeat right 85%;
-}
-
-h2.station.broken span {
-  background: url(brokenlift_big.png) no-repeat right 85%;
-}
-
-.content {
-  background-color: #FEFEFE;
-}
-
-#navigation {
+#header .navigation {
   float: right;
-  margin-top:130px;
 }
 
-#navigation ul li {
+#header .navigation ul li {
   display: inline;
   padding: 0 0 0 10px;
 }
 
-#navigation a {
+#header .navigation a {
   font-weight: bold;
   text-transform: uppercase;  
-  color: #589EFF;
+  color: #fff;
+  padding: 5px 10px;
   text-decoration: none;
-  font-size: 15pt;
+  border-radius: 5px;
+  font-size: 12pt;
 }
 
-#navigation a:hover {
-  color: #2687FF;
+#header .navigation a:hover {
+  background: #3D3D3D;
+}
+
+
+/** CONTENT **/
+
+.content {
+  background-color: #FEFEFE;
+  border-radius: 10px;
+}
+
+.content h2 {
+  padding: 10px 0 10px 30px;
+}
+
+.content h2 span {
+  padding-right: 33px;
+}
+
+.content h2.station.working span {
+  background: url(workinglift_big.png) no-repeat right 85%;
+}
+
+.content h2.station.broken span {
+  background: url(brokenlift_big.png) no-repeat right 85%;
 }
 
 .status-list {
@@ -78,7 +94,6 @@ h2.station.broken span {
   color: #589EFF;
 }
 
-
 .status-list li span.status {
   font-size: 11pt;
   font-weight:bold;
@@ -93,17 +108,27 @@ h2.station.broken span {
   background: url(brokenlift_small.png) no-repeat right 85%;
 }
 
-.footer {
-  margin: 10px 20px;
-  float: right;
+
+/** FOOTER **/
+
+#footer .rf {
+  margin: 10px;
   font-size: 8pt;
   font-weight: bold;
   text-transform: uppercase;
+  color: #888;
 }
 
-.footer a {
-  color: #2684FF;
+#footer .rf {
+  float: right;
 }
+
+#footer a {
+  color: #ccc;
+}
+
+
+/** CHARTS **/
 
 .chart {
   height: 200px;
