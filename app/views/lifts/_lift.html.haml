@@ -1,7 +1,7 @@
 %li{:data => {:lift_id => "#{lift.id}"}}
   %span.status-small{:class => lift.broken? ? "broken" : "working"}
     = lift.description
-      
+
   %div{:class => "chart-container" }
     .row-fluid.chart-row{:style=>"margin-bottom: 5px; padding: 10px 0;" }
       .span6
@@ -9,17 +9,17 @@
           .span6
             %div.chart{:id=>"downtime-percentage-#{lift.id}" }
           .span6
-            %h3= "Ausfallquote"
+            %h3= "Ausfallzeit"
             %div.chart-description{:id=>"downtime-percentage-description-#{lift.id}" }
-              
+
       .span6
         .row-fluid{:style=>"padding: 0 5px;" }
           .span6
             %div.chart{:id=>"downtime-absolute-#{lift.id}" }
           .span6
-            %h3= "Ausfallzeit"
+            %h3= "Ausfallquote"
             %div.chart-description{:id=>"downtime-absolute-description-#{lift.id}" }
-              
+
     .row-fluid.chart-row{:style=>"margin-bottom: 10px; padding: 10px 0;" }
       .span12
         .row-fluid{:style=>"padding: 0 5px;" }
