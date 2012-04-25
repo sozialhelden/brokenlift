@@ -1,7 +1,7 @@
 /** BASE **/
 
 body {
-  background: url('background.jpg');
+  background: #333;
 }
 
 h2 {
@@ -19,8 +19,6 @@ h2 {
 
 #header .logo {
   padding-top: 30px;
-  width: 262px;
-  height: 151px;
 }
 
 #header .navigation {
@@ -35,6 +33,7 @@ h2 {
 #header .navigation a {
   font-weight: bold;
   text-transform: uppercase;
+  color: #fff;
   padding: 5px 10px;
   text-decoration: none;
   border-radius: 5px;
@@ -125,11 +124,16 @@ span.status-small.broken {
   font-size: 8pt;
   font-weight: bold;
   text-transform: uppercase;
+  color: #888;
 }
 
 #footer .rf {
   float: right;
 }
+
+#footer a {
+  color: #ccc;
+} 
 
 
 /** CHARTS **/
