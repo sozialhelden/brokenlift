@@ -1,7 +1,7 @@
-/** BASE **/
+﻿/** BASE **/
 
 body {
-  background: #333;
+  background: #ddd url(background.jpg);
 }
 
 h2 {
@@ -27,22 +27,31 @@ h2 {
 
 #header .navigation ul li {
   display: inline;
-  padding: 0 0 0 10px;
 }
 
 #header .navigation a {
   font-weight: bold;
   text-transform: uppercase;
-  color: #fff;
+  color: #505050;
   padding: 5px 10px;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 12pt;
+  background: #fff;
 }
 
 #header .navigation a:hover {
+  background: #589EFF;
   color: #fff;
-  background: #3D3D3D;
+}
+
+#ribbon {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: url(ribbon.png);
+  height: 342px;
+  width: 317px;
 }
 
 
