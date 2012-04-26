@@ -11,34 +11,38 @@ class SbahnParserJob < Struct.new(:timestamp)
     file = File.open(Rails.root.join('public', 'system', 'SBAHN', "#{timestamp}.html"))
     broken_lifts = SbahnParser.parse(file, network)
 
-    network.lifts.inverse(broken_lifts.map(&:id)).each do |working_lift|
-      event_type = EventType.find_by_name('working')
-      Event.create(:event_type => event_type, :lift => working_lift, :timestamp => time) if working_lift.broken?
-    end
+    working_type = EventType.find_by_name('working')
+    broken_type = EventType.find_by_name('broken')
 
-    broken_lifts.each do |broken_lift|
-      event_type = EventType.find_by_name('broken')
-      Event.create(:event_type => event_type, :lift => broken_lift, :timestamp => time) unless broken_lift.broken?
+    network.lifts.find_each do |lift|
+      if broken_lifts.include?(lift)
+        # Setze alle Lifts, die nicht in der html datei vorkommen auf working
+        Event.create(:event_type => working_type, :lift => lift, :timestamp => time)
+      else
+        # Setze alle Lifts, die in der html datei enthalten sind auf broken
+        Event.create(:event_type => broken_type, :lift => lift, :timestamp => time)
+      end
     end
-
-    raise "FOO"
   end
 
   # Do something before the actual job is performed
-  def before
+  def before(delayed_job)
+  end
+
+  def after(delayed_job)
   end
 
   # Do something when the job was successfully done
-  def success
+  def success(delayed_job)
     # Delete the file which has been parsed?
   end
 
   # Do something when the job failed
-  def error
+  def error(delayed_job, exception)
   end
 
   # Do something when the job failed 25 times
-  def on_permanent_failure
+  def failure
   end
 
 end

@@ -10,22 +10,25 @@ class Event < ActiveRecord::Base
     :having => 'max(timestamp) = events.timestamp'
 
     # This selects all events, which have been changed depending on the event before.
+    # see http://www.artfulsoftware.com/infotree/queries.php#820
     #
-    # SELECT a.time, a.value
+    # SELECT a.timestamp, a.event_type_id
     # FROM (
     #   SELECT t1.*, COUNT(*) AS rank
-    #   FROM changes t1
-    #   LEFT JOIN changes t2 ON t1.time >= t2.time
-    #   GROUP BY t1.time
+    #   FROM events t1
+    #   LEFT JOIN events t2 ON t1.timestamp >= t2.timestamp
+    #   WHERE t1.lift_id = 4
+    #   GROUP BY t1.timestamp
     # ) AS a
     # LEFT JOIN (
     #   SELECT t1.*, COUNT(*) AS rank
-    #   FROM changes t1
-    #   LEFT JOIN changes t2 ON t1.time >= t2.time
-    #   GROUP BY t1.time
-    # ) AS b ON a.rank = b.rank+1 AND a.value = b.value
-    # WHERE b.time IS NULL
-    # ORDER BY a.time;
+    #   FROM events t1
+    #   LEFT JOIN events t2 ON t1.timestamp >= t2.timestamp
+    #   WHERE t1.lift_id = 4
+    #   GROUP BY t1.timestamp
+    # ) AS b ON a.rank = b.rank+1 AND a.event_type_id = b.event_type_id
+    # WHERE b.timestamp IS NULL
+    # ORDER BY a.timestamp;
 
   acts_as_api
 

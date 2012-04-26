@@ -21,21 +21,24 @@ class SbahnParser
 
     def process_row(row, network)
       lines = find_lines(row, network)
+
       station_name = find_station_name(row)
 
-      station = find_or_create_station_for_lines(station_name, lines)
+      station = find_or_create_station_for_lines(station_name, lines, network)
 
       description = find_lift_description(row)
 
-      find_or_create_lift_for_station(description, station)
+      find_or_create_lift_for_station(description, station, network)
     end
 
-    def find_or_create_lift_for_station(description, station)
-      lift = station.lifts.where(['lifts.description = ?', description]).first
+    def find_or_create_lift_for_station(description, station, network)
+      # Make sure this description is properly utf-8 encoded
+      puts description
+      lift = station.lifts.where(["lifts.description = ?", description]).first
       lift ||= Lift.create(:station => station, :operator => network.operator, :description => description)
     end
 
-    def find_or_create_station_for_lines(station_name, lines)
+    def find_or_create_station_for_lines(station_name, lines, network)
       station = nil
       lines.each do |line|
         station = find_station_for_line(station_name, line)
@@ -68,15 +71,18 @@ class SbahnParser
       line_names.collect do |line_name|
         line = network.lines.where(["lines.name = ?", line_name]).first
         line = Line.create(:network => network, :name => line_name) if line.blank?
+        puts line.inspect
         line
       end.compact
     end
 
     def find_station_name(row)
+      # TODO manually convert from iso to utf
       row.search("#{row.path}//td[1]").css('a').first.content
     end
 
     def find_lift_description(row)
+      # TODO manually convert from iso to utf
       row.search("#{row.path}//td[2]").first.content
     end
 

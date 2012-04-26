@@ -1,8 +1,7 @@
 # encoding: utf-8
 namespace :db do
   desc "Fill in the database with sample data"
-  task :populate => :environment do
-    Rake::Task['db:reset'].invoke
+  task :populate => [:environment, 'db:reset'] do
     make_stations
     make_event_types
     make_operators
@@ -57,7 +56,7 @@ end
   end
 
   def make_events
-    date1 = Time.now - 10000000
+    date1 = 3.month.ago
     date2 = Time.now
 
     # lift 1
