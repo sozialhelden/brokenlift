@@ -49,9 +49,22 @@ class Lift < ActiveRecord::Base
     template.add :dailyStatusHistory
   end
 
+  default_scope :select => 'lifts.*, (SELECT events.event_type_id FROM events WHERE events.lift_id = lifts.id ORDER BY events.timestamp DESC LIMIT 1) as broken_id'
+  scope :broken_selector, lambda { |broken_id| { :having => ['broken_id = ? ', broken_id ] } }
+  scope :with_events, :include => :events
   scope :inverse, lambda {|list_of_lift_ids| { :conditions => ["#{self.table_name}.id NOT IN (?)", list_of_lift_ids]}}
 
   # Acts as state machine? gem 'aasm'
+
+  def self.broken
+    broken_type = EventType.broken
+    scoped({}).broken_selector(broken_type).all
+  end
+
+  def self.working
+    working_type = EventType.working
+    scoped({}).broken_selector(working_type).all
+  end
 
   def broken?
     last_event.broken? rescue false
@@ -63,14 +76,6 @@ class Lift < ActiveRecord::Base
 
   def timestamp
     self.created_at.to_i
-  end
-
-  def self.broken
-    coll = []
-    Lift.find_each do |lift|
-      coll << lift if lift.broken?
-    end
-    coll
   end
 
   # @todo please refactor me

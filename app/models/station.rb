@@ -4,6 +4,8 @@ class Station < ActiveRecord::Base
   has_many :lines_stations
   has_many :lines, :through => :lines_stations
 
+  scope :with_lifts, :include => :lifts
+
   acts_as_api
 
   api_accessible :default do |template|
@@ -26,15 +28,23 @@ class Station < ActiveRecord::Base
   end
 
   def lifts_working
-    lifts.reject{|l| l.broken?}.size
+    lifts.working.count
   end
-  
+
   def lifts_broken
-    lifts.reject{|l| !l.broken?}.size
+    lifts.broken.count
   end
-  
+
   def broken?
-    lifts_working != lifts_total rescue false
+    lifts_broken > 0
+  end
+
+  def self.broken
+    Lift.broken.map(&:station)
+  end
+
+  def self.working
+    Lift.working.map(&:station)
   end
 
 end
