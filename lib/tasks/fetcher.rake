@@ -11,4 +11,13 @@ namespace :fetcher do
 
     Delayed::Job.enqueue(SbahnParserJob.new(now))
   end
+
+  desc 'Reprocess fetched files'
+  task :reprocess => :environment do
+    Dir[Rails.root.join('public', 'system', 'SBAHN', '*.html')].each do |file|
+      puts "Reschedule: #{file}"
+      time = File.basename(file, '.html')
+      Delayed::Job.enqueue(SbahnParserJob.new(time))
+    end
+  end
 end
