@@ -21,6 +21,9 @@ group :default do
   gem 'nokogiri'
   gem 'delayed_job_active_record'
   gem 'daemons'
+  gem 'therubyracer'
+  gem 'uglifier'
+  gem 'execjs'
 end
 
 group :test, :development do
@@ -29,9 +32,6 @@ group :test, :development do
 end
 
 group :production do
-  gem 'therubyracer'
-  gem 'uglifier'
-  gem 'execjs'
 end
 
 group :test do
