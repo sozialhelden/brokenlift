@@ -33,7 +33,6 @@ class SbahnParser
 
     def find_or_create_lift_for_station(description, station, network)
       # Make sure this description is properly utf-8 encoded
-      puts description
       lift = station.lifts.where(["lifts.description = ?", description]).first
       lift ||= Lift.create(:station => station, :operator => network.operator, :description => description)
     end
@@ -71,7 +70,6 @@ class SbahnParser
       line_names.collect do |line_name|
         line = network.lines.where(["lines.name = ?", line_name]).first
         line = Line.create(:network => network, :name => line_name) if line.blank?
-        puts line.inspect
         line
       end.compact
     end

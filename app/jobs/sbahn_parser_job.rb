@@ -16,11 +16,11 @@ class SbahnParserJob < Struct.new(:timestamp)
 
     network.lifts.find_each do |lift|
       if broken_lifts.include?(lift)
-        # Setze alle Lifts, die nicht in der html datei vorkommen auf working
-        Event.create(:event_type => working_type, :lift => lift, :timestamp => time)
-      else
         # Setze alle Lifts, die in der html datei enthalten sind auf broken
         Event.create(:event_type => broken_type, :lift => lift, :timestamp => time)
+      else
+        # Setze alle Lifts, die nicht in der html datei vorkommen auf working
+        Event.create(:event_type => working_type, :lift => lift, :timestamp => time)
       end
     end
   end

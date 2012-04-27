@@ -2,7 +2,7 @@ class Lift < ActiveRecord::Base
   belongs_to :station
   belongs_to :manufacturer
   belongs_to :operator
-  has_many :events, :order => 'timestamp DESC'
+  has_many :events, :order => 'timestamp DESC', :dependent => :destroy
   has_many :lines, :through => :station
 
   attr :downTime, true
@@ -77,14 +77,14 @@ class Lift < ActiveRecord::Base
   def self.get_statistics(id, days)
     lift = self.find(id)
     days = days.to_i
-    limit = Time.zone.now.advance(:days => -(days))
+    limit = Time.zone.now.advance(:days => -(days)) # days.days.ago
     events = lift.events.reverse
     sumDownTime = 0
     lift.downTimeEvents = Array.new
     dailyStatusHistory = Array.new
 
     for i in (0 .. days)
-      date = Date.today.advance(:days => -i)
+      date = Date.today.advance(:days => -i) # i.days.ago
       dailyStatus = Hash.new
       dailyStatus["date"] = date
       dailyStatus["is_working"] = true
