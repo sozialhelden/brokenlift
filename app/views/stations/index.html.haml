@@ -1,7 +1,7 @@
 ﻿.container
   = render :partial => "shared/header"
-      
-  .row-fluid.content    
+
+  .row-fluid.content
     .span12
       .row-fluid
         .span12
@@ -10,7 +10,7 @@
             - if @lifts_broken > 0
               %div
                 %div.alert.alert-error
-                  Im Moment sind 
+                  Im Moment sind
                   = @lifts_broken
                   Aufzüge defekt.
                 %div.alert.alert-error
@@ -18,13 +18,13 @@
                   = ratio_sbahn
                   \% davon betreibt die S-Bahn und die anderen
                   = 100 - ratio_sbahn
-                  \% die BVG.                  
+                  \% die BVG.
             - else
               %div
                 %div.alert.alert-success
                   Im Moment sind keine defekten Aufzüge gemeldet.
             %ul.station-list
-              = render :partial => 'stations/list/station', :collection => @stations_broken
-              = render :partial => 'stations/list/station', :collection => @stations
+              = render :partial => 'stations/list/broken_station', :collection => @stations_broken.compact
+              = render :partial => 'stations/list/station', :collection => @stations.compact
 
   = render :partial => "shared/footer"
