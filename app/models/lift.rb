@@ -78,7 +78,7 @@ class Lift < ActiveRecord::Base
     lift = self.find(id)
     days = days.to_i
     limit = Time.zone.now.advance(:days => -(days)) # days.days.ago
-    events = lift.events.reverse
+    events = lift.events.for_days(days).with_event_type.reverse
     sumDownTime = 0
     lift.downTimeEvents = Array.new
     dailyStatusHistory = Array.new
@@ -115,7 +115,7 @@ class Lift < ActiveRecord::Base
           durationInDays = days
         end
 
-        tomorrow = Time.zone.today.advance(:days => 1)
+        tomorrow = Time.zone.today.advance(:days => 1) # Date.tomorrow || 1.day.from_now
         for i in (0 .. durationInDays)
           date = event.timestamp.advance(:days => i).to_date
           if date >= tomorrow

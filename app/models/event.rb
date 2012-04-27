@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   attr :duration, true
 
   scope :last_events, :joins => :event_type, :limit => 1, :order => 'events.timestamp DESC'
+  scope :for_days, lambda {|days| { :conditions => ['events.timestamp > ?', days.days.ago ] } }
+  scope :with_event_type, :include => :event_type
   scope :last_event_per_lift, :select => 'distinct events.id, events.lift_id, events.timestamp',
     :group => 'lift_id, events.id, events.timestamp',
     :having => 'max(timestamp) = events.timestamp'
