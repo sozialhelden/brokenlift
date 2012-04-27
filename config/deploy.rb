@@ -85,3 +85,12 @@ set :bundle_without, [:development, :test, :metrics, :deployment]
 require "whenever/capistrano"
 set :whenever_command, "bundle exec whenever"
 set :whenever_environment, :production
+
+# Delayed Job
+require "delayed/recipes"
+before "deploy:restart", "delayed_job:stop"
+after  "deploy:restart", "delayed_job:start"
+
+after "deploy:stop",  "delayed_job:stop"
+after "deploy:start", "delayed_job:start"
+
