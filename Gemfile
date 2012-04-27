@@ -20,6 +20,7 @@ group :default do
   gem 'unicorn'
   gem 'nokogiri'
   gem 'delayed_job_active_record'
+  gem 'daemons'
 end
 
 group :test, :development do
