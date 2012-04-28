@@ -133,7 +133,7 @@ span.status-small.broken {
   font-size: 8pt;
   font-weight: bold;
   text-transform: uppercase;
-  color: #888;
+  color: #777;
 }
 
 #footer .rf {
@@ -141,7 +141,7 @@ span.status-small.broken {
 }
 
 #footer a {
-  color: #ccc;
+  color: #555;
 } 
 
 
