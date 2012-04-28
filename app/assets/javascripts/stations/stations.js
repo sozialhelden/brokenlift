@@ -10,7 +10,9 @@
         })(maxDaysToRenderIntoChart);
 
   var renderDownTimePercentage = function(liftId, downTime) {
-    var $chartDescription = $("#downtime-percentage-description-" + liftId);
+    var $node = $('#downtime-percentage-' + liftId),
+          $chartTitle = $node.find('h3'),
+          $chartDescription = $node.find('.chart-description');
 
     downTime = downTime <= 0 ? 1 : downTime;
 
@@ -19,7 +21,9 @@
       { label: 'downtime', data: downTime, color: '#BF2850' }
     ];
 
-    $.plot($("#downtime-percentage-" + liftId), data, {
+    $node.find('.loading').hide();
+
+    $.plot($node.find('.chart'), data, {
       series: {
         pie: {
           show: true,
@@ -45,15 +49,18 @@
     var hoursDownTime = Math.round((downTime / 3600), 2),
           hours = pluralize(hoursDownTime, "Stunde", "Stunden");
 
+    $chartTitle.show();
     $chartDescription.html(partialDescriptionString + "<br/> war dieser Lift<br/> " + hoursDownTime + " " + hours + "<br/><span class=\"bolder\">defekt</span></p>");
   };
 
   var renderDownTimeAbsolute = function(liftId, downTimeEvents) {
-
-    var $chartCanvas = $("#downtime-absolute-" + liftId),
-          $chartDescription = $("#downtime-absolute-description-" + liftId),
+    var $node = $('#downtime-absolute-' + liftId),
+          $chartTitle = $node.find('h3'),
+          $chartDescription = $node.find('.chart-description'),
+          $chartCanvas = $node.find('.chart'),
           tooltipId = 'downtime-absolute-tooltip-' + liftId;
 
+    $node.find('.loading').hide();
 
     var data = [],
           timeRanges = [];
@@ -139,13 +146,17 @@
       }
     });
 
+    $chartTitle.show();
     $chartDescription.html(partialDescriptionString + "<br/> hatte dieser Lift<br/><span class=\"bolder\">" + defectsCount + " " + defects + "</span></p>");
   };
 
   var renderDownTimeHistory = function(liftId, dailyStatusHistory) {
+    var $node = $('#downtime-history-' + liftId),
+        $chartTitle = $node.find('h3'),
+        $chartDescription = $node.find('.chart-description'),
+        $chartCanvas = $node.find('.chart');
 
-    var $chartCanvas = $("#downtime-history-" + liftId),
-          $chartDescription = $("#downtime-history-description-" + liftId);
+    $node.find('.loading').hide();
 
     var data = [],
           daysNotWorking = 0,
@@ -185,6 +196,7 @@
 
     var days = pluralize(daysNotWorking, "Tag", "Tagen");
 
+    $chartTitle.show();
     $chartDescription.html(partialDescriptionString + "<br/> war dieser Lift an<br/> " + daysNotWorking + " " + days + "<br/><span class=\"bolder\">defekt</span></p>");
   };
 

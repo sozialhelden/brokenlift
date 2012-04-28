@@ -181,3 +181,28 @@ span.status-small.broken {
   font-size: 35px;
   line-height: 35px;
 }
+
+.chart-container .loading {
+  position: absolute;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+  text-align:center;
+}
+
+.chart-container .loading div {
+  margin: 65px auto 0 auto;
+}
+
+.chart-container .loading .message {
+  margin-top: 10px;
+  color: #999;
+  font-size: 12px;
+}
+
+.ico-loader {
+  background: url(ajax-loader.gif);
+  height: 24px;
+  width: 24px;
+}
