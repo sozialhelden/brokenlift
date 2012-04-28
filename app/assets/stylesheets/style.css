@@ -219,9 +219,3 @@ span.status-small.broken {
   height: 24px;
   width: 24px;
 }
-
-@media screen and (max-width: 1300px) {
-  #ribbon {
-    display: none;
-  }
-}
