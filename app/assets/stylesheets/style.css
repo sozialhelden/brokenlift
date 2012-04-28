@@ -19,6 +19,8 @@ h2 {
 
 #header .logo {
   padding-top: 30px;
+  position: relative;
+  z-index: 2;
 }
 
 #header .navigation {
@@ -52,6 +54,7 @@ h2 {
   background: url(ribbon.png);
   height: 342px;
   width: 317px;
+  z-index: 1;
 }
 
 
@@ -60,6 +63,8 @@ h2 {
 .content {
   background-color: #FEFEFE;
   border-radius: 10px;
+  position: relative;
+  z-index: 2;
 }
 
 .content h2 {
