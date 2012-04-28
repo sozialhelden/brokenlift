@@ -15,16 +15,14 @@ h2 {
 
 /** HEADER **/
 
-#header {}
-
 #header .logo {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  margin: 10px 0;
-  position: relative;
-  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  margin: 10px 0;
+  position: relative;
+  z-index: 2;
 }
 
 #header .navigation {
@@ -219,3 +217,4 @@ span.status-small.broken {
   height: 24px;
   width: 24px;
 }
+
