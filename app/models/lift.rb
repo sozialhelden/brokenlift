@@ -49,8 +49,9 @@ class Lift < ActiveRecord::Base
     template.add :dailyStatusHistory
   end
 
-  default_scope :select => 'lifts.*, (SELECT events.event_type_id FROM events WHERE events.lift_id = lifts.id ORDER BY events.timestamp DESC LIMIT 1) as broken_id'
-  scope :broken_selector, lambda { |broken_id| { :having => ['broken_id = ? ', broken_id ] } }
+  scope :broken_selector, lambda { |broken_id| {
+    :having => ['broken_id = ? ', broken_id ],
+    :select => 'lifts.*, (SELECT events.event_type_id FROM events WHERE events.lift_id = lifts.id ORDER BY events.timestamp DESC LIMIT 1) as broken_id' } }
   scope :with_events, :include => :events
   scope :inverse, lambda {|list_of_lift_ids| { :conditions => ["#{self.table_name}.id NOT IN (?)", list_of_lift_ids]}}
 
@@ -143,6 +144,44 @@ class Lift < ActiveRecord::Base
     lift.dailyStatusHistory = dailyStatusHistory
     lift
   end
+
+  # This will walk through all events by timestamp
+  # and will delete those of them, which
+  # have a predecessor and successor of the same type
+  #
+  # B W W W W B B W W B B B
+  # 0 0 1 1 0 0 0 0 0 0 1 0
+  # Meaning it will delete those events which are marked with a 1
+  #
+  def prune_events
+    queue = Array.new(3)
+    events_to_delete = []
+    self.events.order('timestamp ASC').each do |e|
+      queue.shift
+      queue.push(e)
+      next if queue.compact.size != 3
+      event_type_id = e.event_type_id
+      events_to_delete << e.id if queue.all?{|e| e.event_type_id == event_type_id}
+
+      if events_to_delete.size >= 100
+        Event.transaction do
+          events_to_delete.each do |e|
+            Event.delete(e)
+          end
+        end
+        events_to_delete.clear
+      end
+    end
+
+    Event.transaction do
+      events_to_delete.each do |e|
+        Event.delete(e)
+      end
+      events_to_delete.clear
+    end
+    true
+  end
+
 
 end
 

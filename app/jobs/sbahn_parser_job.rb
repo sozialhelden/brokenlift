@@ -22,6 +22,7 @@ class SbahnParserJob < Struct.new(:timestamp)
         # Setze alle Lifts, die nicht in der html datei vorkommen auf working
         Event.create(:event_type => working_type, :lift => lift, :timestamp => time)
       end
+      lift.prune_events
     end
   end
 

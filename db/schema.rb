@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425175155) do
+ActiveRecord::Schema.define(:version => 20120428125858) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -43,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20120425175155) do
   end
 
   add_index "events", ["lift_id", "event_type_id", "timestamp"], :name => "index_events_on_lift_id_and_event_type_id_and_timestamp"
-  add_index "events", ["lift_id", "timestamp", "event_type_id"], :name => "index_events_on_lift_id_and_timestamp_and_event_type_id"
 
   create_table "lifts", :force => true do |t|
     t.text     "description"
@@ -65,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20120425175155) do
     t.integer "station_id"
     t.integer "line_id"
   end
+
+  add_index "lines_stations", ["line_id", "station_id"], :name => "index_lines_stations_on_line_id_and_station_id", :unique => true
 
   create_table "locations", :force => true do |t|
     t.float "longitude"

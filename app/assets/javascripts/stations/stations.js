@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-  var maxDaysToRenderIntoChart = 320,
+  var maxDaysToRenderIntoChart = 200,
         pluralize = function(value, singularString, pluralString) {
           return value == 1 ? singularString : pluralString;
         },
