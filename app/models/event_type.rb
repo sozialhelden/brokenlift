@@ -8,11 +8,11 @@ class EventType < ActiveRecord::Base
   end
 
   def self.broken
-    @broken ||= EventType.where(:is_working => false).first
+    @@broken ||= EventType.where(:is_working => false).first
   end
 
   def self.working
-    @broken ||= EventType.where(:is_working => true).first
+    @@working ||= EventType.where(:is_working => true).first
   end
 
 end

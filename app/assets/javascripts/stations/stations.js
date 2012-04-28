@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-  var maxDaysToRenderIntoChart = 200,
+  var maxDaysToRenderIntoChart = 320,
         pluralize = function(value, singularString, pluralString) {
           return value == 1 ? singularString : pluralString;
         },
@@ -11,7 +11,7 @@
 
   var renderDownTimePercentage = function(liftId, downTime) {
     var $chartDescription = $("#downtime-percentage-description-" + liftId);
-    
+
     downTime = downTime <= 0 ? 1 : downTime;
 
     data = [
@@ -44,7 +44,7 @@
 
     var hoursDownTime = Math.round((downTime / 3600), 2),
           hours = pluralize(hoursDownTime, "Stunde", "Stunden");
-    
+
     $chartDescription.html(partialDescriptionString + "<br/> war dieser Lift<br/> " + hoursDownTime + " " + hours + "<br/><span class=\"bolder\">defekt</span></p>");
   };
 
@@ -124,9 +124,9 @@
     var storedIndex,
           defectsCount = downTimeEvents.length,
           defects = pluralize(defectsCount, "Defekt", "Defekte");
-          
+
     console.log()
-          
+
     $chartCanvas.bind("plothover", function (event, pos, item) {
       if(item) {
         if(item.dataIndex != storedIndex) {
@@ -138,7 +138,7 @@
         storedIndex = null;
       }
     });
-    
+
     $chartDescription.html(partialDescriptionString + "<br/> hatte dieser Lift<br/><span class=\"bolder\">" + defectsCount + " " + defects + "</span></p>");
   };
 
@@ -182,7 +182,7 @@
         },
       }
     });
-    
+
     var days = pluralize(daysNotWorking, "Tag", "Tagen");
 
     $chartDescription.html(partialDescriptionString + "<br/> war dieser Lift an<br/> " + daysNotWorking + " " + days + "<br/><span class=\"bolder\">defekt</span></p>");

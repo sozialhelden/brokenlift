@@ -7,12 +7,12 @@ class SbahnParserJob < Struct.new(:timestamp)
   # Ist der Job unabhängig von der Reihenfolge der Abarbeitung?
   def perform
     time = Time.at(timestamp.to_i)
-    puts Rails.root.join('public', 'system', 'SBAHN', "#{timestamp}.html")
+#    puts Rails.root.join('public', 'system', 'SBAHN', "#{timestamp}.html")
     file = File.open(Rails.root.join('public', 'system', 'SBAHN', "#{timestamp}.html"))
     broken_lifts = SbahnParser.parse(file, network)
 
-    working_type = EventType.find_by_name('working')
-    broken_type = EventType.find_by_name('broken')
+    working_type = EventType.working
+    broken_type = EventType.broken
 
     network.lifts.find_each do |lift|
       if broken_lifts.include?(lift)
@@ -35,10 +35,14 @@ class SbahnParserJob < Struct.new(:timestamp)
   # Do something when the job was successfully done
   def success(delayed_job)
     # Delete the file which has been parsed?
+    STDOUT.putc '.'
+    STDOUT.flush
   end
 
   # Do something when the job failed
   def error(delayed_job, exception)
+    STDERR.putc 'E'
+    STDERR.flush
   end
 
   # Do something when the job failed 25 times
