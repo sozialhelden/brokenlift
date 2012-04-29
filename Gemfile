@@ -9,7 +9,6 @@ group :default do
   gem 'aasm', '3.0.0'
   gem 'acts_as_api', '0.3.11'
   gem 'kaminari', '0.12.4'
-  gem 'heroku'
   gem 'responders', '0.6.4'
   gem 'inherited_resources', '1.3.0'
   gem 'fastercsv', '1.5.4'
@@ -33,14 +32,7 @@ group :test do
   gem 'capybara', '1.1.2'
 end
 
-
 group :deployment do
   gem 'capistrano', '2.11.2'
-end
-
-
-group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
 end
 
