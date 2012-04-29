@@ -1,41 +1,41 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
-gem 'devise'
+gem 'devise', '1.5.2'
 
 group :default do
   gem 'mysql2', '0.3.11'
   gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
-  gem 'aasm'
-  gem 'acts_as_api'
-  gem 'kaminari'
+  gem 'aasm', '3.0.0'
+  gem 'acts_as_api', '0.3.11'
+  gem 'kaminari', '0.12.4'
   gem 'heroku'
-  gem 'responders'
-  gem 'inherited_resources'
-  gem 'fastercsv'
-  gem 'whenever'
-  gem 'unicorn'
-  gem 'nokogiri'
-  gem 'delayed_job_active_record'
-  gem 'daemons'
-  gem 'therubyracer'
-  gem 'uglifier'
-  gem 'execjs'
+  gem 'responders', '0.6.4'
+  gem 'inherited_resources', '1.3.0'
+  gem 'fastercsv', '1.5.4'
+  gem 'whenever', '0.7.3'
+  gem 'unicorn', '4.2.0'
+  gem 'nokogiri', '1.5.0'
+  gem 'delayed_job_active_record', '0.3.2'
+  gem 'daemons', '1.1.8'
+  gem 'therubyracer', '0.10.1'
+  gem 'uglifier', '1.2.4'
+  gem 'execjs', '1.2.9'
 end
 
 group :test, :development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.7.0'
 end
 
 group :test do
-  gem 'factory_girl_rails'
-  gem 'database_cleaner'
-  gem 'capybara'
+  gem 'factory_girl_rails', '1.4.0'
+  gem 'database_cleaner', '0.7.0'
+  gem 'capybara', '1.1.2'
 end
 
 
 group :deployment do
-  gem 'capistrano'
+  gem 'capistrano', '2.11.2'
 end
 
 
