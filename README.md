@@ -78,13 +78,13 @@ The screenshot shows the current version of the website.
 
 ## Current Contributers
 
-- [Christoph Bunte](http://www.christophbuente.de/ "Christoph Bunte") ([@chris\_can\_do](https://twitter.com/#!/chris_can_do/ "@chris_can_do"))
-- [Janosch Woschitz](http://janosch.woschitz.org/ "Janosch Woschitz") ([@jwoschitz](https://twitter.com/#!/jwoschitz "@jwoschitz"))
-- [Oliver Schmidt](http://www.thecodejet.de/blog/ "Oliver Schmidt") ([@codejet](https://twitter.com/#!/codejet "@codejet"))
-- [Matthias Guenther](http://wikimatze.de "Matthias Guenther") ([@wikimatze](https://twitter.com/#!/wikimatze "@wikimatze"))
-- [Esther Masermann](http://www.esther-masemann.com/ "Esther Masermann")
-- [Andi Weiland](http://www.ohrenflimmern.de/ "Andi Weiland") ([@ohrenflimmern](https://twitter.com/#!/ohrenflimmern "@ohrenflimmern"))
-- [Raul Krauthausen](http://raul.de/ "Raul Krauthausen") ([@RAULDe](https://twitter.com/#!/RAULde "@RAULDe"))
+- [Christoph Bünte](http://christophbuente.de "Christoph Bünte") ([@chris\_can\_do](https://twitter.com/#!/chris_can_do/ "@chris_can_do"))
+- [Janosch Woschitz](http://janosch.woschitz.org "Janosch Woschitz") ([@jwoschitz](https://twitter.com/#!/jwoschitz "@jwoschitz"))
+- [Oliver Schmidt](http://www.thecodejet.de/blog "Oliver Schmidt") ([@codejet](https://twitter.com/#!/codejet "@codejet"))
+- [Matthias Günther](http://wikimatze.de "Matthias Günther") ([@wikimatze](https://twitter.com/#!/wikimatze "@wikimatze"))
+- [Esther Masermann](http://esther-masemann.com "Esther Masermann")
+- [Andi Weiland](http://ohrenflimmern.de "Andi Weiland") ([@ohrenflimmern](https://twitter.com/#!/ohrenflimmern "@ohrenflimmern"))
+- [Raul Krauthausen](http://raul.de "Raul Krauthausen") ([@RAULDe](https://twitter.com/#!/RAULde "@RAULDe"))
 
 
 ## Former Contributors
