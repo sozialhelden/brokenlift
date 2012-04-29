@@ -66,28 +66,38 @@ virtual machine with and start the rails project.
 Enough of the theory, lets make this dream come true. Go through each step:
 
 
-1. **Install** the [Oracle’s VirtualBox](http://www.virtualbox.org/wiki/Downloads "Oracle’s VirtualBox")
+**Install** the [Oracle’s VirtualBox](http://www.virtualbox.org/wiki/Downloads "Oracle’s VirtualBox")
   for your operating system
 
-2. **Install** the [vagrant gem](https://rubygems.org/gems/vagrant "vagrant gem"):
+
+**Install** the [vagrant gem](https://rubygems.org/gems/vagrant "vagrant gem"):
+
 
     $ gem install vagrant
 
-3. **Create** a directory for your Virtual Machine:
+
+**Create** a directory for your Virtual Machine:
+
 
     $ mkdir $HOME/vagrant_brokenlifts/
     $ cd $HOME/vagrant_brokenlifts/
 
-4. **Download** the box (→ this will take a while, so grab a snickers):
+
+**Download** the box (→ this will take a while, so grab a snickers):
+
 
     $ vagrant box add brokenlifts_box http://www.itmbs.com/package.box
 
-5. **Initialize** and **run** the virtual machine:
+
+**Initialize** and **run** the virtual machine:
+
 
     $ vagrant init brokenlifts_box
     $ vagrant up
 
-6. **Make** a test login in the box:
+
+**Make** a test login in the box:
+
 
     $ vagrant ssh
     Linux lucid32 2.6.32-33-generic #70-Ubuntu SMP Thu Jul 7 21:09:46 UTC 2011 i686 GNU/Linux
@@ -98,32 +108,41 @@ Enough of the theory, lets make this dream come true. Go through each step:
     Last login: Thu Jul 21 13:07:53 2011 from 10.0.2.2
     vagrant@lucid32:~$
 
-7. **Install** the guest edition for better handling and reload the VM (don't forget to terminate
-   the ssh session with `exit` before doing the following steps)
+
+**Install** the guest edition for better handling and reload the VM (don't forget to terminate the
+ssh session with `exit` before doing the following steps)
+
 
     $ gem install vagrant-vbguest
     $ vagrant reload
 
-8. **Check** out the current code
+
+**Check** out the current code
+
 
     $ git clone git@github.com:sozialhelden/brokenlift.git
 
-9. **Change the database.yml** this step is necessary because the socket location is different
-   between the virtual machine and the production system
+
+**Change the database.yml** this step is necessary because the socket location is different between
+the virtual machine and the production system
+
 
     $ vagrant ssh
     $ vagrant@lucid32:~$ cd /vagrant/brokenlift
     $ rm config/database.yml
     $ mv config/database_vm.yml config/database.yml
 
-10. **Create** the database and **start** rails:
+
+**Create** the database and **start** rails:
+
 
     $ vagrant ssh
     vagrant@lucid32:~$ cd /vagrant/brokenlift
     vagrant@lucid32:~$ bundle exec rake db:populate
     vagrant@lucid32:~$ bundle exec rails s
 
-11. **Browser** check on your browser the URL *http://localhost:3000*
+
+**Browser** check on your browser the URL *http://localhost:3000*
 
 
 Under `/vagrant` you can find the same file you have under `$HOME/vagrant_brokenlifts/` - that's why
