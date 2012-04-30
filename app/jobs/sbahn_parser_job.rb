@@ -1,7 +1,7 @@
 class SbahnParserJob < Struct.new(:timestamp)
 
   def network
-    @network ||= Network.where("name = 'S-Bahn'").first
+    @network ||= Network.find_or_create_by_name('S-Bahn')
   end
 
   # Ist der Job unabhängig von der Reihenfolge der Abarbeitung?

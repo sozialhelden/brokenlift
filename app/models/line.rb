@@ -1,7 +1,7 @@
 class Line < ActiveRecord::Base
   belongs_to :network
   has_many :lines_stations
-  has_many :stations, :through => :lines_stations
+  has_many :stations, :through => :lines_stations, :dependent => :destroy
 
   acts_as_api
 

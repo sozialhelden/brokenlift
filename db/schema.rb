@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120428125858) do
+ActiveRecord::Schema.define(:version => 20120430150057) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -62,9 +62,8 @@ ActiveRecord::Schema.define(:version => 20120428125858) do
   create_table "lines_stations", :force => true do |t|
     t.integer "station_id"
     t.integer "line_id"
+    t.integer "external_id"
   end
-
-  add_index "lines_stations", ["line_id", "station_id"], :name => "index_lines_stations_on_line_id_and_station_id", :unique => true
 
   create_table "locations", :force => true do |t|
     t.float "longitude"

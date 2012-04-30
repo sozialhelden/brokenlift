@@ -23,8 +23,9 @@ class SbahnParser
       lines = find_lines(row, network)
 
       station_name = find_station_name(row)
+      external_id = find_station_id(row)
 
-      station = find_or_create_station_for_lines(station_name, lines, network)
+      station = find_or_create_station_for_lines(external_id, station_name, lines, network)
 
       description = find_lift_description(row)
 
@@ -37,32 +38,39 @@ class SbahnParser
       lift ||= Lift.create(:station => station, :operator => network.operator, :description => description)
     end
 
-    def find_or_create_station_for_lines(station_name, lines, network)
+    def find_or_create_station_for_lines(external_id, station_name, lines, network)
       station = nil
       lines.each do |line|
-        station = find_station_for_line(station_name, line)
+        station = find_station_for_line(external_id, station_name, line)
 
         # if not found, check if station exists in this network
         if station.blank?
           station = find_station_for_network(station_name, network)
           # if it was found, add the line to this station
-          station.lines << line if station
+          LinesStation.create(:line => line, :station => station, :external_id => external_id) if station
         end
 
-        # if it is still not found, creat this station
+        # if it is still not found, create this station
         if station.blank?
-          station = Station.create(:lines => [line], :name => station_name)
+          station = Station.create(:name => station_name)
+          LinesStation.create(:line => line, :station => station, :external_id => external_id)
         end
+      end
+      station
+    end
+
+    def find_station_for_line(external_id, station_name, line)
+      station =    line.stations.where(['lines_stations.external_id = ?', external_id]).first
+      station ||= line.stations.where(['stations.name = ?', station_name]).first
+      if station
+        lines_station = LinesStation.find_by_station_id_and_line_id(station.id, line.id)
+        lines_station.update_attribute(:external_id, external_id) unless lines_station.external_id.present?
       end
       station
     end
 
     def find_station_for_network(station_name, network)
       network.stations.where(['stations.name = ?', station_name]).first
-    end
-
-    def find_station_for_line(station_name, line)
-      line.stations.where(['stations.name = ?', station_name]).first
     end
 
     def find_lines(row, network)
@@ -77,6 +85,11 @@ class SbahnParser
     def find_station_name(row)
       # TODO manually convert from iso to utf
       row.search("#{row.path}//td[1]").css('a').first.content
+    end
+
+    def find_station_id(row)
+      link_path = row.search("#{row.path}//td[1]//a/@href").to_s
+      link_path.gsub(/^.*?ID=(\d+)/, '\1').to_i
     end
 
     def find_lift_description(row)

@@ -1,6 +1,6 @@
 class Station < ActiveRecord::Base
   belongs_to :location
-  has_many :lifts
+  has_many :lifts, :dependent => :destroy
   has_many :lines_stations
   has_many :lines, :through => :lines_stations
 
@@ -21,6 +21,23 @@ class Station < ActiveRecord::Base
     template.add :name
     template.add :lifts_total
     template.add :lifts_working
+  end
+
+  # This merges the lifts and lines of THIS station
+  # into another station and then deletes itself.
+  def merge_into(another_station)
+    self.lifts.each do |lift|
+      lift.station = another_station
+      lift.save!
+    end
+
+    self.lines_stations.each do |line_station|
+      line_station.station_id = another_station.id
+      line_station.save!
+    end
+
+    another_station.location = self.location if self.location
+    self.delete
   end
 
   def lifts_total
