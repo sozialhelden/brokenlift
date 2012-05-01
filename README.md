@@ -30,6 +30,7 @@ the database and the HTML/CSS frontend loading and visualizing the content via J
   [28C3 Lightning Talk](http://www.scribd.com/doc/76810936/BrokenLifts) and the
   [video recording](http://youtu.be/JUPMVI5rnOI) are available online.
 - The current version of the website is online at: [http://brokenlifts.org](http://brokenlifts.org).
+- The project was presented on the [re:publica 2012](http://re-publica.de/12/panel/dyi-barrierefreiheit/)
 
 
 ## Installation → the plain old way
