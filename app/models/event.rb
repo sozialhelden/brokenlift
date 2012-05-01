@@ -68,5 +68,13 @@ class Event < ActiveRecord::Base
     event_type.name
   end
 
+  def self.prune
+    self.find_each(:batch_size => 1) do |e|
+      Event.transaction do
+        events_to_delete = Event.where(['id <> ? AND lift_id = ? AND event_type_id = ? AND timestamp = ?', e.id, e.lift_id, e.event_type_id, e.timestamp ])
+        events_to_delete.map(&:delete)
+      end
+    end
+  end
 end
 

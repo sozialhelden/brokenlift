@@ -7,7 +7,6 @@ class SbahnParserJob < Struct.new(:timestamp)
   # Ist der Job unabhängig von der Reihenfolge der Abarbeitung?
   def perform
     time = Time.at(timestamp.to_i)
-#    puts Rails.root.join('public', 'system', 'SBAHN', "#{timestamp}.html")
     file = File.open(Rails.root.join('public', 'system', 'SBAHN', "#{timestamp}.html"))
     broken_lifts = SbahnParser.parse(file, network)
 
@@ -17,10 +16,10 @@ class SbahnParserJob < Struct.new(:timestamp)
     network.lifts.find_each do |lift|
       if broken_lifts.include?(lift)
         # Setze alle Lifts, die in der html datei enthalten sind auf broken
-        Event.create(:event_type => broken_type, :lift => lift, :timestamp => time)
+        Event.create(:event_type => broken_type, :lift => lift, :timestamp => time) unless Event.exists?(:event_type_id => broken_type.id, :lift_id => lift.id, :timestamp => time)
       else
         # Setze alle Lifts, die nicht in der html datei vorkommen auf working
-        Event.create(:event_type => working_type, :lift => lift, :timestamp => time)
+        Event.create(:event_type => working_type, :lift => lift, :timestamp => time)  unless Event.exists?(:event_type_id => working_type.id, :lift_id => lift.id, :timestamp => time)
       end
       lift.prune_events
     end
