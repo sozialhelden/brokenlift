@@ -20,6 +20,7 @@ group :default do
   gem 'therubyracer', '0.10.1'
   gem 'uglifier', '1.2.4'
   gem 'execjs', '1.2.9'
+  gem 'newrelic_rpm'
 end
 
 group :test, :development do
