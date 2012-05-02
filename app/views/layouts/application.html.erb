@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Brokenlifts</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Brokenlifts</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= csrf_meta_tags %>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  </head>
+  <body>
+    <%= yield %>
 
-<%= yield %>
-
-<%= javascript_include_tag "application" %>
-<%= yield :javascripts %>
-</body>
+    <%= javascript_include_tag "application" %>
+    <%= yield :javascripts %>
+  </body>
 </html>

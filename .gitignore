@@ -7,5 +7,6 @@ tmp/
 /vendor/bundle
 public/system
 public/assets
+public/stations
 *.tmproj
 

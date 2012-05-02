@@ -34,19 +34,19 @@ class SbahnParserJob < Struct.new(:timestamp)
 
   # Do something when the job was successfully done
   def success(delayed_job)
-    # Delete the file which has been parsed?
-    STDOUT.putc '.'
-    STDOUT.flush
+    # Delete all cached files
+    StationSweeper.instance.expire_cache_for(Station.first)
   end
 
-  # Do something when the job failed
   def error(delayed_job, exception)
-    STDERR.putc 'E'
-    STDERR.flush
+    # Do something when the job failed
+
+    # Delete all cached files
+    StationSweeper.instance.expire_cache_for(Station.first)
   end
 
-  # Do something when the job failed 25 times
   def failure
+    # Do something when the job failed 25 times
   end
 
 end

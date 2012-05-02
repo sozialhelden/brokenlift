@@ -1,4 +1,8 @@
 class StationsController < ApplicationController
+
+  caches_page :index
+  caches_page :show
+
   def index
     @page = params[:page] || 1
     @stations_broken = Station.with_lifts.broken.uniq
