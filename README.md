@@ -141,22 +141,35 @@ the virtual machine and the production system:
 
     $ vagrant ssh
     vagrant@lucid32:~$ cd /vagrant/brokenlift
+    vagrant@lucid32:~$ bundle exec rake db:create
     vagrant@lucid32:~$ bundle exec rake db:populate
     vagrant@lucid32:~$ bundle exec rails s
 
 
 **Check** on your favorite browser on your host system the URL *http://localhost:3000*
 
-
 Under `/vagrant` on your virtual machine you can find the same file you have under
 `$HOME/vagrant_brokenlifts/` - that's why it is called a shared folder. Any change you made under
 the git repository `$HOME/vagrant_brokenlifts/brokenlift` are influencing the folder on your virtual
 machine `/vagrant/brokenlift` and you can the results directly in the browser of your host system.
 
-
 If you want, you can use the *Vagrantfile* in this repository to create own virtual machine. Read
 vagrants [getting started](http://vagrantup.com/v1/docs/getting-started/index.html) article, to
 understand how the systems works.
+
+The following packages are installed on the virtual machine:
+
+    # git
+    sudo apt-get install git-core
+    # command-line git browser with vim-commands
+    sudo apt-get install tig
+    # mysql stuff
+    sudo apt-get install mysql-server
+    sudo apt-get install libmysqlclient-dev
+    # nokogiri
+    sudo apt-get install libxslt-dev libxml2-dev
+    # need for gem rubyracer
+    sudo apt-get install g++
 
 
 ## API
