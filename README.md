@@ -6,16 +6,16 @@
                                           )(/
 </pre>
 
-BrokenLifts consists of a RubyOnRails API Backend supplying JSON and XML objects retrieved from
-the database and the HTML/CSS frontend loading and visualizing the content via JavaScript.
+BrokenLifts consists of a RubyOnRails API Backend supplying JSON and XML objects retrieved from the
+database and the HTML/CSS frontend loading and visualizing the content via JavaScript.
 
 
 ## About
-- Public transport operators in Europe must ensure that mobility impaired
-  people can use their service. That's why more and more lifts are
-  installed at train and subway stations. Broken lifts severly restrict
-  the freedom of those people. Being stuck at a train platform not only
-  makes a journey much longer, it is also disrespectful to the individual.
+
+- Public transport operators in Europe must ensure that mobility impaired people can use their
+  service. That's why more and more lifts are installed at train and subway stations. Broken lifts
+  severly restrict the freedom of those people. Being stuck at a train platform not only makes a
+  journey much longer, it is also disrespectful to the individual.
 - BrokenLifts was born at December 3/4, 2011 at
   [Random Hacks of Kindness, Berlin](http://www.rhok.org/event/berlin-germany). There are pictures taken at
   [RHoK Berlin on Flickr](http://www.flickr.com/photos/tags/rhokbln/). Of course
@@ -30,10 +30,11 @@ the database and the HTML/CSS frontend loading and visualizing the content via J
   [28C3 Lightning Talk](http://www.scribd.com/doc/76810936/BrokenLifts) and the
   [video recording](http://youtu.be/JUPMVI5rnOI) are available online.
 - The current version of the website is online at: [http://brokenlifts.org](http://brokenlifts.org).
-- The project was presented on the [re:publica 2012](http://re-publica.de/12/panel/dyi-barrierefreiheit/)
+- The project was presented on the [re:publica 2012](http://re-publica.de/12/panel/dyi-barrierefreiheit/).
 
 
 ## Installation → the plain old way
+
 The command line is your friend:
 
 
@@ -52,10 +53,11 @@ can get into trouble to create the correct development environment on your machi
 
 
 After you have installed everything it's time to fill the database with some random data. Please
-perfom `bundle exec rake db:populate`.
+perform `bundle exec rake db:populate`.
 
 
 ## Installation → the shiny new way
+
 We use [Vagrant](http://vagrantup.com/ "Vagrant") to setup a virtual machine which acts like our
 production system with all the dependencies. Once set, you check out the brokenlift repository on
 github, put it in the share folder between the virtual machine (guest system) and your machine (host
@@ -67,11 +69,11 @@ virtual machine with and start the rails project.
 Enough of the theory, lets make this dream come true. Go through each step:
 
 
-**Install** the [Oracle’s VirtualBox](http://www.virtualbox.org/wiki/Downloads "Oracle’s VirtualBox")
-  for your operating system
+**Install** [Oracle’s VirtualBox](http://www.virtualbox.org/wiki/Downloads "Oracle’s VirtualBox")
+  for your operating system.
 
 
-**Install** the [vagrant gem](https://rubygems.org/gems/vagrant "vagrant gem"):
+**Install** [vagrant gem](https://rubygems.org/gems/vagrant "vagrant gem"):
 
 
     $ gem install vagrant
@@ -87,7 +89,7 @@ Enough of the theory, lets make this dream come true. Go through each step:
 **Download** the box (→ this will take a while, so grab a snickers):
 
 
-    $ vagrant box add brokenlifts_box http://www.itmbs.com/package.box
+    $ vagrant box add brokenlifts_box http://wikimatze.de/package.box
 
 
 **Initialize** and **run** the virtual machine:
@@ -111,21 +113,21 @@ Enough of the theory, lets make this dream come true. Go through each step:
 
 
 **Install** the guest edition for better handling and reload the VM (don't forget to terminate the
-ssh session with `exit` before doing the following steps)
+ssh session with `exit` before doing the following steps on your host system):
 
 
     $ gem install vagrant-vbguest
     $ vagrant reload
 
 
-**Check** out the current code
+**Check** out the current code:
 
 
     $ git clone git@github.com:sozialhelden/brokenlift.git
 
 
 **Change the database.yml** this step is necessary because the socket location is different between
-the virtual machine and the production system
+the virtual machine and the production system:
 
 
     $ vagrant ssh
@@ -143,31 +145,37 @@ the virtual machine and the production system
     vagrant@lucid32:~$ bundle exec rails s
 
 
-**Browser** check on your browser the URL *http://localhost:3000*
+**Check** on your favorite browser on your host system the URL *http://localhost:3000*
 
 
-Under `/vagrant` you can find the same file you have under `$HOME/vagrant_brokenlifts/` - that's why
-it is called a shared folder. Any change you made under `$HOME/vagrant_brokenlifts/brokenlift` are
-influencing the folder on your virtual machine `/vagrant/brokenlift`.
+Under `/vagrant` on your virtual machine you can find the same file you have under
+`$HOME/vagrant_brokenlifts/` - that's why it is called a shared folder. Any change you made under
+the git repository `$HOME/vagrant_brokenlifts/brokenlift` are influencing the folder on your virtual
+machine `/vagrant/brokenlift` and you can the results directly in the browser of your host system.
 
 
-If you want, you can use the *Vagrantfile* in this repository to create own virtual machine.
+If you want, you can use the *Vagrantfile* in this repository to create own virtual machine. Read
+vagrants [getting started](http://vagrantup.com/v1/docs/getting-started/index.html) article, to
+understand how the systems works.
 
 
 ## API
-The project features a RESTful API which can be used to extract the scraped data.  The default
+
+The project features a RESTful API which can be used to extract the scraped data. The default
 response format is JSON but other formats are also supported.
 
 You can find it int the [wiki](https://github.com/sozialhelden/brokenlift/wiki/API).
 
 
 ## Screenshot
+
 The screenshot shows the current version of the website.
 
 ![BrokenLifts Website](https://github.com/sozialhelden/brokenlift/raw/master/screenshot.png "BrokenLifts Website")
 
 
 ## Current Contributers
+
 - [Christoph Bünte](http://christophbuente.de "Christoph Bünte") ([@chris\_can\_do](https://twitter.com/#!/chris_can_do/ "@chris_can_do"))
 - [Janosch Woschitz](http://janosch.woschitz.org "Janosch Woschitz") ([@jwoschitz](https://twitter.com/#!/jwoschitz "@jwoschitz"))
 - [Oliver Schmidt](http://www.thecodejet.de/blog "Oliver Schmidt") ([@codejet](https://twitter.com/#!/codejet "@codejet"))
@@ -178,6 +186,7 @@ The screenshot shows the current version of the website.
 
 
 ## Former Contributors
+
 Brought to you by:
 
 - Julia Benndorf
