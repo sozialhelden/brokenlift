@@ -6,7 +6,7 @@ development:
   username: root
   password:
   reconnect: false
-  socket: /tmp/mysql.sock
+  socket:  /var/run/mysqld/mysqld.sock
 
 
 test:
@@ -16,7 +16,7 @@ test:
   pool: 5
   username: root
   password:
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 
 production:
@@ -26,5 +26,5 @@ production:
   pool: 5
   username: root
   password:
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
