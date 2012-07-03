@@ -5,7 +5,7 @@ gem 'devise', '1.5.2'
 
 group :default do
   gem 'mysql2', '0.3.11'
-  gem 'rails_admin', '0.0.4'
+  gem 'rails_admin', '0.0.5'
   gem 'aasm', '3.0.0'
   gem 'acts_as_api', '0.3.11'
   gem 'kaminari', '0.12.4'
