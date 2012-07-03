@@ -9,4 +9,5 @@ public/system
 public/assets
 public/stations
 *.tmproj
+*~
 
