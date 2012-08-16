@@ -48,8 +48,8 @@ The command line is your friend:
 
 Although [Rails](http://rubyonrails.org/ "Rails") is a great open-source web framework, you still
 can get into trouble to create the correct development environment on your machine. So please consult
-[stackoverflow](http://stackoverflow.com/ "stackoverflow") or [duckduck](http://duckduckgo.com/
-"duckduck").
+[stackoverflow](http://stackoverflow.com/ "stackoverflow") or [duckduckgo](http://duckduckgo.com/
+"duckduckgo").
 
 
 After you have installed everything it's time to fill the database with some random data. Please
