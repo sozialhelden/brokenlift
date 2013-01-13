@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.10'
 gem 'devise', '1.5.2'
 
 group :default do
