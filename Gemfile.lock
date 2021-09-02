@@ -101,7 +101,7 @@ GEM
     jquery-ui-rails (1.0.0)
       jquery-rails
       railties (>= 3.1.0)
-    json (1.7.6)
+    json (1.8.6)
     kaminari (0.12.4)
       rails (>= 3.0.0)
     kgio (2.7.4)
@@ -168,7 +168,7 @@ GEM
       thor (~> 0.14.6)
     raindrops (0.10.0)
     rake (10.0.3)
-    rdoc (3.12)
+    rdoc (3.12.2)
       json (~> 1.4)
     remotipart (1.0.2)
     responders (0.6.4)
