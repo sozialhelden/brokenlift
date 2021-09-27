@@ -14,7 +14,7 @@ group :default do
   gem 'fastercsv', '1.5.4'
   gem 'whenever', '0.7.3'
   gem 'unicorn', '4.2.0'
-  gem 'nokogiri', '1.5.0'
+  gem 'nokogiri', '1.12.5'
   gem 'delayed_job_active_record', '0.3.2'
   gem 'daemons', '1.1.8'
   gem 'therubyracer', '0.10.1'
